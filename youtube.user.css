@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.0.0
+@version        1.1.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -11,6 +11,7 @@
 @var            checkbox hideFilterBar "Hide Filter Bar" 1
 @var            checkbox hideComments "Hide Comments" 0
 @var            range endCardOpacity "End Card Opacity" [0.35, 0, 1, 0.05]
+@var            checkbox restoreDesc "Restore Old Description Style" 1
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
@@ -264,5 +265,136 @@
   }
   yt-notification-action-renderer[ui-refresh] #text.yt-notification-action-renderer, yt-notification-action-renderer[ui-refresh] #sub-text.yt-notification-action-renderer {
     color: var(--yt-spec-text-primary);
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Restore Old Description Style ----- */
+  if (restoreDesc == 1) {
+    ytd-watch-metadata.ytd-watch-flexy {
+      padding-bottom: 2em;
+      border-bottom: 1px solid var(--yt-spec-10-percent-layer);
+    }
+
+    #above-the-fold {
+      display: grid;
+      grid-template-areas: "title title" "subtitle actions" "channel channel" "description description";
+      grid-template-columns: max-content 1fr;
+
+      #title {
+        grid-area: title;
+        align-self: end;
+      }
+      
+      #owner-and-teaser {
+        grid-area: channel;
+      }
+
+      #owner {
+        position: relative;
+        margin-block: 1em;
+        border: none;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          top: -0.5em;
+          left: 0;
+          background: var(--yt-spec-10-percent-layer);
+        }
+      }
+
+      #comment-teaser {
+        display: none;
+      }
+
+      #description-and-actions {
+        position: relative;
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-template-columns: subgrid;
+        grid-row: 2 / -1;
+        grid-column: 1 / -1;
+      }
+
+      #actions {
+        grid-area: actions;
+      }
+
+      #description {
+        grid-area: description;
+        margin-inline-start: 5em;
+      }
+
+      /* Views & Date */
+      #description-inline-expander {
+        position: static;
+        overflow: visible;
+        contain: unset;
+      }
+
+      #snippet {
+        overflow: visible !important;
+        mask-image: none !important;
+      }
+
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(1), 
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(3) {
+        position: absolute;
+        top: 1.2em;
+        font-weight: 400;
+        color: var(--yt-spec-text-secondary);
+      }
+      
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(1) {
+        left: 0;
+      }
+
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(3) {
+        display: flex;
+        left: 9em;
+      }
+      
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(3)::before {
+        content: "·";
+        align-self: center;
+        font-size: 2.5em;
+        margin-right: 1rem;
+      }
+
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(2), 
+      #description-inline-expander .ytd-text-inline-expander span.yt-formatted-string:nth-child(4) {
+        display: none;
+      }
+
+      /* Show more/less */
+      #expand {
+        position: relative;
+        left: 0 !important;
+        margin-top: 0.5em;
+        padding: 0;
+        color: transparent;
+
+        &::before {
+          content: "show more";
+          text-transform: uppercase;
+          color: var(--yt-spec-text-primary); 
+        }
+      }
+
+      #collapse {
+        text-transform: uppercase;
+        margin-top: 0.5em;
+        padding: 0;
+      }
+    }
+    
+    /* Category Tags */
+    #above-the-fold + ytd-metadata-row-container-renderer {
+      margin-block-start: 2em;
+      margin-inline-start: 6em;
+    }
   }
 }
