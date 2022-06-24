@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.2.0
+@version        1.2.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -89,24 +89,6 @@
   .focused-line.tp-yt-paper-input-container {
     border-bottom-color: #4285f4;
   }
-
-	/* ----- Videos Play Button ----- */
-	.ytp-cued-thumbnail-overlay .ytp-large-play-button {
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		margin: 0;
-	}
-
-	.ytp-cued-thumbnail-overlay .ytp-large-play-button svg {
-		position: absolute;
-		width: 60px;
-		height: 48px;
-		top: 50%;
-		left: 50%;
-		margin: -24px 0 0 -34px;
-	}
 
 	/* ----- Recommended Filter Bar Hide ----- */
 	if hideFilterBar == 1 {
@@ -198,14 +180,17 @@
     #primary-inner > ytd-watch-metadata {
       display: none !important;
     }
+
     #info-contents, #meta-contents {
       display: block !important;
     }
+
     #info-contents #container .title {
       font-family: "Roboto",sans-serif;
       font-weight: 400;
       font-size: 18px;
     }
+
     #more .more-button {
       color: transparent;
 
@@ -269,24 +254,24 @@
 	.iv-card .iv-card-primary-link {
 		color: #3ea6ff;
 	}
-
-	/* ----- Chapter Title - Fullscreen ----- */
-	.ytp-big-mode .ytp-chrome-controls .ytp-chapter-title.ytp-button {
-		width: 100%;
-	}
   
-  /* ---- Share Clip ---- */
+  /* ---- Share Clip - Embed Icon ---- */
   #target[title="Embed"] circle {
-    fill: #888;
+    fill: #f00;
+		stroke-width: 0;
   }
+
   #target[title="Embed"] path {
-    fill: var(--yt-spec-text-primary);
+    fill: #fff;
+		stroke: #fff;
+		stroke-width: 0.5;
   }
   
   /* ---- Toast ---- */
   yt-notification-action-renderer[ui-refresh] tp-yt-paper-toast.yt-notification-action-renderer {
     background-color: #303030;
   }
+
   yt-notification-action-renderer[ui-refresh] #text.yt-notification-action-renderer, yt-notification-action-renderer[ui-refresh] #sub-text.yt-notification-action-renderer {
     color: var(--yt-spec-text-primary);
   }
