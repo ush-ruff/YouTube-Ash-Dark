@@ -16,71 +16,71 @@
 @var            range endCardOpacity "Video End Card Opacity" [0.35, 0, 1, 0.05]
 @var            checkbox restoreDesc "Restore Old Description Style" 1
 @var            checkbox hideComments "Hide - Comments" 0
-@var						checkbox restoreCommentReplies "Restore Old Comment Replies Style" 0
+@var            checkbox restoreCommentReplies "Restore Old Comment Replies Style" 0
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
 /*
-	*	===================================================
-	*    ╔╦╗╔═╗╦═╗╦╔═  ╔╦╗╦ ╦╔═╗╔╦╗╔═╗  ╔═╗╦═╗ ╦╔═╗╔═╗
-	*     ║║╠═╣╠╦╝╠╩╗   ║ ╠═╣║╣ ║║║║╣   ╠╣ ║╔╩╦╝║╣ ╚═╗
-	*    ═╩╝╩ ╩╩╚═╩ ╩   ╩ ╩ ╩╚═╝╩ ╩╚═╝  ╚  ╩╩ ╚═╚═╝╚═╝
-	*	===================================================
+  *	===================================================
+  *    ╔╦╗╔═╗╦═╗╦╔═  ╔╦╗╦ ╦╔═╗╔╦╗╔═╗  ╔═╗╦═╗ ╦╔═╗╔═╗
+  *     ║║╠═╣╠╦╝╠╩╗   ║ ╠═╣║╣ ║║║║╣   ╠╣ ║╔╩╦╝║╣ ╚═╗
+  *    ═╩╝╩ ╩╩╚═╩ ╩   ╩ ╩ ╩╚═╝╩ ╩╚═╝  ╚  ╩╩ ╚═╚═╝╚═╝
+  *	===================================================
 */
 
-	:root, [dark] {
-		scrollbar-color: #4c4c4c #2c2c2c !important;
-		scrollbar-width: thin !important;
-		--yt-spec-text-primary: #d2d2d2 !important;
-		--paper-checkbox-unchecked-color: var(--yt-spec-text-primary) !important;
-		--like: #23a923;
-		--dislike: hsl(0, 60%, 45%);
-	}
+  :root, [dark] {
+    scrollbar-color: #4c4c4c #2c2c2c !important;
+    scrollbar-width: thin !important;
+    --yt-spec-text-primary: #d2d2d2 !important;
+    --paper-checkbox-unchecked-color: var(--yt-spec-text-primary) !important;
+    --like: #23a923;
+    --dislike: hsl(0, 60%, 45%);
+  }
 
-	::selection {
-		background: #5c5c5c;
-	}
+  ::selection {
+    background: #5c5c5c;
+  }
 
-	html {
-		background: #2a2a2a;
-	}
+  html {
+    background: #2a2a2a;
+  }
 
-	/* ----- Icons ----- */
-	yt-icon-button {
-		--yt-button-color: var(--yt-spec-text-primary);
-		--yt-spec-brand-icon-inactive: var(--yt-spec-text-primary);
-	}
+  /* ----- Icons ----- */
+  yt-icon-button {
+    --yt-button-color: var(--yt-spec-text-primary);
+    --yt-spec-brand-icon-inactive: var(--yt-spec-text-primary);
+  }
 
-	#voice-search-button.ytd-masthead {
-		background-color: transparent !important;
-	}
+  #voice-search-button.ytd-masthead {
+    background-color: transparent !important;
+  }
 
-	/* ----- Search ----- */
-	.sbsb_a, .sbfl_b {
-		background-color: #2c2c2c;
-		cursor: pointer;
-	}
+  /* ----- Search ----- */
+  .sbsb_a, .sbfl_b {
+    background-color: #2c2c2c;
+    cursor: pointer;
+  }
 
-	.sbdd_b {
-		border: 1px solid #4c4c4c;
-	}
+  .sbdd_b {
+    border: 1px solid #4c4c4c;
+  }
 
-	.sbsb_d {
-		background-color: #4c4c4c;
-	}
+  .sbsb_d {
+    background-color: #4c4c4c;
+  }
 
-	.sbfl_a {
-		color: #aaa;
-	}
+  .sbfl_a {
+    color: #aaa;
+  }
 
-	.gsfs, .sbfl_a:hover {
-		color: #ddd;
-	}
+  .gsfs, .sbfl_a:hover {
+    color: #ddd;
+  }
 
-	.sbpqs_a {
-		color: #b388ff;
-		font-weight: lighter;
-	}
+  .sbpqs_a {
+    color: #b388ff;
+    font-weight: lighter;
+  }
   
   .sbpqs_a::before,   
   .sbqs_c::before {
@@ -91,145 +91,145 @@
     color: #aaa;
   }
 
-	.sbsb_i {
-		color: #4285f4;
-	}
+  .sbsb_i {
+    color: #4285f4;
+  }
   
-	ytd-masthead[desktop-mic-background] #voice-search-button.ytd-masthead {
-		background-color: transparent;
-	}
+  ytd-masthead[desktop-mic-background] #voice-search-button.ytd-masthead {
+    background-color: transparent;
+  }
   
   .focused-line.tp-yt-paper-input-container {
     border-bottom-color: #4285f4;
   }
 
-	/* ----- Video End Card - Channel Button ----- */
-	.ytp-ce-expanding-overlay-background {
-		background-color: #2a2a2a;
-		color: #ddd;
-	}
+  /* ----- Video End Card - Channel Button ----- */
+  .ytp-ce-expanding-overlay-background {
+    background-color: #2a2a2a;
+    color: #ddd;
+  }
 
-	.ytp-ce-channel-this .ytp-ce-channel-metadata, .yt-ui-ellipsis, .ytp-ce-channel-subscribers-text {
-		border-color: #3c3c3c;
-		background-color: transparent;
-		color: inherit;
-	}
+  .ytp-ce-channel-this .ytp-ce-channel-metadata, .yt-ui-ellipsis, .ytp-ce-channel-subscribers-text {
+    border-color: #3c3c3c;
+    background-color: transparent;
+    color: inherit;
+  }
 
-	.ytp-ce-channel-title.ytp-ce-link, .ytp-ce-channel-title.ytp-ce-link:hover {
-		color: #3ea6ff;
-	}
+  .ytp-ce-channel-title.ytp-ce-link, .ytp-ce-channel-title.ytp-ce-link:hover {
+    color: #3ea6ff;
+  }
 
-	.ytp-sb-unsubscribe {
-		background-color: #3c3c3c;
-		color: #aaa;
-	}
+  .ytp-sb-unsubscribe {
+    background-color: #3c3c3c;
+    color: #aaa;
+  }
 
-	/* ----- Video End Card - Video Recommendations ----- */
-	.ytp-ce-element.ytp-ce-element-show {
-		opacity: endCardOpacity;
-	}
+  /* ----- Video End Card - Video Recommendations ----- */
+  .ytp-ce-element.ytp-ce-element-show {
+    opacity: endCardOpacity;
+  }
 
-	.ytp-ce-element.ytp-ce-element-show:is(:hover, :focus) {
-		opacity: 1;
-	}
+  .ytp-ce-element.ytp-ce-element-show:is(:hover, :focus) {
+    opacity: 1;
+  }
 
-	/* ----- Video End Card - External Links ----- */
-	.ytp-ce-website .ytp-ce-expanding-image, .ytp-ce-merchandise .ytp-ce-expanding-image {
-		background-color: transparent;
-	}
+  /* ----- Video End Card - External Links ----- */
+  .ytp-ce-website .ytp-ce-expanding-image, .ytp-ce-merchandise .ytp-ce-expanding-image {
+    background-color: transparent;
+  }
 
-	.ytp-ce-website-title, .ytp-ce-merchandise-title {
-		color: #ddd;
-	}
+  .ytp-ce-website-title, .ytp-ce-merchandise-title {
+    color: #ddd;
+  }
 
-	.ytp-ce-size-1920 .ytp-ce-expanding-icon {
-		display: none;
-	}
+  .ytp-ce-size-1920 .ytp-ce-expanding-icon {
+    display: none;
+  }
 
-	.ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="hsI7JwLnthU/3423407610981483187_mq.jpg?v=6004c2cb"],
-	.ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="j0ls-vNThOY/3423407610981483187_mq.jpg?v=600bb4c8"] {
-		border-radius: 50%;
-		border: 1px solid #ddd;
-	}
+  .ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="hsI7JwLnthU/3423407610981483187_mq.jpg?v=6004c2cb"],
+  .ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="j0ls-vNThOY/3423407610981483187_mq.jpg?v=600bb4c8"] {
+    border-radius: 50%;
+    border: 1px solid #ddd;
+  }
 
-	/* ----- Info Cards (i) ----- */
-	.iv-drawer {
-		background-color: rgba(0, 0, 0, 0.60);
-	}
+  /* ----- Info Cards (i) ----- */
+  .iv-drawer {
+    background-color: rgba(0, 0, 0, 0.60);
+  }
 
-	.iv-card {
-		background-color: #181818;
-	}
+  .iv-card {
+    background-color: #181818;
+  }
 
-	.iv-card-image {
-		border-color: #303030;
-		background: #2a2a2a;
-	}
+  .iv-card-image {
+    border-color: #303030;
+    background: #2a2a2a;
+  }
 
-	.iv-card-message {
-		border-color: #303030;
-		color: #ddd;
-	}
+  .iv-card-message {
+    border-color: #303030;
+    color: #ddd;
+  }
 
-	.iv-card h2, .iv-card-meta-info {
-		color: #ccc;
-	}
+  .iv-card h2, .iv-card-meta-info {
+    color: #ccc;
+  }
 
-	.iv-card .iv-card-primary-link {
-		color: #3ea6ff;
-	}
+  .iv-card .iv-card-primary-link {
+    color: #3ea6ff;
+  }
 
-	/* ----- Like Bar ----- */
-	#container.ytd-sentiment-bar-renderer {
-		/* background-color: #960909; */
-		background-color: var(--dislike);
-	}
+  /* ----- Like Bar ----- */
+  #container.ytd-sentiment-bar-renderer {
+    /* background-color: #960909; */
+    background-color: var(--dislike);
+  }
 
-	#like-bar.ytd-sentiment-bar-renderer {
-		background: rgba(35, 169, 35, .8);
-	}
+  #like-bar.ytd-sentiment-bar-renderer {
+    background: rgba(35, 169, 35, .8);
+  }
 
-	ytd-sentiment-bar-renderer[activated] #like-bar.ytd-sentiment-bar-renderer, 
-	ytd-sentiment-bar-renderer[activated][system-icons] #like-bar.ytd-sentiment-bar-renderer {
-		background: var(--like);
-	}
+  ytd-sentiment-bar-renderer[activated] #like-bar.ytd-sentiment-bar-renderer, 
+  ytd-sentiment-bar-renderer[activated][system-icons] #like-bar.ytd-sentiment-bar-renderer {
+    background: var(--like);
+  }
 
-	ytd-toggle-button-renderer:nth-of-type(1) #button.ytd-toggle-button-renderer.style-default-active {
-		color: var(--like);
-		+ #text {
-				color: var(--like);
-		}
-	}
+  ytd-toggle-button-renderer:nth-of-type(1) #button.ytd-toggle-button-renderer.style-default-active {
+    color: var(--like);
+    + #text {
+        color: var(--like);
+    }
+  }
 
-	ytd-toggle-button-renderer:nth-of-type(2) #button.ytd-toggle-button-renderer.style-default-active {
-		color: var(--dislike);
-		+ #text {
-				color: var(--dislike);
-		}
-	}
+  ytd-toggle-button-renderer:nth-of-type(2) #button.ytd-toggle-button-renderer.style-default-active {
+    color: var(--dislike);
+    + #text {
+        color: var(--dislike);
+    }
+  }
 
-	/* ----- Comment - Composer Input ----- */
-	#input-container.ytd-commentbox {
-		--paper-input-container-underline-focus_-_border-color: #4285f4;
-		--paper-input-container-underline-focus-border-color: #4285f4;
-	}
+  /* ----- Comment - Composer Input ----- */
+  #input-container.ytd-commentbox {
+    --paper-input-container-underline-focus_-_border-color: #4285f4;
+    --paper-input-container-underline-focus-border-color: #4285f4;
+  }
 
-	/* ----- History - Search Input ----- */
-	.focused-line.paper-input-container {
-		--paper-input-container-underline-focus_-_border-color: #4285f4;
-		--paper-input-container-underline-focus-border-color: #4285f4;
-	}
+  /* ----- History - Search Input ----- */
+  .focused-line.paper-input-container {
+    --paper-input-container-underline-focus_-_border-color: #4285f4;
+    --paper-input-container-underline-focus-border-color: #4285f4;
+  }
 
   /* ---- Share Clip - Embed Icon ---- */
   #target[title="Embed"] circle {
     fill: #f00;
-		stroke-width: 0;
+    stroke-width: 0;
   }
 
   #target[title="Embed"] path {
     fill: #fff;
-		stroke: #fff;
-		stroke-width: 0.5;
+    stroke: #fff;
+    stroke-width: 0.5;
   }
   
   /* ---- Toast Notifications ---- */
@@ -243,19 +243,19 @@
 
 
 /*
-	*	=====================================
-	*    ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔═╗╦═╗ ╦╔═╗╔═╗
-	*    ║ ║ ║ ╠═╣║╣ ╠╦╝  ╠╣ ║╔╩╦╝║╣ ╚═╗
-	*    ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ╚  ╩╩ ╚═╚═╝╚═╝
-	*	=====================================
+  *	=====================================
+  *    ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔═╗╦═╗ ╦╔═╗╔═╗
+  *    ║ ║ ║ ╠═╣║╣ ╠╦╝  ╠╣ ║╔╩╦╝║╣ ╚═╗
+  *    ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ╚  ╩╩ ╚═╚═╝╚═╝
+  *	=====================================
 */
-	/* ----- Custom Homepage Item Grid ----- */
+  /* ----- Custom Homepage Item Grid ----- */
   if (customGrid == 1) {
     @media (min-width:1400px) {
-			#primary > ytd-rich-grid-renderer {
-				margin-inline: 7em;
-			}
-		}
+      #primary > ytd-rich-grid-renderer {
+        margin-inline: 7em;
+      }
+    }
     
     div#contents.style-scope.ytd-rich-grid-renderer {
       --custom-grid-columns-number: customGridColumns;
@@ -264,11 +264,11 @@
       margin-inline-start: calc(var(--ytd-rich-grid-item-margin) / 2);
     }
 
-		@media (max-width:1400px) {
-			div#contents.style-scope.ytd-rich-grid-renderer  {
-				margin-inline-start: var(--ytd-rich-grid-item-margin);
-			}
-		}
+    @media (max-width:1400px) {
+      div#contents.style-scope.ytd-rich-grid-renderer  {
+        margin-inline-start: var(--ytd-rich-grid-item-margin);
+      }
+    }
 
     ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer {
       display: inline !important;
@@ -295,7 +295,7 @@
     }
   }
 
-	/* ----- Disable Thumbnail Preview (Autoplay) ----- */
+  /* ----- Disable Thumbnail Preview (Autoplay) ----- */
   if (disablePreview == 1) {
     ytd-thumbnail-overlay-time-status-renderer {
       display: inline-flex !important;
@@ -306,26 +306,26 @@
     }
   }
 
-	/* ----- Recommended Filter Bar Hide ----- */
-	if (hideFilterBar == 1) {
-		ytd-feed-filter-chip-bar-renderer, yt-related-chip-cloud-renderer {
-			display: none;
-		}
-	}
+  /* ----- Recommended Filter Bar Hide ----- */
+  if (hideFilterBar == 1) {
+    ytd-feed-filter-chip-bar-renderer, yt-related-chip-cloud-renderer {
+      display: none;
+    }
+  }
 
-	/* ----- Hide Player Overlays in Fullscreen ----- */
-	if (hidePlayerControls == 1) {
+  /* ----- Hide Player Overlays in Fullscreen ----- */
+  if (hidePlayerControls == 1) {
     /* -- Title -- */
     .ytp-fullscreen:not(.paused-mode) .ytp-gradient-top:not(:hover),
-		.ytp-fullscreen:not(.paused-mode) .ytp-chrome-top:not(:hover) {
-			opacity: 0;
-		}
+    .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top:not(:hover) {
+      opacity: 0;
+    }
     
     /* -- Controls -- */
-		.ytp-fullscreen .ytp-gradient-bottom:not(:hover),
-		.ytp-fullscreen .ytp-chrome-bottom:not(:hover) {
-			opacity: 0;
-		}
+    .ytp-fullscreen .ytp-gradient-bottom:not(:hover),
+    .ytp-fullscreen .ytp-chrome-bottom:not(:hover) {
+      opacity: 0;
+    }
     
     /* -- Background gradient -- */
     .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top::before, 
@@ -360,12 +360,12 @@
     
     
     /* -- Captions - Positon fix -- */
-		.ytp-fullscreen:not(.ytp-autohide) .ytp-caption-window-container {
-			margin-top: 60px;
-		}
-	}
+    .ytp-fullscreen:not(.ytp-autohide) .ytp-caption-window-container {
+      margin-top: 60px;
+    }
+  }
 
-	/* ----- Restore Old Description Style ----- */
+  /* ----- Restore Old Description Style ----- */
   if (restoreDesc == 1) {
     #primary-inner > ytd-watch-metadata {
       display: none !important;
@@ -392,58 +392,58 @@
     }
   }
 
-	/* ----- Comment Section - Hide ------ */
-	if (hideComments == 1) {
-		#comments #contents {
-			display: none;
-		}
-		
-		#comments::after {
-			content: "========== Comments Hidden by UserStyle ==========";
-			display: block;
-			font-size: 14px;
-			text-align: center;
-		}
-	}
+  /* ----- Comment Section - Hide ------ */
+  if (hideComments == 1) {
+    #comments #contents {
+      display: none;
+    }
+    
+    #comments::after {
+      content: "========== Comments Hidden by UserStyle ==========";
+      display: block;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
 }
 
-	/* ----- Restore Old Comment Replies Style ----- */
-	if (restoreCommentReplies == 1) {
-		#more-replies #button:not([aria-label^="View" i]) #text,
-		#less-replies #button:not([aria-label^="Hide" i]) #text {
-			font-size: 14px;
-			text-transform: lowercase;
-		}
+  /* ----- Restore Old Comment Replies Style ----- */
+  if (restoreCommentReplies == 1) {
+    #more-replies #button:not([aria-label^="View" i]) #text,
+    #less-replies #button:not([aria-label^="Hide" i]) #text {
+      font-size: 14px;
+      text-transform: lowercase;
+    }
 
-		#more-replies #button:not([aria-label^="View" i]) #text::before {
-			content: "View ";
-			text-transform: capitalize;
-		}
+    #more-replies #button:not([aria-label^="View" i]) #text::before {
+      content: "View ";
+      text-transform: capitalize;
+    }
 
-		#less-replies #button:not([aria-label^="Hide" i]) #text::before {
-			content: "Hide ";
-			text-transform: capitalize;
-		}
+    #less-replies #button:not([aria-label^="Hide" i]) #text::before {
+      content: "Hide ";
+      text-transform: capitalize;
+    }
 
-		#more-replies #button[aria-label="1 reply" i] #text,
-		#less-replies #button[aria-label="1 reply" i] #text {
-			color: transparent;
+    #more-replies #button[aria-label="1 reply" i] #text,
+    #less-replies #button[aria-label="1 reply" i] #text {
+      color: transparent;
 
-			&::before {
-				color: var(--yt-spec-call-to-action);
-				text-transform: initial;
-			}
-		}
+      &::before {
+        color: var(--yt-spec-call-to-action);
+        text-transform: initial;
+      }
+    }
 
-		#more-replies #button[aria-label="1 reply" i] #text::before {
-			content: "View reply";
-		}
+    #more-replies #button[aria-label="1 reply" i] #text::before {
+      content: "View reply";
+    }
 
-		#less-replies #button[aria-label="1 reply" i] #text::before {
-			content: "Hide reply";
-		}
+    #less-replies #button[aria-label="1 reply" i] #text::before {
+      content: "Hide reply";
+    }
 
-		#more-replies-icon yt-icon, #less-replies-icon yt-icon {
-			color: var(--yt-spec-call-to-action);
-		}
-	}
+    #more-replies-icon yt-icon, #less-replies-icon yt-icon {
+      color: var(--yt-spec-call-to-action);
+    }
+  }
