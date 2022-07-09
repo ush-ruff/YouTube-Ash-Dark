@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.3.1
+@version        1.3.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -249,9 +249,11 @@
 */
 	/* ----- Custom Homepage Item Grid ----- */
   if (customGrid == 1) {
-    #primary > ytd-rich-grid-renderer {
-      margin-inline: 7em;
-    }
+    @media (min-width:1400px) {
+			#primary > ytd-rich-grid-renderer {
+				margin-inline: 7em;
+			}
+		}
     
     div#contents.style-scope.ytd-rich-grid-renderer {
       --custom-grid-columns-number: customGridColumns;
@@ -259,6 +261,12 @@
       display: block !important;
       margin-inline-start: calc(var(--ytd-rich-grid-item-margin) / 2);
     }
+
+		@media (max-width:1400px) {
+			div#contents.style-scope.ytd-rich-grid-renderer  {
+				margin-inline-start: var(--ytd-rich-grid-item-margin);
+			}
+		}
 
     ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer {
       display: inline !important;
@@ -325,7 +333,6 @@
       padding-bottom: 76px;
       background-position: top;
     }
-    
     
     .ytp-fullscreen .ytp-chrome-bottom::before {
       inset: auto -10em 0;
