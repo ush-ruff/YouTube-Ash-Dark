@@ -1,6 +1,6 @@
 # YouTube - Ash Dark
 
-[![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-00adad.svg?longCache=true&style=for-the-badge)](https://github.com/ush-ruff/PSARips-Ash-Dark/raw/main/psarips.user.css)
+[![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-00adad.svg?longCache=true&style=for-the-badge)](https://github.com/ush-ruff/YouTube-Ash-Dark/raw/main/youtube.user.css)
   >Installs directly from this repository.
   >This is only available using Stylus (see the [documentation](https://github.com/openstyles/stylus/wiki/Usercss)).
 
@@ -43,7 +43,7 @@ Stylus - get the addon for:
 ### Install this theme:
 Once you have installed the browser extension click on the link below to install this theme.
 
-[![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-00adad.svg?longCache=true&style=for-the-badge)](https://github.com/ush-ruff/PSARips-Ash-Dark/raw/main/psarips.user.css)
+[![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-00adad.svg?longCache=true&style=for-the-badge)](https://github.com/ush-ruff/YouTube-Ash-Dark/raw/main/youtube.user.css)
   >Installs directly from this repository.
   >This is only available using Stylus (see the [documentation](https://github.com/openstyles/stylus/wiki/Usercss)).
 
