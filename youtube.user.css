@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.4.1
+@version        1.4.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -324,20 +324,20 @@
   /* ----- Hide Player Overlays in Fullscreen ----- */
   if (hidePlayerControls == 1) {
     /* -- Title -- */
-    .ytp-fullscreen:not(.paused-mode) .ytp-gradient-top:not(:hover),
-    .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top:not(:hover) {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-gradient-top:not(:hover),
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top:not(:hover) {
       opacity: 0;
     }
     
     /* -- Controls -- */
-    .ytp-fullscreen .ytp-gradient-bottom:not(:hover),
-    .ytp-fullscreen .ytp-chrome-bottom:not(:hover) {
+    .ytp-fullscreen:not(.ended-mode) .ytp-gradient-bottom:not(:hover),
+    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom:not(:hover) {
       opacity: 0;
     }
     
     /* -- Background gradient -- */
-    .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top::before, 
-    .ytp-fullscreen .ytp-chrome-bottom::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top::before, 
+    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom::before {
       content: "";
       position: absolute;
       height: 70px;
@@ -349,26 +349,26 @@
       z-index: -1;
     }
     
-    .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top::before {
       inset: 0 -10em auto;
       padding-bottom: 76px;
       background-position: top;
     }
     
-    .ytp-fullscreen .ytp-chrome-bottom::before {
+    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom::before {
       inset: auto -10em 0;
       padding-top: 76px;
       background-position: bottom;
     }
     
-    .ytp-fullscreen:not(.paused-mode) .ytp-chrome-top:hover::before,
-    .ytp-fullscreen .ytp-chrome-bottom:hover::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top:hover::before,
+    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom:hover::before {
       opacity: 1;
     }
     
     
     /* -- Captions - Positon fix -- */
-    .ytp-fullscreen:not(.ytp-autohide) .ytp-caption-window-container {
+    .ytp-fullscreen:not(.ytp-autohide):not(.ended-mode) .ytp-caption-window-container {
       margin-top: 60px;
     }
   }
