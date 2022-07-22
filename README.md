@@ -21,6 +21,8 @@ Options have been added to enable or disable each feature as the user chooses.
 * Other helpful customization options like:
   * Customize the number of videos shown per row on the homepage.
   * Disable new thumbnail preview style (video autoplay on thumbnail hover) on thumbnails for users who aren't logged in.
+  * Customize the thumbnail details on the homepage. Moves the channel logo to the second row alongside the channel name.
+    >Only supported on firefox as the current implementation relies on subgrid
   * Hide the filter bar shown on all pages.
   * Hide player overlays, like the video title and player controls, while in fullscreen mode. 
     >Video title will be shown while paused or when a user hovers over the area. 
