@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.5.0
+@version        1.5.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -426,7 +426,7 @@
 
   /* ----- Restore Old Description Style ----- */
   if (restoreDesc == 1) {
-    #primary-inner > ytd-watch-metadata {
+    #primary-inner ytd-watch-metadata {
       display: none !important;
     }
 
