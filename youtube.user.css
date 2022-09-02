@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.5.2
+@version        1.5.3
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -354,6 +354,10 @@
           .video-badge {
             grid-area: badges;
             margin-inline-start: 1rem;
+          }
+
+          #buttons {
+            grid-area: badges;
           }
         }
 
