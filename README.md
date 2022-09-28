@@ -30,6 +30,7 @@ Options have been added to enable or disable each feature as the user chooses.
   * Restore video description from the modern cramped layout to the older  style.
   * Hide comment section completely.
   * Restore comment replies from the modern layout to the older style.
+  * Restore button styling from the new touch spec styling to the older style.
 
 
 ## Install and setup
