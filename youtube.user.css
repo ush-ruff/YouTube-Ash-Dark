@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.6.0
+@version        1.6.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -37,6 +37,8 @@
     --paper-checkbox-unchecked-color: var(--yt-spec-text-primary) !important;
     --like: #23a923;
     --dislike: hsl(0, 60%, 45%);
+    --accent-blue: #3ea6ff;
+    --accent-blue-dark: #4285f4;
   }
 
   ::selection {
@@ -84,8 +86,7 @@
     font-weight: lighter;
   }
   
-  .sbpqs_a::before,   
-  .sbqs_c::before {
+  .sbpqs_a::before, .sbqs_c::before {
     filter: invert(0.7);
   }
   
@@ -94,7 +95,7 @@
   }
 
   .sbsb_i {
-    color: #4285f4;
+    color: var(--accent-blue-dark);
   }
   
   ytd-masthead[desktop-mic-background] #voice-search-button.ytd-masthead {
@@ -102,7 +103,7 @@
   }
   
   .focused-line.tp-yt-paper-input-container {
-    border-bottom-color: #4285f4;
+    border-bottom-color: var(--accent-blue-dark);
   }
 
   /* ----- Video End Card - Channel Button ----- */
@@ -118,7 +119,7 @@
   }
 
   .ytp-ce-channel-title.ytp-ce-link, .ytp-ce-channel-title.ytp-ce-link:hover {
-    color: #3ea6ff;
+    color: var(--accent-blue);
   }
 
   .ytp-sb-unsubscribe {
@@ -148,12 +149,6 @@
     display: none;
   }
 
-  .ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="hsI7JwLnthU/3423407610981483187_mq.jpg?v=6004c2cb"],
-  .ytp-ce-website[aria-label^="Patreon"] .ytp-ce-expanding-image[style*="j0ls-vNThOY/3423407610981483187_mq.jpg?v=600bb4c8"] {
-    border-radius: 50%;
-    border: 1px solid #ddd;
-  }
-
   /* ----- Info Cards (i) ----- */
   .iv-drawer {
     background-color: rgba(0, 0, 0, 0.60);
@@ -178,7 +173,7 @@
   }
 
   .iv-card .iv-card-primary-link {
-    color: #3ea6ff;
+    color: var(--accent-blue);
   }
 
   /* ----- Like Bar ----- */
@@ -191,35 +186,47 @@
     background: rgba(35, 169, 35, .8);
   }
 
-  ytd-sentiment-bar-renderer[activated] #like-bar.ytd-sentiment-bar-renderer, 
-  ytd-sentiment-bar-renderer[activated][system-icons] #like-bar.ytd-sentiment-bar-renderer {
+  ytd-sentiment-bar-renderer:is([activated] ,[activated][system-icons]) #like-bar.ytd-sentiment-bar-renderer {
     background: var(--like);
   }
 
   ytd-toggle-button-renderer:nth-of-type(1) #button.ytd-toggle-button-renderer.style-default-active {
     color: var(--like);
     + #text {
-        color: var(--like);
+      color: var(--like);
     }
   }
 
   ytd-toggle-button-renderer:nth-of-type(2) #button.ytd-toggle-button-renderer.style-default-active {
     color: var(--dislike);
     + #text {
-        color: var(--dislike);
+      color: var(--dislike);
     }
+  }
+
+  :is(#segmented-like-button, #like-button) .yt-spec-button-shape-next[aria-pressed="true" i] {
+    color: var(--like);
+  }
+  
+  :is(#segmented-dislike-button, #dislike-button) .yt-spec-button-shape-next[aria-pressed="true" i] {
+    color: var(--dislike);
   }
 
   /* ----- Comment - Composer Input ----- */
   #input-container.ytd-commentbox {
-    --paper-input-container-underline-focus_-_border-color: #4285f4;
-    --paper-input-container-underline-focus-border-color: #4285f4;
+    --paper-input-container-underline-focus_-_border-color: var(--accent-blue-dark);
+    --paper-input-container-underline-focus-border-color: var(--accent-blue-dark);
+  }
+
+  /* ----- Comment - Replies Expander ----- */
+  #replies #expander .dot {
+    color: var(--yt-spec-call-to-action);
   }
 
   /* ----- History - Search Input ----- */
   .focused-line.paper-input-container {
-    --paper-input-container-underline-focus_-_border-color: #4285f4;
-    --paper-input-container-underline-focus-border-color: #4285f4;
+    --paper-input-container-underline-focus_-_border-color: var(--accent-blue-dark);
+    --paper-input-container-underline-focus-border-color: var(--accent-blue-dark);
   }
 
   /* ---- Share Clip - Embed Icon ---- */
@@ -235,15 +242,22 @@
   }
   
   /* ---- Toast Notifications ---- */
-  yt-notification-action-renderer[ui-refresh] tp-yt-paper-toast.yt-notification-action-renderer {
+  #toast {
     background-color: #303030;
+    border-radius: 3px;
+    
+    #text, #sub-text {
+      color: var(--yt-spec-text-primary);
+    }
+    
+    yt-button-renderer a {
+      color: var(--accent-blue);
+    }
   }
 
-  yt-notification-action-renderer[ui-refresh] #text.yt-notification-action-renderer, yt-notification-action-renderer[ui-refresh] #sub-text.yt-notification-action-renderer {
-    color: var(--yt-spec-text-primary);
-  }
+}
 
-
+@-moz-document domain("youtube.com") {
 /*
   *	=====================================
   *    ╔═╗╔╦╗╦ ╦╔═╗╦═╗  ╔═╗╦═╗ ╦╔═╗╔═╗
@@ -251,6 +265,7 @@
   *    ╚═╝ ╩ ╩ ╩╚═╝╩╚═  ╚  ╩╩ ╚═╚═╝╚═╝
   *	=====================================
 */
+
   /* ----- Custom Homepage Item Grid ----- */
   if (customGrid == 1) {
     @media (min-width:1400px) {
@@ -528,8 +543,18 @@
       }
     }
     
-    :is(#menu, #replies, #action-buttons) .yt-spec-button-shape-next {
+    :is(#menu, #replies, #action-button, #action-buttons) .yt-spec-button-shape-next {
       background-color: transparent !important;
+    }
+
+    /* Subscribe Button */
+    #subscribe-button .yt-spec-button-shape-next {
+      border-radius: var(--yt-button-border-radius, 2px);
+      
+      &.yt-spec-button-shape-next--filled {
+        background-color: var(--yt-spec-brand-button-background);
+        color: var(--yt-spec-static-brand-white);
+      }
     }
   }
 
