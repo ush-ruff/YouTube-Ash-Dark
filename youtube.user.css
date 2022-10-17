@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.7.0
+@version        1.7.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -19,7 +19,7 @@
 @var            checkbox hideComments "Hide Comments" 0
 @var            checkbox restoreCommentReplies "Restore Old Comment Replies Style" 0
 @var            checkbox restoreButtonStyle "Restore Button Styles" 1
-@var            checkbox restoreIconStyle "Restore Solid Icons to Description and Comments"
+@var            checkbox restoreIconStyle "Restore Solid Icons to Description and Comments" 0
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
