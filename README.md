@@ -27,10 +27,11 @@ Options have been added to enable or disable each feature as the user chooses.
   * Hide player overlays, like the video title and player controls, while in fullscreen mode. 
     >Video title will be shown while paused or when a user hovers over the area. 
     >Player controls will only be shown when a user hovers over the controls.
-  * Restore video description from the modern cramped layout to the older  style.
+  * Restore video description from the modern cramped layout to the older style.
   * Hide comment section completely.
   * Restore comment replies from the modern layout to the older style.
   * Restore button styling from the new touch spec styling to the older style.
+  * Restore solid style icons to description and comment section. Icons for like, dislike, share, clip and save will be changed.
 
 
 ## Install and setup
