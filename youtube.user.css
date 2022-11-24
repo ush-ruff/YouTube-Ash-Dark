@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.0
+@version        1.8.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -272,6 +272,11 @@
     ytd-masthead {
       background-color: var(--bg-secondary);
     }
+
+    /* Menu */
+    ytd-multi-page-menu-renderer[sheets-refresh] {
+      border-radius: var(--br);
+    }
     
     /* Search */
     ytd-searchbox[desktop-searchbar-style="rounded_corner_borders_light_btn"] #container.ytd-searchbox, 
@@ -324,11 +329,12 @@
       background-color: var(--yt-spec-badge-chip-background);
     }
     
-    /* Main Content */
-    ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before {
-      border-radius: 0.5rem;
+    /* Main Content - Video Thumbnail */
+    ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before, 
+    ytd-thumbnail[size="medium"] a.ytd-thumbnail, ytd-thumbnail[size="medium"]::before {
+      border-radius: var(--br);
     }
-    
+
     /* Player */
     #player #cinematics canvas:nth-child(2) {
       filter: brightness(1.6);
@@ -348,8 +354,8 @@
       }
     }
     
-    /* Video Thumbnails */
-    ytd-thumbnail[size="medium"] a.ytd-thumbnail, ytd-thumbnail[size="medium"]::before {
+    /* Channel Page */
+    ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer {
       border-radius: var(--br);
     }
   }
