@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.2
+@version        1.8.3
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -341,6 +341,17 @@
     #player #cinematics canvas:nth-child(2) {
       filter: brightness(1.6);
     }
+
+    /* Miniplayer */
+    .ytp-player-minimized.ytp-rounded-miniplayer :is(.html5-main-video, .ytp-miniplayer-scrim), 
+    .ytp-player-minimized.ytp-rounded-miniplayer.html5-video-player {
+      border-radius: var(--br);
+    }
+
+    /* Video End Screen */
+    .ytp-videowall-still .ytp-videowall-still-image {
+      border-radius: var(--br);
+    }
     
     /* Video Description */
     ytd-rich-metadata-renderer {
@@ -355,9 +366,27 @@
         font-family: "Roboto", sans-serif;
       }
     }
+    ytd-playlist-thumbnail[size="medium"] a.ytd-playlist-thumbnail, 
+    ytd-playlist-thumbnail[size="medium"]::before {
+      border-radius: var(--br);
+    }
+    .immersive-header-container.ytd-playlist-header-renderer {
+      border-radius: 0.6rem;
+    }
+    ytd-playlist-video-renderer[amsterdam] {
+      border-radius: var(--br);
+    }
     
     /* Channel Page */
+    #header #contentContainer.tp-yt-app-header-layout {
+      background-color: transparent;
+    }
     ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer {
+      border-radius: var(--br);
+    }
+
+    /* Show/Hide Chat Replay Button */
+    ytd-live-chat-frame[rounded-container], ytd-live-chat-frame[rounded-container] #show-hide-button.ytd-live-chat-frame ytd-toggle-button-renderer.ytd-live-chat-frame {
       border-radius: var(--br);
     }
   }
