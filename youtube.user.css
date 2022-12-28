@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.5
+@version        1.8.6
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -747,8 +747,8 @@
   /* ---- Restore Solid Icons - Description and Comments ---- */
   if (restoreIconStyle == 1) {
     :root {
-      --like-dislike: url(https://i.imgur.com/xkS6pxw.png);
-      --other-icons: url(https://i.imgur.com/to2GF5T.png);
+      --like-dislike: url(https://i.imgur.com/8hnZozV.png);
+      --other-icons: url(https://i.imgur.com/nuoMk9U.png);
     }
     #segmented-like-button .yt-spec-button-shape-next, ytd-toggle-button-renderer:nth-of-type(1) button#button,
     #segmented-dislike-button .yt-spec-button-shape-next, ytd-toggle-button-renderer:nth-of-type(2) button#button,
@@ -789,9 +789,6 @@
       &::before {
         --size: 16px;
         margin-inline-end: unset;
-      }
-      &:not([aria-pressed="true"])::before {
-        filter: brightness(0.8);
       }
     }
     
