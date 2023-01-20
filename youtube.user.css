@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.8
+@version        1.8.9
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -398,9 +398,26 @@
       border-radius: var(--br);
     }
     
-    /* Video Description */
+    /* -- Video Description -- */
     ytd-rich-metadata-renderer {
       background-color: var(--bg-dark);
+    }
+
+    ytd-horizontal-card-list-renderer.ytd-structured-description-content-renderer:not(:first-child), 
+    ytd-metadata-row-container-renderer.ytd-structured-description-content-renderer:not(:first-child), 
+    ytd-structured-description-content-renderer[inline-structured-description] ytd-horizontal-card-list-renderer.ytd-structured-description-content-renderer, 
+    ytd-structured-description-content-renderer[inline-structured-description] ytd-error-corrections-section-renderer.ytd-structured-description-content-renderer, 
+    ytd-structured-description-content-renderer[inline-structured-description] ytd-video-description-infocards-section-renderer.ytd-structured-description-content-renderer {
+      border-top: 1px solid var(--yt-spec-10-percent-layer);
+    }
+
+    /* Video Description - Key Moments */
+    ytd-macro-markers-list-item-renderer[modern][rounded] {
+      border-radius: var(--br);
+    }
+    
+    ytd-macro-markers-list-item-renderer[rounded] #thumbnail.ytd-macro-markers-list-item-renderer {
+      border-radius: var(--br);
     }
     
     /* --- Playlist --- */
