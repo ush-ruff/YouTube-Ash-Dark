@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.7
+@version        1.8.8
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -303,6 +303,16 @@
     .sbsb_a {
       border-radius: var(--br);
     }
+
+    /* --- Dialog box --- */
+    tp-yt-paper-dialog[modern] {
+      border-radius: 0.25em;
+    }
+
+    /* --- Inputs --- */
+    yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer {
+      border-radius: var(--br);
+    }
     
     /* --- Sidebar --- */
     #contentContainer:not(.tp-yt-app-header), #guide-content.ytd-app, ytd-mini-guide-renderer {
@@ -330,6 +340,12 @@
     ytd-mini-guide-entry-renderer:hover, ytd-mini-guide-entry-renderer:focus {
       background-color: var(--yt-spec-badge-chip-background);
     }
+
+    /* Settings Page */
+    ytd-settings-sidebar-renderer[guide-refresh] ytd-compact-link-renderer.ytd-settings-sidebar-renderer, 
+    tp-yt-paper-item:focus::before, .tp-yt-paper-item.tp-yt-paper-item:focus::before {
+      border-radius: var(--br);
+    }
     
     /* --- Main Content - Video Thumbnail --- */
     ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before, 
@@ -339,6 +355,11 @@
 
     /* Thumbnail transitions */
     yt-interaction.extended :is(.fill, .stroke).yt-interaction {
+      border-radius: var(--br);
+    }
+
+    /* Dismissed video */
+    ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media {
       border-radius: var(--br);
     }
 
@@ -353,9 +374,13 @@
       border-radius: var(--br);
     }
 
-    /* Next video preview */
+    /* Next Video Preview Tooltip */
     .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview {
       border-radius: var(--br);
+    }
+
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg {
+      border-radius: 0;
     }
 
     /* Video End Cards */
@@ -406,6 +431,15 @@
     }
 
     ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer {
+      border-radius: var(--br);
+    }
+
+    /* Community Posts */
+    ytd-backstage-post-thread-renderer[rounded-container] {
+      border-radius: var(--br);
+    }
+
+    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer {
       border-radius: var(--br);
     }
 
@@ -478,7 +512,7 @@
     }
 
     #contents ytd-rich-item-renderer[is-slim-grid] {
-      margin-inline: calc(var(--ytd-rich-grid-item-margin)/2);
+      margin-inline: 0.25rem;
     }
 
     ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer {
