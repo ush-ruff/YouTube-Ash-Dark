@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.9.0
+@version        1.9.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -461,17 +461,20 @@
     ytd-feed-filter-chip-bar-renderer[component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"] #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
       width: 95%;
       justify-content: end;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+
+      yt-chip-cloud-chip-renderer[modern-chips][chip-style] {
+        background-color: transparent;
+        border-radius: var(--br);
+      }
+
+      yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"][selected], yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
+        background-color: #333;
+        color: #ccc;
+      }
     }
 
-    yt-chip-cloud-chip-renderer[modern-chips][chip-style] {
-      background-color: transparent;
-      border-radius: var(--br);
-    }
-    
-    yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"][selected], yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
-      background-color: #333;
-      color: #ccc;
-    }
 
     /* Community Posts */
     ytd-backstage-post-thread-renderer[rounded-container] {
