@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.11
+@version        1.8.12
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -281,12 +281,10 @@
     }
     
     /* --- Search --- */
-    ytd-searchbox[desktop-searchbar-style="rounded_corner_borders_light_btn"] #container.ytd-searchbox, 
-    ytd-searchbox[desktop-searchbar-style="rounded_corner_autofocus"] #container.ytd-searchbox, 
-    ytd-searchbox[desktop-searchbar-style="rounded_corner_borders_light_btn"] #search-icon-legacy.ytd-searchbox, 
-    ytd-searchbox[desktop-searchbar-style="rounded_corner_autofocus"] #search-icon-legacy.ytd-searchbox {
+    #container.ytd-searchbox, #search-icon-legacy.ytd-searchbox {
       border-radius: var(--br);
     }
+
     #search-clear-button .yt-spec-button-shape-next {
       background-color: transparent;
       
@@ -347,7 +345,8 @@
       border-radius: var(--br);
     }
     
-    /* --- Main Content - Video Thumbnail --- */
+    /* --- Main Content --- */
+    /* -- Video Thumbnail -- */
     ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before, 
     ytd-thumbnail[size="medium"] a.ytd-thumbnail, ytd-thumbnail[size="medium"]::before {
       border-radius: var(--br);
@@ -360,6 +359,11 @@
 
     /* Dismissed video */
     ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media {
+      border-radius: var(--br);
+    }
+
+    /* -- Survey -- */
+    ytd-inline-survey-renderer[rounded-container] #dismissible.ytd-inline-survey-renderer {
       border-radius: var(--br);
     }
 
@@ -463,6 +467,10 @@
     /* --- Show/Hide Chat Replay Button --- */
     ytd-live-chat-frame[rounded-container], ytd-live-chat-frame[rounded-container] #show-hide-button.ytd-live-chat-frame ytd-toggle-button-renderer.ytd-live-chat-frame {
       border-radius: var(--br);
+    }
+    
+    ytd-message-renderer.ytd-live-chat-frame {
+      background-color: #222
     }
   }
 
