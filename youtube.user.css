@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.8.12
+@version        1.9.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -20,6 +20,8 @@
 @var            checkbox restoreCommentReplies "Restore Old Comment Replies Style" 0
 @var            checkbox restoreButtonStyle "Restore Button Styles" 1
 @var            checkbox restoreIconStyle "Restore Solid Icons to Description and Comments" 0
+@var            checkbox enablePlayerSize "Custom Player Size" 0
+@var            text playerSize "Player Size" 880px
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
@@ -455,6 +457,22 @@
       border-radius: var(--br);
     }
 
+    /* Videos filter bar */
+    ytd-feed-filter-chip-bar-renderer[component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"] #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
+      width: 95%;
+      justify-content: end;
+    }
+
+    yt-chip-cloud-chip-renderer[modern-chips][chip-style] {
+      background-color: transparent;
+      border-radius: var(--br);
+    }
+    
+    yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"][selected], yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
+      background-color: #333;
+      color: #ccc;
+    }
+
     /* Community Posts */
     ytd-backstage-post-thread-renderer[rounded-container] {
       border-radius: var(--br);
@@ -623,7 +641,7 @@
 
   /* ----- Recommended Filter Bar Hide ----- */
   if (hideFilterBar == 1) {
-    ytd-feed-filter-chip-bar-renderer, yt-related-chip-cloud-renderer {
+    ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), yt-related-chip-cloud-renderer {
       display: none;
     }
   }
@@ -723,6 +741,15 @@
       font-size: 14px;
       font-weight: 500;
       text-transform: uppercase;
+    }
+
+    /* Fix description content width */
+    ytd-expander.ytd-video-secondary-info-renderer {
+      width: 90%;
+    }
+
+    #description.ytd-video-secondary-info-renderer {
+      max-width: unset;
     }
   }
 
@@ -931,6 +958,21 @@
         background-image: var(--other-icons);
         background-position: 0 calc(var(--size) * -1);
       }
+    }
+  }
+
+  /* ----- Player Sizing ----- */
+  if (enablePlayerSize==1) {
+    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]):not([is-extra-wide-video_]) {
+      --ytd-watch-flexy-min-player-height: playerSize !important;
+      --ytd-watch-flexy-min-player-width: calc(var(--ytd-watch-flexy-min-player-height) * var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio)) !important;
+      
+      --ytd-watch-flexy-max-player-height: var(--ytd-watch-flexy-min-player-height) !important;
+      --ytd-watch-flexy-max-player-width: var(--ytd-watch-flexy-min-player-width) !important;
+    }
+
+    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]) #player-container-inner.ytd-watch-flexy {
+      padding-top: playerSize;
     }
   }
 
