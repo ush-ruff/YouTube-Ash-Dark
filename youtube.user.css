@@ -330,7 +330,8 @@
     }
     
     ytd-guide-entry-renderer[guide-refresh], 
-    ytd-guide-entry-renderer[guide-refresh] :is(yt-interaction, tp-yt-paper-item).ytd-guide-entry-renderer, 
+    ytd-guide-entry-renderer[guide-refresh] yt-interaction.ytd-guide-entry-renderer, 
+    ytd-guide-entry-renderer[guide-refresh] tp-yt-paper-item.ytd-guide-entry-renderer, 
     ytd-guide-entry-renderer[guide-refresh] #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus), 
     ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer,
     #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus) {
@@ -576,9 +577,9 @@
       margin: 0;
     }
     
-/*     ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer ytd-rich-item-renderer {
+    ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer ytd-rich-item-renderer {
       margin-inline: var(--ytd-rich-grid-item-margin) 0;
-    } */
+    }
 
     /* "New to you" card */
     ytd-feed-nudge-renderer {
