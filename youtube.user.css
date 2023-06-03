@@ -576,9 +576,9 @@
       margin: 0;
     }
     
-    ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer ytd-rich-item-renderer {
+/*     ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer ytd-rich-item-renderer {
       margin-inline: var(--ytd-rich-grid-item-margin) 0;
-    }
+    } */
 
     /* "New to you" card */
     ytd-feed-nudge-renderer {
