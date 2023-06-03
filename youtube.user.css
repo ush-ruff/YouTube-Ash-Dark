@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.9.3
+@version        1.9.4
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -66,6 +66,10 @@
   .sbsb_a, .sbfl_b {
     background-color: #2c2c2c;
     cursor: pointer;
+  }
+
+  html[dark] .sbsb_a {
+    background-color: #2c2c2c;
   }
 
   .sbdd_b {
@@ -326,13 +330,15 @@
     }
     
     ytd-guide-entry-renderer[guide-refresh], 
-    ytd-guide-entry-renderer[guide-refresh] yt-interaction.ytd-guide-entry-renderer, 
-    ytd-guide-entry-renderer[guide-refresh] tp-yt-paper-item.ytd-guide-entry-renderer, 
-    ytd-guide-entry-renderer[guide-refresh] #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus) {
+    ytd-guide-entry-renderer[guide-refresh] :is(yt-interaction, tp-yt-paper-item).ytd-guide-entry-renderer, 
+    ytd-guide-entry-renderer[guide-refresh] #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus), 
+    ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer,
+    #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus) {
       border-radius: var(--br);
     }
     
-    ytd-mini-guide-entry-renderer[guide-refresh] {
+    ytd-mini-guide-entry-renderer[guide-refresh], 
+    ytd-mini-guide-entry-renderer {
       background-color: transparent;
       border-radius: var(--br);
     }
