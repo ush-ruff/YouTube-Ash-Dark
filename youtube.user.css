@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.9.5
+@version        1.9.6
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -483,9 +483,13 @@
       padding-bottom: 1rem;
       border-bottom: 1px solid #333;
 
-      yt-chip-cloud-chip-renderer[modern-chips][chip-style] {
+      yt-chip-cloud-chip-renderer {
         background-color: transparent;
         border-radius: var(--br);
+      }
+
+      yt-chip-cloud-chip-renderer:hover {
+        background-color: #252525;
       }
 
       yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"][selected], yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
@@ -533,10 +537,12 @@
           --grid-margin: 7em;
           margin-inline: var(--grid-margin);
         }
+        
         /* Fix filterbar width */
         ytd-feed-filter-chip-bar-renderer {
           margin-inline: calc(var(--grid-margin) * -1);
         }
+
         #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
           width: calc(var(--ytd-rich-grid-chips-bar-width) + (var(--grid-margin) * 2));
         }
@@ -560,7 +566,7 @@
       display: inline !important;
     }
 
-    ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer > div {
+    ytd-rich-grid-row.style-scope.ytd-rich-grid-renderer:not([is-shorts-grid]) > div {
       display: inline !important;
       margin: 0 !important;
     }
@@ -579,12 +585,12 @@
       margin-inline: 0.25rem;
     }
 
-    ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer {
+    ytd-rich-section-renderer > #content.ytd-rich-section-renderer {
       max-width: unset;
       margin: 0;
     }
     
-    ytd-rich-section-renderer[align-within-rich-grid] #content.ytd-rich-section-renderer ytd-rich-item-renderer {
+    ytd-rich-section-renderer > #content.ytd-rich-section-renderer ytd-rich-item-renderer {
       margin-inline: var(--ytd-rich-grid-item-margin) 0;
     }
 
