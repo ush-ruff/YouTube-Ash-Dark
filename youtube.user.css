@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        1.9.6
+@version        1.9.7
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -798,25 +798,26 @@
   if (restoreCommentReplies == 1) {
     #more-replies #button:not([aria-label^="View" i]) #text,
     #less-replies #button:not([aria-label^="Hide" i]) #text,
-    :is(#more-replies, #less-replies) button.yt-spec-button-shape-next .yt-spec-button-shape-next--button-text-content {
+    :is(#more-replies,  #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
       font-size: 14px;
       text-transform: lowercase;
     }
 
     #more-replies #button:not([aria-label^="View" i]) #text::before, 
-    #more-replies button.yt-spec-button-shape-next .yt-spec-button-shape-next--button-text-content::before {
+    #more-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
       content: "View ";
       text-transform: capitalize;
     }
 
     #less-replies #button:not([aria-label^="Hide" i]) #text::before, 
-    #less-replies button.yt-spec-button-shape-next .yt-spec-button-shape-next--button-text-content::before{
+    #less-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
       content: "Hide ";
       text-transform: capitalize;
     }
 
-    #more-replies #button[aria-label="1 reply" i] #text,
-    #less-replies #button[aria-label="1 reply" i] #text {
+    #more-replies #button[aria-label="1 reply" i] #text, 
+    #less-replies #button[aria-label="1 reply" i] #text, 
+    :is(#more-replies,  #less-replies) button.yt-spec-button-shape-next[aria-label="1 reply" i] :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
       color: transparent;
 
       &::before {
@@ -825,25 +826,42 @@
       }
     }
 
-    #more-replies #button[aria-label="1 reply" i] #text::before {
+    #more-replies #button[aria-label="1 reply" i] #text::before, 
+    #more-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
       content: "View reply";
     }
 
-    #less-replies #button[aria-label="1 reply" i] #text::before {
+    #less-replies #button[aria-label="1 reply" i] #text::before, 
+    #less-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
       content: "Hide reply";
     }
 
     #more-replies-icon yt-icon, #less-replies-icon yt-icon {
       color: var(--yt-spec-call-to-action);
     }
-
-    #reply-button-end .yt-spec-button-shape-next .yt-spec-button-shape-next--button-text-content {
+    
+    .more-button.ytd-comment-renderer, .less-button.ytd-comment-renderer,
+    #reply-button-end .yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
       text-transform: uppercase;
       color: var(--yt-spec-text-secondary);
       
       &:hover, &:focus {
+        text-decoration: none;
         color: var(--yt-spec-text-primary);
       }
+    }
+    
+    :is(#more-replies, #less-replies) .yt-spec-button-shape-next__icon {
+      background-repeat: no-repeat;
+      background-size: 24px;
+    }
+    
+    #more-replies .yt-spec-button-shape-next__icon {
+      background-image: url(https://raw.githubusercontent.com/ush-ruff/YouTube-Ash-Dark/main/images/down.svg)
+    }
+    
+    #less-replies .yt-spec-button-shape-next__icon {
+      background-image: url(https://raw.githubusercontent.com/ush-ruff/YouTube-Ash-Dark/main/images/up.svg)
     }
 
     /* Show more comments */
