@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.0.0
+@version        2.0.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -143,7 +143,7 @@
   #subscribe {
     ytd-subscribe-button-renderer:not([subscribed]) button {
       background-color: var(--accent-red-dark);
-      color: var(--cl-dim);
+      color: var(--cl-bright);
 
       &:hover, &:focus {
         background-color: var(--accent-red);
@@ -248,6 +248,24 @@
 
   .focused-line.tp-yt-paper-input-container {
     border-bottom-color: var(--accent-blue-dark);
+  }
+
+
+  /* ----- Search Results - Expandable Chapters on Thumbnails ----- */
+  #expandable-metadata :is(#expand, #collapse) .yt-spec-button-shape-next--icon-only-default {
+    --_size: 34px;
+    width: var(--_size);
+    height: var(--_size);
+    margin: calc((40px - var(--_size)) / 2);
+  }
+
+
+  /* ----- Search Results - Related Search Items ----- */
+  a.ytd-search-refinement-card-renderer {
+    border-color: var(--bg-550);
+  }
+  #card-title.ytd-search-refinement-card-renderer {
+    background-color: var(--bg-450);
   }
 
 
@@ -484,7 +502,7 @@
       color: var(--cl-base);
     }
 
-    yt-button-renderer a {
+    yt-button-renderer a, .yt-spec-button-shape-next--text {
       color: var(--accent-blue);
     }
   }
@@ -618,6 +636,7 @@
 
     /* --- Main Content --- */
     /* -- Video Thumbnail -- */
+    #thumbnail,
     ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before,
     ytd-thumbnail[size="medium"] a.ytd-thumbnail, ytd-thumbnail[size="medium"]::before {
       border-radius: var(--br);
@@ -652,6 +671,27 @@
     
     /* -- Community Posts -- */
     ytd-post-renderer {
+      border-radius: var(--br);
+    }
+
+
+    /* --- Search --- */
+    /* -- Expandable Chapters Dropdown -- */
+    ytd-expandable-metadata-renderer, 
+    ytd-expandable-metadata-renderer:not([is-expanded]), 
+    ytd-expandable-metadata-renderer:not([is-expanded]) #header.ytd-expandable-metadata-renderer:hover {
+      --yt-img-border-radius: var(--br);
+      border-radius: var(--br);
+    }
+
+    /* -- Game Summary Thumbnail -- */
+    ytd-universal-watch-card-renderer[rounded] #header.ytd-universal-watch-card-renderer, 
+    ytd-universal-watch-card-renderer[rounded] #hero.ytd-universal-watch-card-renderer {
+      border-radius: var(--br);
+    }
+
+    /* -- Related Searches -- */
+    ytd-search-refinement-card-renderer[round-container] a.ytd-search-refinement-card-renderer {
       border-radius: var(--br);
     }
 
