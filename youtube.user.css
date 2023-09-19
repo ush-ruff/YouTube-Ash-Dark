@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.0.1
+@version        2.0.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -264,8 +264,13 @@
   a.ytd-search-refinement-card-renderer {
     border-color: var(--bg-550);
   }
+  
   #card-title.ytd-search-refinement-card-renderer {
     background-color: var(--bg-450);
+  }
+
+  ytd-search-refinement-card-renderer.ytd-horizontal-card-list-renderer {
+    padding-inline-end: 12px;
   }
 
 
@@ -307,6 +312,11 @@
   
   ytd-rich-shelf-renderer[is-show-more-hidden] #dismissible.ytd-rich-shelf-renderer {
     border-bottom-width: 1px;
+  }
+
+  /* See More Button Border */
+  .expand-collapse-button.ytd-rich-shelf-renderer {
+    border-width: 1px;
   }
 
 
@@ -696,6 +706,15 @@
     }
 
     /* --- Player --- */
+    #ytd-player.ytd-watch-flexy {
+      border-radius: var(--br) !important;
+    }
+
+    /* Skeleton */
+    #player.skeleton.flexy #player-api.round {
+      border-radius: var(--br);
+    }
+
     /* Miniplayer */
     .ytp-player-minimized.ytp-rounded-miniplayer :is(.html5-main-video, .ytp-miniplayer-scrim),
     .ytp-player-minimized.ytp-rounded-miniplayer.html5-video-player {
