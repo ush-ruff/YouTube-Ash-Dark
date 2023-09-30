@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.0.2
+@version        2.1.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -20,6 +20,7 @@
 @var            checkbox restoreCommentReplies "Restore Old Comment Replies Style" 1
 @var            checkbox enablePlayerSize "Custom Player Size" 0
 @var            text playerSize "Player Size" 880px
+@var            checkbox hideShorts "Hide YouTube Shorts" 1
 @var            checkbox restoreOldIcons "Restore Old Icons" 1
 ==/UserStyle== */
 @-moz-document domain("youtube.com") {
@@ -317,6 +318,11 @@
   /* See More Button Border */
   .expand-collapse-button.ytd-rich-shelf-renderer {
     border-width: 1px;
+  }
+
+  /* Dismissed Section Border */
+  #dismissed.ytd-rich-shelf-renderer {
+    border-bottom-width: 1px;
   }
 
 
@@ -663,6 +669,11 @@
       border-radius: var(--br);
     }
 
+    /* Dismissed video - sidebar */
+    #dismissed.ytd-compact-video-renderer {
+      border-radius: var(--br);
+    }
+
     /* Channel Intro Video */
     ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer {
       border-radius: var(--br);
@@ -877,7 +888,7 @@
     }
     
     /* Add an inline margin for the whole content */
-     @media (min-width: 1400px) {
+    @media (min-width: 1400px) {
       ytd-two-column-browse-results-renderer[page-subtype="home"], 
       ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] {
         #primary > ytd-rich-grid-renderer {
@@ -886,7 +897,7 @@
         }
  
         /* Fix filterbar width */
-       ytd-feed-filter-chip-bar-renderer {
+      ytd-feed-filter-chip-bar-renderer {
           margin-inline: calc(var(--grid-margin) * -1);
         }
 
@@ -1077,6 +1088,11 @@
     ytd-video-description-infocards-section-renderer {
       display: none;
     }
+
+    /* Hide Transcripts Button */
+    ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
+      display: none;
+    }
   }
 }
 
@@ -1157,6 +1173,18 @@
       text-transform: none;
     }
   }
+}
+
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide YouTube Shorts ----- */
+  if (hideShorts==1) {
+    ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+    ytd-reel-shelf-renderer {
+      display: none;
+    }
+  }
+
 }
 
 
