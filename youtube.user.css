@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.1.0
+@version        2.1.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -112,6 +112,10 @@
 
   .yt-spec-button-shape-next--call-to-action.yt-spec-button-shape-next--text .yt-spec-button-shape-next__button-text-content {
     text-transform: uppercase;
+  }
+
+  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
+    color: var(--cl-base);
   }
   
   /* Search - View More Buttons */
@@ -737,6 +741,12 @@
       border-radius: var(--br);
     }
 
+    /* Video Timeline Preview */
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail), 
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail) .ytp-tooltip-bg {
+      border-radius: var(--br);
+    }
+
     .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg {
       border-radius: var(--br);
     }
@@ -918,6 +928,11 @@
     #home-page-skeleton #home-container-media .rich-grid-media-skeleton.mini-mode {
       min-width: calc(100% / var(--grid-columns-count) - 1.6rem);
       max-width: calc(100% / var(--grid-columns-count) - 1.6rem);
+    }
+
+    /* Fix dismissed videos still taking space */
+    ytd-rich-section-renderer:has(> #content #dismissed) {
+      display: none;
     }
   }
 }
