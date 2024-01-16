@@ -3,25 +3,26 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.1.2
+@version        2.2.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
-@var            checkbox customGrid "Enable Custom Grid on Homepage" 1
-@var            number customGridColumns "Number of Grid Columns" [5, 4, 10, 1]
-@var            checkbox disablePreview "Disable Thumbnail Previews (Autoplay)" 1
-@var            checkbox customThumbnailMeta "Enable Custom Thumbnail Details" 1
-@var            checkbox hideFilterBar "Hide Filter Bar" 1
-@var            checkbox hidePlayerControls "Hide Player Overlays in Fullscreen" 1
-@var            range endCardOpacity "Video End Card Opacity" [0.35, 0, 1, 0.05]
-@var            checkbox restoreDesc "Restore Old Description Style" 1
-@var            checkbox hideComments "Hide Comments" 0
-@var            checkbox restoreCommentReplies "Restore Old Comment Replies Style" 1
-@var            checkbox enablePlayerSize "Custom Player Size" 0
-@var            text playerSize "Player Size" 880px
-@var            checkbox hideShorts "Hide YouTube Shorts" 1
-@var            checkbox restoreOldIcons "Restore Old Icons" 1
+@var            checkbox customGrid             "Enable Custom Grid on Homepage" 1
+@var            number   customGridColumns      "Number of Grid Columns" [5, 4, 10, 1]
+@var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
+@var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
+@var            checkbox hideFilterBar          "Hide Filter Bar" 1
+@var            checkbox hidePlayerControls     "Hide Player Overlays in Fullscreen" 1
+@var            range    endCardOpacity         "Video End Card Opacity" [0.35, 0, 1, 0.05]
+@var            checkbox restoreDesc            "Restore Old Description Style" 1
+@var            select   restoreDescVersion     " ↳ Fix Version" ["One", "Two"]
+@var            checkbox hideComments           "Hide Comments" 0
+@var            checkbox restoreCommentReplies  "Restore Old Comment Replies Style" 1
+@var            checkbox enablePlayerSize       "Custom Player Size" 0
+@var            text     playerSize             "Player Size" 880px
+@var            checkbox hideShorts             "Hide YouTube Shorts" 1
+@var            checkbox restoreOldIcons        "Restore Old Icons" 1
 ==/UserStyle== */
 @-moz-document domain("youtube.com") {
   /* ----- YouTube Style Fixes ----- */
@@ -1084,41 +1085,138 @@
 @-moz-document domain("youtube.com") {
   /* ----- Restore Old Description Style ----- */
   if (restoreDesc==1) {
-    #primary-inner ytd-watch-metadata {
-      display: none !important;
-    }
+    if (restoreDescVersion=="One") {
+      #primary-inner ytd-watch-metadata {
+        display: none !important;
+      }
 
-    #info-contents, #meta-contents {
-      display: block !important;
-    }
+      #info-contents, #meta-contents {
+        display: block !important;
+      }
 
-    #info-contents #container .title {
-      font-family: "Roboto", sans-serif;
-      font-weight: 400;
-      font-size: 18px;
-    }
+      #info-contents #container .title {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+      }
 
-    #meta-contents {
-      --ytd-channel-name-text-font-size: 14px;
-    }
+      #meta-contents {
+        --ytd-channel-name-text-font-size: 14px;
+      }
 
-    /* Fix description content width */
-    ytd-expander.ytd-video-secondary-info-renderer {
-      width: 90%;
-    }
+      /* Fix description content width */
+      ytd-expander.ytd-video-secondary-info-renderer {
+        width: 90%;
+      }
 
-    #description.ytd-video-secondary-info-renderer {
-      max-width: unset;
+      #description.ytd-video-secondary-info-renderer {
+        max-width: unset;
+      }
+
+      /* Hide Info Cards Section */
+      ytd-video-description-infocards-section-renderer {
+        display: none;
+      }
+
+      /* Hide Transcripts Button */
+      ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
+        display: none;
+      }
     }
     
-    /* Hide Info Cards Section */
-    ytd-video-description-infocards-section-renderer {
-      display: none;
-    }
+    if (restoreDescVersion=="Two") {
+      #below {
+        display: grid;
 
-    /* Hide Transcripts Button */
-    ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
-      display: none;
+        /* --- Show old description style - (Title, Video watch stats, Like bar) --- */
+        div.ytd-watch-flexy:has(> #info) {
+          grid-row: 5;
+
+          #info-contents {
+            display: block !important;
+          }
+        }
+
+        /* --- Fix new description style --- */
+        ytd-watch-metadata.ytd-watch-flexy {
+          --_desc-max-width: 90%;
+          --_desc-spacing: 5.25rem;
+          --_gap: 1.6rem;
+
+          grid-row: 6;
+          margin-block-end: 0;
+          padding-block-end: 2.4rem;
+          border-bottom: 1px solid #464646;
+
+          /* -- Hide redundant elements - (Title, Video watch stats, Like bar) -- */
+          #title, #actions, #ytd-watch-info-text {
+            display: none;
+          }
+
+          /* -- Channel Details & Subscribe Button -- */
+          #owner {
+            justify-content: space-between;
+          }
+
+          #text.ytd-channel-name {
+            --ytd-channel-name-text-font-size: 14px;
+          }
+
+          /* -- Description -- */
+          #description {
+            padding-inline-start: var(--_desc-spacing);
+            background: transparent;
+          }
+
+          #description-inner {
+            max-width: var(--_desc-max-width);
+            margin: 0;
+          }
+
+          /* "Show More" Button */
+          #expand.ytd-text-inline-expander {
+            position: static;
+            display: block;
+            min-width: unset;
+            text-transform: uppercase;
+            margin-block-start: var(--_gap);
+            color: transparent;
+
+            &::before {
+              content: "Show More";
+              color: #999;
+            }
+          }
+
+          /* "Show Less" Button */
+          #collapse.ytd-text-inline-expander {
+            text-transform: uppercase;
+            margin-block-start: var(--_gap);
+            color: #999;
+          }
+
+          /* Hide Description Transiton */
+          #description-interaction {
+            display: none;
+          }
+
+          /* Hide Info Cards Section */
+          ytd-video-description-infocards-section-renderer {
+            display: none;
+          }
+
+          /* Hide Transcripts Button */
+          ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
+            display: none;
+          }
+
+          /* -- Game Tags -- */
+          ytd-metadata-row-container-renderer {
+            max-width: var(--_desc-max-width);
+            padding-inline-start: var(--_desc-spacing);
+          }
+        }
+      }
     }
   }
 }
