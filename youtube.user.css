@@ -3,13 +3,13 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.3.0
+@version        2.4.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
 @var            checkbox customGrid             "Enable Custom Grid on Homepage" 1
-@var            number   customGridColumns      "Number of Grid Columns" [5, 4, 10, 1]
+@var            number   customGridColumns      " ↳ Number of Grid Columns" [5, 4, 10, 1]
 @var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
 @var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
 @var            checkbox hideFilterBar          "Hide Filter Bar" 1
@@ -20,7 +20,7 @@
 @var            checkbox hideComments           "Hide Comments" 0
 @var            checkbox restoreCommentReplies  "Restore Old Comment Replies Style" 1
 @var            checkbox enablePlayerSize       "Custom Player Size" 0
-@var            text     playerSize             "Player Size" 880px
+@var            text     playerSize             " ↳ Player Size" 880px
 @var            checkbox hideShorts             "Hide YouTube Shorts" 1
 @var            checkbox restoreOldIcons        "Restore Old Icons" 1
 ==/UserStyle== */
@@ -457,7 +457,7 @@
     .YtSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper {
       gap: 0.7rem;
     }
-    
+
     .YtLikeButtonViewModelHost button::after {
       content: unset;
     }
