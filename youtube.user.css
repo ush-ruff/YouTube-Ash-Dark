@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.2.0
+@version        2.3.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -123,6 +123,17 @@
   ytd-vertical-list-renderer[modern-buttons] #more.ytd-vertical-list-renderer yt-formatted-string.ytd-vertical-list-renderer,
   ytd-vertical-list-renderer[modern-buttons] #all.ytd-vertical-list-renderer yt-formatted-string.ytd-vertical-list-renderer {
     text-transform: uppercase;
+  }
+
+  /* Follow up survey dialog */
+  #follow-up-survey {
+    button {
+      background-color: var(--accent-blue);
+      
+      &:hover {
+        background-color: var(--accent-blue-dark);
+      }
+    }
   }
 
   
@@ -440,7 +451,31 @@
   .yt-spec-button-shape-next__button-text-content {
     text-transform: uppercase;
   }
+
+  /* Fix for new style */
+  #top-level-buttons-computed {
+    .YtSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper {
+      gap: 0.7rem;
+    }
     
+    .YtLikeButtonViewModelHost button::after {
+      content: unset;
+    }
+    
+    .YtDislikeButtonViewModelHost button {
+      width: 95px;
+      justify-content: start;
+      padding-inline: 1rem;
+
+      > div::after {
+        content: "Dislike";
+        text-transform: uppercase;
+        margin-left: 6px;
+        color: var(--cl-base);
+      }
+    }
+  }
+
   
   /* ----- Comment - Composer Input ----- */
   #input-container.ytd-commentbox {
@@ -1746,6 +1781,17 @@
     html[dark] ytd-segmented-like-dislike-button-renderer #segmented-like-button button[aria-pressed="true"] yt-icon {
       content: var(--liked-img);
     }
+
+    /* Like Icon - Fix for new style */
+    #top-level-buttons-computed .YtLikeButtonViewModelHost {
+    yt-icon {
+      content: var(--like-img);
+    }
+    
+    button[aria-pressed="true"] yt-icon {
+      content: var(--liked-img);
+    }
+  }
 
     /* Pin (Need to be fixed) */
     ytd-pinned-comment-badge-renderer.ytd-comment-renderer > yt-icon {
