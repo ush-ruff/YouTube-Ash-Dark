@@ -3,13 +3,13 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.4.0
+@version        2.4.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
 @var            checkbox customGrid             "Enable Custom Grid on Homepage" 1
-@var            number   customGridColumns      " ↳ Number of Grid Columns" [5, 4, 10, 1]
+@var            number   customGridColumns      " ↳ No. of Grid Columns" [5, 4, 10, 1]
 @var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
 @var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
 @var            checkbox hideFilterBar          "Hide Filter Bar" 1
