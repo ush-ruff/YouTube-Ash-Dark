@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.4.1
+@version        2.5.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -140,7 +140,8 @@
   /* ----- Subscribe Button - Restore Old Style ----- */  
   /* Subscribe Button */
   #subscribe-button .yt-spec-button-shape-next.yt-spec-button-shape-next--filled, 
-  .ytp-sb-subscribe, a.ytp-sb-subscribe {
+  .ytp-sb-subscribe, a.ytp-sb-subscribe, 
+  ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
     text-transform: uppercase;
     background-color: var(--accent-red);
     border-radius: var(--yt-button-border-radius, 2px);
@@ -150,9 +151,11 @@
   /* Unsubscribe Button */
   #subscribe-button .yt-spec-button-shape-next, 
   .ytp-sb-unsubscribe, a.ytp-sb-unsubscribe, 
-  #subscribe-button #subscribe-button-shape {
+  #subscribe-button #subscribe-button-shape, 
+  ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] :not(:has(#notification-preference-toggle-button[hidden])) yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
     text-transform: uppercase;
     background-color: var(--bg-500);
+    border-radius: var(--yt-button-border-radius, 2px);
     color: var(--cl-dim);
   }
 
@@ -210,6 +213,12 @@
   /* Fix bell Icon is misaligned when subscribed (ui changes) */
   .smartimation__content > __slot-el {
     display: flex;
+  }
+
+  #notification-preference-toggle-button:not([hidden]) + yt-animated-action #notification-preference-button.ytd-subscribe-button-renderer[invisible], #subscribe-button-shape.ytd-subscribe-button-renderer[invisible] {
+    pointer-events: auto;
+    visibility: visible;
+    position: static;
   }
   
   
