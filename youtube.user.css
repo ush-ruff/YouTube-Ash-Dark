@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.6.0
+@version        2.7.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -526,6 +526,11 @@
     border-radius: 0;
   }
 
+  #channel-header #inner-header-container {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+  }
+
 
   /* ----- Channel Page - Tabs ----- */
   .yt-tab-shape-wiz__tab {
@@ -559,9 +564,12 @@
   /* ----- Channel Page - Videos filter bar ----- */
   ytd-feed-filter-chip-bar-renderer[component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"] #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
     width: 95%;
-    justify-content: end;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--bg-500);
+    
+    #chips-content.ytd-feed-filter-chip-bar-renderer {
+      justify-content: end;
+    }
 
     yt-chip-cloud-chip-renderer {
       background-color: transparent;
@@ -692,6 +700,13 @@
 
     /* --- Inputs --- */
     yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer {
+      border-radius: var(--br);
+    }
+
+    /* --- Image Containers --- */
+    html ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
+    [dark] ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
+    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer yt-img-shadow.ytd-backstage-image-renderer {
       border-radius: var(--br);
     }
 
