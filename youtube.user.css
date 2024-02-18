@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.7.0
+@version        2.8.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -174,6 +174,11 @@
     }
   }
   
+  /* Unsubscribe Button - Fix on watch pages (after immediately subscribing) */
+  #subscribe-button ytd-subscribe-button-renderer {
+    width: auto !important;
+  }
+
   /* Unsubscribe Button - Fix on watch pages */
   #subscribe-button #subscribe-button-shape[hidden] {
     display: block !important;
@@ -181,7 +186,6 @@
 
   /* Revert notification button */
   #notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button {
-    
     /* Removes background color around bell icon */
     &.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal {
       background-color: transparent !important;
@@ -215,7 +219,8 @@
     display: flex;
   }
 
-  #notification-preference-toggle-button:not([hidden]) + yt-animated-action #notification-preference-button.ytd-subscribe-button-renderer[invisible], #subscribe-button-shape.ytd-subscribe-button-renderer[invisible] {
+  #notification-preference-toggle-button:not([hidden]) + yt-animated-action #notification-preference-button.ytd-subscribe-button-renderer[invisible], 
+  #subscribe-button-shape.ytd-subscribe-button-renderer[invisible] {
     pointer-events: auto;
     visibility: visible;
     position: static;
