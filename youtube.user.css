@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.9.0
+@version        2.10.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -13,6 +13,7 @@
 @var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
 @var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
 @var            checkbox hideFilterBar          "Hide Filter Bar" 1
+@var            checkbox hideWatchedVideos      "Hide 100% Watched Videos on Home Page" 1
 @var            checkbox hidePlayerControls     "Hide Player Overlays in Fullscreen" 1
 @var            range    endCardOpacity         "Video End Card Opacity" [0.35, 0, 1, 0.05]
 @var            checkbox restoreDesc            "Restore Old Description Style" 1
@@ -357,14 +358,14 @@
 
 
   /* ----- Player - Next Chapter Tooltip ----- */
-  .ytp-tooltip.ytp-text-detail.ytp-preview {
-    width: min-content;
-  }
-  
-  .ytp-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-text-wrapper {
+  .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview {
+    width: auto;
     display: flex;
     flex-direction: row-reverse;
-    max-width: unset;
+  }
+  
+  .ytp-tooltip-bg {
+    flex-grow: 1;
   }
 
 
@@ -742,6 +743,11 @@
     /* --- Settings Page --- */
     ytd-settings-sidebar-renderer[guide-refresh] ytd-compact-link-renderer.ytd-settings-sidebar-renderer,
     tp-yt-paper-item:focus::before, .tp-yt-paper-item.tp-yt-paper-item:focus::before {
+      border-radius: var(--br);
+    }
+
+    /* -- Settings Page - Sidebar -- */
+    ytd-compact-link-renderer.ytd-settings-sidebar-renderer {
       border-radius: var(--br);
     }
     
@@ -1127,6 +1133,15 @@
   if (hideFilterBar==1) {
     ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), yt-related-chip-cloud-renderer {
       display: none;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide 100% Watched Videos on Home Page ----- */
+  if (hideWatchedVideos == 1) {
+    ytd-browse[page-subtype="home"] .ytd-rich-grid-row > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
+      display: none !important;
     }
   }
 }
