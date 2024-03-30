@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.12.0
+@version        2.12.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1040,20 +1040,20 @@
     }
     
     /* Channel Pages - Horizontal scrollers styling on Home */
-    ytd-browse[page-subtype="channels"] #items.yt-horizontal-list-renderer > ytd-grid-video-renderer.yt-horizontal-list-renderer {
-      width: var(--size) !important;
-      padding-inline-end: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
+    // ytd-browse[page-subtype="channels"] #items.yt-horizontal-list-renderer > ytd-grid-video-renderer.yt-horizontal-list-renderer {
+    //   width: var(--size) !important;
+    //   padding-inline-end: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
       
-      + ytd-grid-video-renderer {
-        padding-inline-start: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
-      }
+    //   + ytd-grid-video-renderer {
+    //     padding-inline-start: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
+    //   }
       
-      ytd-thumbnail.ytd-grid-video-renderer {
-        width: auto;
-        height: auto;
-        aspect-ratio: 16 / 9;
-      }
-    }
+    //   ytd-thumbnail.ytd-grid-video-renderer {
+    //     width: auto;
+    //     height: auto;
+    //     aspect-ratio: 16 / 9;
+    //   }
+    // }
     
     /*  Channel Pages - Fix Grid width  */
 		ytd-browse[page-subtype="channels"] {
