@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.10.0
+@version        2.11.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -581,7 +581,6 @@
 
   /* ----- Channel Page - Videos filter bar ----- */
   ytd-feed-filter-chip-bar-renderer[component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"] #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
-    width: 95%;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--bg-500);
     
@@ -948,6 +947,7 @@
   /* ----- Custom Item Grid Size ----- */
   if (customGrid==1) {
     #contents.ytd-rich-grid-renderer {
+      --ytd-rich-grid-item-margin: 16px;
       --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) + 1))) / var(--grid-columns-count));
       
       display: block !important;
@@ -973,6 +973,7 @@
       display: inline-block !important;
       width: var(--size) !important;
       contain: none !important;
+      margin-inline: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
     }
 
     ytd-rich-item-renderer[is-shorts-grid][is-slim-media] {
@@ -981,6 +982,7 @@
 
     #contents ytd-rich-item-renderer[is-slim-grid] {
       margin-inline: 0.25rem;
+      margin-inline: calc(var(--ytd-rich-grid-item-margin)/2);
     }
 
     ytd-rich-section-renderer {
@@ -999,6 +1001,14 @@
     ytd-rich-section-renderer > #content.ytd-rich-section-renderer ytd-rich-item-renderer[is-slim-media] {
       margin-inline: calc(var(--ytd-rich-grid-item-margin) / 2);
     }
+    
+    /*  Fix Grid width - Channel Pages  */
+		ytd-browse[page-subtype="channels"] {
+			ytd-two-column-browse-results-renderer.ytd-browse:not(.grid-disabled) {
+				width: auto !important;
+        max-width: unset;
+			}
+		}
 
     /* Fix "New to you" card */
     #content.ytd-rich-item-renderer {
@@ -1020,15 +1030,18 @@
     
     /* Add an inline margin for the whole content */
     @media (min-width: 1400px) {
+      ytd-browse {
+        --grid-margin: 7rem;
+      }
+      
       ytd-two-column-browse-results-renderer[page-subtype="home"], 
       ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] {
         #primary > ytd-rich-grid-renderer {
-          --grid-margin: 7em;
           margin-inline: var(--grid-margin);
         }
- 
+
         /* Fix filterbar width */
-      ytd-feed-filter-chip-bar-renderer {
+        ytd-feed-filter-chip-bar-renderer {
           margin-inline: calc(var(--grid-margin) * -1);
         }
 
@@ -1036,6 +1049,10 @@
           width: calc(var(--ytd-rich-grid-chips-bar-width) + (var(--grid-margin) * 2));
         }
       }
+
+			ytd-two-column-browse-results-renderer[page-subtype="channels"] {
+        margin-inline: var(--grid-margin);
+      }      
     }
     
     /* Remove unloaded videos */
