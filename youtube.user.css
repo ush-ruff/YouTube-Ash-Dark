@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.11.2
+@version        2.12.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -946,16 +946,24 @@
 @-moz-document domain("youtube.com") {
   /* ----- Custom Item Grid Size ----- */
   if (customGrid==1) {
-    #contents.ytd-rich-grid-renderer {
+    #primary > ytd-rich-grid-renderer > #contents,
+    #primary > ytd-section-list-renderer > #contents {
       --ytd-rich-grid-item-margin: 16px;
       --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) + 1))) / var(--grid-columns-count));
-      
+    }
+    
+    #contents.ytd-rich-grid-renderer {
       display: block !important;
+    }
+    
+    #contents.ytd-rich-grid-renderer,
+    #contents.ytd-section-list-renderer {
       margin-inline-start: calc(var(--ytd-rich-grid-item-margin) / 2);
     }
 
     @media (max-width:1400px) {
-      div#contents.ytd-rich-grid-renderer {
+      div#contents.ytd-rich-grid-renderer, 
+      div#contents.ytd-section-list-renderer {
         margin-inline-start: var(--ytd-rich-grid-item-margin);
       }
     }
@@ -981,8 +989,7 @@
     }
 
     #contents ytd-rich-item-renderer[is-slim-grid] {
-      margin-inline: 0.25rem;
-      margin-inline: calc(var(--ytd-rich-grid-item-margin)/2);
+      margin-inline: calc(var(--ytd-rich-grid-item-margin) / 2);
     }
 
     ytd-rich-section-renderer {
@@ -1000,34 +1007,6 @@
 
     ytd-rich-section-renderer > #content.ytd-rich-section-renderer ytd-rich-item-renderer[is-slim-media] {
       margin-inline: calc(var(--ytd-rich-grid-item-margin) / 2);
-    }
-    
-    /*  Fix Grid width - Channel Pages  */
-		ytd-browse[page-subtype="channels"] {
-			ytd-two-column-browse-results-renderer.ytd-browse:not(.grid-disabled):has(> #primary > ytd-rich-grid-renderer),
-			ytd-two-column-browse-results-renderer.ytd-browse:not(.grid-disabled):has(> #primary > ytd-section-list-renderer > #contents > ytd-item-section-renderer) {
-        box-sizing: border-box;
-				width: 100% !important;
-        max-width: unset;
-			}
-		}
-
-    /* Fix "New to you" card */
-    #content.ytd-rich-item-renderer {
-      display: inline;
-    }
-    
-    #content.ytd-rich-item-renderer ytd-feed-nudge-renderer {
-      position: relative;
-      top: unset !important;
-      bottom: calc(var(--grid-margin) * 1.85);
-      margin-bottom: calc(var(--grid-margin) * -1.85);
-    }
-    
-    #content.ytd-rich-item-renderer > [is-dismissed] {
-      position: relative;
-      bottom: calc(var(--grid-margin) * 1.25);
-      margin-bottom: calc(var(--grid-margin) * -1.85);
     }
     
     /* Add an inline margin for the whole content */
@@ -1053,10 +1032,55 @@
       }
 
 			ytd-two-column-browse-results-renderer[page-subtype="channels"] {
-        #primary > ytd-rich-grid-renderer {
+        #primary > ytd-rich-grid-renderer,
+        #primary > ytd-section-list-renderer:has(> #contents > ytd-item-section-renderer) {
           margin-inline: var(--grid-margin);
         }
       }      
+    }
+    
+    /* Channel Pages - Horizontal scrollers styling on Home */
+    ytd-browse[page-subtype="channels"] #items.yt-horizontal-list-renderer > ytd-grid-video-renderer.yt-horizontal-list-renderer {
+      width: var(--size) !important;
+      padding-inline-end: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
+      
+      + ytd-grid-video-renderer {
+        padding-inline-start: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2) !important;
+      }
+      
+      ytd-thumbnail.ytd-grid-video-renderer {
+        width: auto;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+    }
+    
+    /*  Channel Pages - Fix Grid width  */
+		ytd-browse[page-subtype="channels"] {
+			ytd-two-column-browse-results-renderer.ytd-browse:not(.grid-disabled):has(> #primary > ytd-rich-grid-renderer),
+			ytd-two-column-browse-results-renderer.ytd-browse:not(.grid-disabled):has(> #primary > ytd-section-list-renderer > #contents > ytd-item-section-renderer) {
+        box-sizing: border-box;
+				width: 100% !important;
+        max-width: unset;
+			}
+		}
+
+    /* Fix "New to you" card */
+    #content.ytd-rich-item-renderer {
+      display: inline;
+    }
+    
+    #content.ytd-rich-item-renderer ytd-feed-nudge-renderer {
+      position: relative;
+      top: unset !important;
+      bottom: calc(var(--grid-margin) * 1.85);
+      margin-bottom: calc(var(--grid-margin) * -1.85);
+    }
+    
+    #content.ytd-rich-item-renderer > [is-dismissed] {
+      position: relative;
+      bottom: calc(var(--grid-margin) * 1.25);
+      margin-bottom: calc(var(--grid-margin) * -1.85);
     }
     
     /* Remove unloaded videos */
