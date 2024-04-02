@@ -3,27 +3,27 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.13.0
+@version        2.14.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
-@var            checkbox customGrid             "Enable Custom Grid on Homepage" 1
+@var            checkbox customGrid             "Enable Custom Grid" 1
 @var            number   customGridColumns      " ↳ No. of Grid Columns" [5, 4, 10, 1]
 @var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
 @var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
-@var            checkbox hideFilterBar          "Hide Filter Bar" 1
-@var            checkbox hideWatchedVideos      "Hide 100% Watched Videos on Home Page" 1
-@var            checkbox hidePlayerControls     "Hide Player Overlays in Fullscreen" 1
 @var            range    endCardOpacity         "Video End Card Opacity" [0.35, 0, 1, 0.05]
 @var            checkbox restoreDesc            "Restore Old Description Style" 1
 @var            select   restoreDescVersion     " ↳ Fix Version" ["One", "Two"]
-@var            checkbox hideComments           "Hide Comments" 0
 @var            checkbox restoreCommentReplies  "Restore Old Comment Replies Style" 1
+@var            checkbox restoreOldIcons        "Restore Old Icons" 1
 @var            checkbox enablePlayerSize       "Custom Player Size" 0
 @var            text     playerSize             " ↳ Player Size" 880px
+@var            checkbox hideFilterBar          "Hide Filter Bar" 1
+@var            checkbox hideWatchedVideos      "Hide 100% Watched Videos on Home Page" 1
+@var            checkbox hidePlayerControls     "Hide Player Overlays in Fullscreen" 1
+@var            checkbox hideComments           "Hide Comments" 0
 @var            checkbox hideShorts             "Hide YouTube Shorts" 1
-@var            checkbox restoreOldIcons        "Restore Old Icons" 1
 ==/UserStyle== */
 @-moz-document domain("youtube.com") {
   /* ----- YouTube Style Fixes ----- */
@@ -550,32 +550,76 @@
   }
 
 
+  /* ----- Channel Page - About ----- */
+  ytd-section-list-renderer[engagement-panel-dialog][should-scroll-in-panel] #contents.ytd-section-list-renderer {
+    scrollbar-color: var(--bg-600) var(--bg-200);
+    scrollbar-width: thin;
+  }
+
+
   /* ----- Channel Page - Tabs ----- */
+  #tabsContainer {
+    --_tab-gap: 6rem;
+  }
+  
+  #tabsContent, .yt-tab-group-shape-wiz {
+    width: 100%;
+  }
+
+  .yt-tab-shape-wiz {
+    margin-right: var(--_tab-gap);
+  }
+
+  .yt-tab-shape-wiz__tab--last-tab {
+    margin-inline: auto 0;
+  }
+
   .yt-tab-shape-wiz__tab {
     font-size: 1.5rem;
     text-transform: uppercase;
   }
-  
+
   .yt-tab-shape-wiz__tab--tab-selected, 
   .yt-tab-shape-wiz:focus .yt-tab-shape-wiz__tab {
     color: var(--cl-base);
   }
-  
+
   .yt-tab-group-shape-wiz__slider {
     background-color: var(--cl-base);
   }
 
-
-  /* ----- Channel Page - Playlists ----- */
-  ytd-grid-playlist-renderer #details #view-more {
-    text-transform: uppercase;
+  ytd-expandable-tab-renderer:not([show-input=""]) > form {
+    display: none;
   }
+
+  ytd-expandable-tab-renderer > form > tp-yt-paper-input.ytd-expandable-tab-renderer {
+    --paper-input-container-underline-border-bottom: 1px solid var(--yt-spec-icon-disabled, #717171);
+  }
+
+  .yt-tab-group-shape-wiz__slider {
+    translate: calc((var(--_tab-gap) - 24px) * var(--tab-count, 0));
+  }
+
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(2)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 1;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(3)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 2;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(4)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 3;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(5)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 4;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(6)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 5;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(7)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 6;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(8)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 7;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(9)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 8;}
+  .yt-tab-group-shape-wiz__tabs:has(:nth-child(10)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 9;}
 
 
   /* ----- Channel Page - Community Posts ----- */
   ytd-backstage-post-thread-renderer[rounded-container] {
     background-color: var(--bg-300);
     border-color: var(--bg-500);
+  }
+
+  .choice-info.ytd-backstage-quiz-renderer,
+  ytd-backstage-poll-renderer:not([is-image-poll]) .choice-info.ytd-backstage-poll-renderer {
+    border: 1px solid var(--yt-spec-icon-disabled, #717171);
   }
 
 
@@ -943,6 +987,56 @@
     }
   }
 }
+
+@-moz-document domain("youtube.com") {
+  /* ---- Typography Fixes ---- */
+  /* --- Comments Count --- */
+  ytd-comments-header-renderer[modern-typography] {
+    #count {
+      margin-block-start: -0.5rem;
+      margin-inline-end: 1.7rem;
+    }
+    
+    .count-text.ytd-comments-header-renderer {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  } 
+  
+  yt-dropdown-menu[modern-buttons] #label.yt-dropdown-menu, 
+  yt-dropdown-menu[modern-buttons] #icon-label.yt-dropdown-menu {
+    text-transform: uppercase;
+    letter-spacing: unset;
+  }
+
+  /* --- "Looking for something different?" dialog --- */
+  ytd-feed-nudge-renderer[nudge-style="modernized-nudge"] {
+    #title-container.ytd-feed-nudge-renderer {
+      font-family: "Roboto", sans-serif;
+      margin-block: 1rem;
+    }
+    
+    #title.ytd-feed-nudge-renderer {
+      font-size: 1.8rem;
+      line-height: 0.8;
+    }
+  }
+  
+  /* --- Channel Page - Headers --- */
+  ytd-shelf-renderer[modern-typography] #title.ytd-shelf-renderer {
+    font-size: 1.8rem;
+  }
+
+  /* --- Channel Page - Playlists --- */
+  ytd-grid-playlist-renderer #details #view-more {
+    text-transform: uppercase;
+  }
+
+  yt-dropdown-menu .yt-dropdown-menu[style-target="label-text"] {
+    font-weight: 500;
+  }
+}
+
 @-moz-document domain("youtube.com") {
   /* ----- Custom Item Grid Size ----- */
   if (customGrid==1) {
