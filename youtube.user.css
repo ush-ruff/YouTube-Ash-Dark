@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.14.0
+@version        2.14.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -846,7 +846,6 @@
       border-radius: var(--br);
     }
 
-
     /* --- Search --- */
     /* -- Expandable Chapters Dropdown -- */
     ytd-expandable-metadata-renderer, 
@@ -1035,6 +1034,11 @@
   yt-dropdown-menu .yt-dropdown-menu[style-target="label-text"] {
     font-weight: 500;
   }
+
+  /* ---Thumbnail Details - Mixes --- */
+  #channel-name.long-byline.ytd-video-meta-block {
+    --ytd-channel-name-text-font-size: 1.35rem;
+  }
 }
 
 @-moz-document domain("youtube.com") {
@@ -1184,13 +1188,14 @@
       ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] #details.ytd-rich-grid-media {
         display: grid;
         grid-template-areas: "title title menu" "logo meta meta" "empty badges badges";
-        grid-template-columns: 36px 1fr 24px;
+        grid-template-columns: auto 1fr 24px;
         gap: 0.5rem 0;
         margin-block-end: -1.5rem;
 
         #avatar-link {
           grid-area: logo;
-          margin: 0;
+          width: 36px;
+          margin: 0 1rem 0 0;
         }
 
         #meta {
@@ -1211,7 +1216,6 @@
 
           ytd-video-meta-block {
             grid-area: meta;
-            margin-inline-start: 1rem;
           }
 
           .video-badge {
