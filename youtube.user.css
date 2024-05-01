@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.14.2
+@version        2.14.3
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1832,7 +1832,8 @@
       "m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z":"M7 10l5 5 5-5z",
       "M12,15.7L5.6,9.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L12,15.7z":"M7 10l5 5 5-5z",
       /* Show fewer */
-      "M18.4 14.6 12 8.3l-6.4 6.3.8.8L12 9.7l5.6 5.7z":"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+      // "M18.4 14.6 12 8.3l-6.4 6.3.8.8L12 9.7l5.6 5.7z":"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
+      "M18.4 14.6 12 8.3l-6.4 6.3.8.8L12 9.7l5.6 5.7z":"M7 14l5-5 5 5z",
     }
 
     arrowIconsNoColor = {
