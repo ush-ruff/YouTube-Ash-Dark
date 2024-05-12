@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.15.1
+@version        2.16.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -275,6 +275,13 @@
       font-size: 1.4rem;
       font-weight: 500;
     }
+  }
+
+
+  /* ----- Thumbnail Time Overlay ----- */
+  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 2px;
   }
 
 
@@ -584,6 +591,29 @@
   .truncated-text-wiz__absolute-button,
   .page-header-view-model-wiz__page-header-attribution {
     color: #d2d2d2;
+  }
+  
+  /* Fix for new layout change - May-24 */
+  ytd-tabbed-page-header.grid-6-columns[has-inset-banner] #page-header-banner.ytd-tabbed-page-header {
+    padding-inline: 0;
+  }
+  
+  .yt-image-banner-view-model-wiz--inset {
+    border-radius: 0;
+  }
+  
+  #page-header .page-header-view-model-wiz__page-header-headline-info {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    
+    >:not(yt-flexible-actions-view-model) {
+      grid-column: 1 / 2;
+    }
+    
+    >yt-flexible-actions-view-model {
+      grid-row: 1 / -1;
+      grid-column: 2;
+    }
   }
 
 
