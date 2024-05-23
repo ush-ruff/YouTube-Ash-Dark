@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.16.0
+@version        2.16.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -2065,8 +2065,8 @@
       transform: unset;
     }
 
-    /* Pin (Need to be fixed) */
-    ytd-pinned-comment-badge-renderer.ytd-comment-renderer > yt-icon {
+    /* Pin */
+    ytd-pinned-comment-badge-renderer > yt-icon {
       content: var(--pin-comment-img);
     }
 
