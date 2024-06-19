@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.16.3
+@version        2.17.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -92,6 +92,33 @@
 
   #voice-search-button.ytd-masthead {
     background-color: transparent !important;
+  }
+
+
+  /* ----- Menu Icon - Fix (Only Visible on Element Hover) ----- */  
+  fixMenuIcon(selector) {
+    {selector} {
+      opacity: 0;
+      transition: opacity 250ms ease-in-out;
+    }
+    {'&:hover '+selector} {
+      opacity: 1;
+    }
+  }
+  
+  /* Thumbnail Details */
+  #details, ytd-compact-video-renderer .details {
+    fixMenuIcon("#menu");
+  }
+  
+  /* Comments */
+  ytd-comment-view-model #body {
+    fixMenuIcon("#action-menu");
+  }
+  
+  /* Search */
+  ytd-video-renderer #dismissible {
+    fixMenuIcon("#menu");
   }
   
 
@@ -342,6 +369,12 @@
 
   ytd-search-refinement-card-renderer.ytd-horizontal-card-list-renderer {
     padding-inline-end: 12px;
+  }
+
+
+  /* --- Search Results - Fix Thumbnail Size --- */
+  #container.ytd-search :is(#avatar-section.ytd-channel-renderer, ytd-thumbnail.ytd-video-renderer, ytd-playlist-thumbnail.ytd-playlist-renderer) {
+    max-width: 300px;
   }
 
 
