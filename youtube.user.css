@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.17.0
+@version        2.17.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -847,108 +847,12 @@
 @-moz-document domain("youtube.com") {
   /* ----- Border Radius Fixes ----- */
   html, [dark] {
-    /* --- Menus --- */
-    ytd-multi-page-menu-renderer,
-    ytd-menu-popup-renderer,
-    .ytp-settings-menu.ytp-rounded-menu, .ytp-screen-mode-menu.ytp-rounded-menu, 
-    .yt-sheet-view-model-wiz--contextual, .yt-list-item-view-model-wiz__container--tappable:hover {
-      border-radius: var(--br);
-    }
-
     /* --- Dialog box --- */
     tp-yt-paper-dialog[modern] {
       border-radius: 0.25em;
     }
 
-    /* --- Inputs --- */
-    yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer {
-      border-radius: var(--br);
-    }
-
-    /* --- Image Containers --- */
-    html ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
-    [dark] ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
-    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer yt-img-shadow.ytd-backstage-image-renderer {
-      border-radius: var(--br);
-    }
-
-    /* --- Sidebar --- */
-    ytd-guide-entry-renderer,
-    yt-interaction.ytd-guide-entry-renderer,
-    ytd-mini-guide-entry-renderer,
-    #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus) {
-      border-radius: var(--br)
-    }
-
-    ytd-mini-guide-entry-renderer[guide-refresh] {
-      border-radius: var(--br);
-    }
-
-    /* --- Settings Page --- */
-    ytd-settings-sidebar-renderer[guide-refresh] ytd-compact-link-renderer.ytd-settings-sidebar-renderer,
-    tp-yt-paper-item:focus::before, .tp-yt-paper-item.tp-yt-paper-item:focus::before {
-      border-radius: var(--br);
-    }
-
-    /* -- Settings Page - Sidebar -- */
-    ytd-compact-link-renderer.ytd-settings-sidebar-renderer {
-      border-radius: var(--br);
-    }
-    
-    /* --- Skeleton Loading --- */
-    #home-page-skeleton .rich-thumbnail,
-    #home-page-skeleton .rich-thumbnail.rounded-thumbs,
-    #home-container-skeleton .rich-thumbnail.rounded-thumbs:before {
-      border-radius: var(--br);
-    }
-
-    /* --- Main Content --- */
-    /* -- Video Thumbnail -- */
-    #thumbnail,
-    ytd-thumbnail[size="large"] a.ytd-thumbnail, ytd-thumbnail[size="large"]::before,
-    ytd-thumbnail[size="medium"] a.ytd-thumbnail, ytd-thumbnail[size="medium"]::before {
-      border-radius: var(--br);
-    }
-
-    /* Thumbnail transitions */
-    yt-interaction.extended :is(.fill, .stroke).yt-interaction {
-      border-radius: var(--br);
-    }
-
-    /* Dismissed video */
-    ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media,
-    #dismissed.ytd-rich-grid-media {
-      border-radius: var(--br);
-    }
-
-    /* Dismissed video - sidebar */
-    #dismissed.ytd-compact-video-renderer {
-      border-radius: var(--br);
-    }
-
-    /* Channel Intro Video */
-    ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer {
-      border-radius: var(--br);
-    }
-
-    /* -- Survey -- */
-    ytd-inline-survey-renderer[rounded-container] #dismissible.ytd-inline-survey-renderer {
-      border-radius: var(--br);
-    }
-
-    /* -- New to you dialog -- */
-    ytd-feed-nudge-renderer[rounded-container] #dismissible.ytd-feed-nudge-renderer,
-    ytd-feed-nudge-renderer[trim-style="gradient-trim-1"] #dismissible.ytd-feed-nudge-renderer:first-child::before {
-      border-radius: var(--br);
-    }
-    
-    /* -- Community Posts -- */
-    ytd-post-renderer {
-      border-radius: var(--br);
-    }
-
-    /* --- Search --- */
-    /* -- Expandable Chapters Dropdown -- */
+    /* --- Search - Expandable Chapters Dropdown --- */
     ytd-expandable-metadata-renderer, 
     ytd-expandable-metadata-renderer:not([is-expanded]), 
     ytd-expandable-metadata-renderer:not([is-expanded]) #header.ytd-expandable-metadata-renderer:hover {
@@ -956,135 +860,164 @@
       border-radius: var(--br);
     }
 
-    /* -- Game Summary Thumbnail -- */
-    ytd-universal-watch-card-renderer[rounded] #header.ytd-universal-watch-card-renderer, 
-    ytd-universal-watch-card-renderer[rounded] #hero.ytd-universal-watch-card-renderer {
-      border-radius: var(--br);
-    }
-
-    /* -- Related Searches -- */
-    ytd-search-refinement-card-renderer[round-container] a.ytd-search-refinement-card-renderer {
-      border-radius: var(--br);
-    }
-
-    /* --- Player --- */
-    #ytd-player.ytd-watch-flexy {
-      border-radius: var(--br) !important;
-    }
-
-    /* Skeleton */
-    #player.skeleton.flexy #player-api.round {
-      border-radius: var(--br);
-    }
-
-    /* Miniplayer */
-    .ytp-player-minimized.ytp-rounded-miniplayer :is(.html5-main-video, .ytp-miniplayer-scrim),
-    .ytp-player-minimized.ytp-rounded-miniplayer.html5-video-player {
-      border-radius: var(--br);
-    }
-
-    /* Next Video Preview Tooltip */
-    .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview {
-      border-radius: var(--br);
-    }
-
-    /* Video Timeline Preview */
-    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail), 
-    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail) .ytp-tooltip-bg {
-      border-radius: var(--br);
-    }
-
-    .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg {
-      border-radius: var(--br);
-    }
-
-    /* Player Settings Menu */
-    .ytp-settings-menu {
-      border-radius: var(--br);
-    }
-
-    /* Video End Cards */
-    .ytp-ce-video, .ytp-ce-playlist, .ytp-ce-expanding-overlay-background {
-      border-radius: var(--br);
-    }
-
-    /* Video End Cards - Subscribe button */
-    .ytp-ce-channel-subscribe .ytp-sb-rounded, .ytp-sb-subscribe, .ytp-sb-unsubscribe {
+    /* --- Video End Cards - Subscribe button --- */
+    .ytp-ce-channel-subscribe .ytp-sb-rounded, 
+    .ytp-sb-subscribe, .ytp-sb-unsubscribe {
       border-radius: var(--yt-button-border-radius, 2px);
     }
 
-    /* Video End Screen */
-    .ytp-videowall-still .ytp-videowall-still-image {
-      border-radius: var(--br);
-    }
-
-    /* -- Description -- */
-    /* Chapters */
-    ytd-macro-markers-list-item-renderer[modern][rounded][layout="MACRO_MARKERS_LIST_ITEM_RENDERER_LAYOUT_VERTICAL"],
-    ytd-macro-markers-list-item-renderer[rounded] #thumbnail.ytd-macro-markers-list-item-renderer {
-      border-radius: var(--br);
-    }
-
-    /* Featured Playlist */
-    #thumbnail.ytd-structured-description-playlist-lockup-renderer {
-      border-radius: var(--br);
-    }
-
+    /* --- Video Description - Featured Playlist --- */
     #overlay.ytd-structured-description-playlist-lockup-renderer {
       border-bottom-right-radius: var(--br);
       border-bottom-left-radius: var(--br);
     }
 
-    /* Info Cards */
-    ytd-media-lockup-renderer[is-compact] #thumbnail-container.ytd-media-lockup-renderer {
-      border-radius: var(--br);
-    }
-    
-    /* -- Share Clip -- */
-    #panels ytd-engagement-panel-section-list-renderer {
-      border-radius: var(--br);
-    }
-    
-    #bar.yt-copy-link-renderer {
-      border-radius: var(--br);
-    }
-
     /* --- Playlist --- */
-    ytd-playlist-panel-renderer[js-panel-height] #container.ytd-playlist-panel-renderer {
-      border-radius: var(--br);
-    }
-
-    ytd-playlist-thumbnail[size="medium"] a.ytd-playlist-thumbnail,
-    ytd-playlist-thumbnail[size="medium"]::before {
-      border-radius: var(--br);
-    }
-
     .immersive-header-container.ytd-playlist-header-renderer {
       border-radius: 0.6rem;
     }
 
-    ytd-playlist-video-renderer[amsterdam] {
-      border-radius: var(--br);
-    }
+    /* --- Menus --- */
+    ytd-multi-page-menu-renderer,
+    ytd-menu-popup-renderer,
+    .ytp-settings-menu.ytp-rounded-menu, 
+    .ytp-screen-mode-menu.ytp-rounded-menu, 
+    .yt-sheet-view-model-wiz--contextual, 
+    .yt-list-item-view-model-wiz__container--tappable:hover,
+
+    /* --- Inputs --- */
+    yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer,
+
+    /* --- Image Containers --- */
+    html ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
+    [dark] ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
+    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer yt-img-shadow.ytd-backstage-image-renderer,
+
+    /* --- Sidebar --- */
+    ytd-guide-entry-renderer,
+    yt-interaction.ytd-guide-entry-renderer,
+    ytd-mini-guide-entry-renderer,
+    #endpoint.yt-simple-endpoint.ytd-guide-entry-renderer:is(:hover, :focus),
+    ytd-mini-guide-entry-renderer[guide-refresh],
+
+    /* --- Settings Page --- */
+    ytd-settings-sidebar-renderer[guide-refresh] ytd-compact-link-renderer.ytd-settings-sidebar-renderer,
+    tp-yt-paper-item:focus::before, 
+    .tp-yt-paper-item.tp-yt-paper-item:focus::before,
+
+    /* -- Settings Page - Sidebar -- */
+    ytd-compact-link-renderer.ytd-settings-sidebar-renderer,
+    
+    /* --- Skeleton Loading --- */
+    #home-page-skeleton .rich-thumbnail,
+    #home-page-skeleton .rich-thumbnail.rounded-thumbs,
+    #home-container-skeleton .rich-thumbnail.rounded-thumbs:before,
+
+    /* --- Main Content --- */
+    /* -- Video Thumbnail -- */
+    #thumbnail,
+    ytd-thumbnail[size="large"] a.ytd-thumbnail, 
+    ytd-thumbnail[size="large"]::before,
+    ytd-thumbnail[size="medium"] a.ytd-thumbnail, 
+    ytd-thumbnail[size="medium"]::before,
+
+    /* Thumbnail transitions */
+    yt-interaction.extended :is(.fill, .stroke).yt-interaction,
+
+    /* Dismissed video */
+    ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media,
+    #dismissed.ytd-rich-grid-media,
+
+    /* Dismissed video - Sidebar */
+    #dismissed.ytd-compact-video-renderer,
+
+    /* Channel Intro Video */
+    ytd-channel-video-player-renderer[rounded] #player.ytd-channel-video-player-renderer,
+
+    /* -- Survey -- */
+    ytd-inline-survey-renderer[rounded-container] #dismissible.ytd-inline-survey-renderer,
+
+    /* -- New to you dialog -- */
+    ytd-feed-nudge-renderer[rounded-container] #dismissible.ytd-feed-nudge-renderer,
+    ytd-feed-nudge-renderer[trim-style="gradient-trim-1"] #dismissible.ytd-feed-nudge-renderer:first-child::before,
+    
+    /* -- Community Posts -- */
+    ytd-post-renderer,
+
+    /* -- Game Summary Thumbnail -- */
+    ytd-universal-watch-card-renderer[rounded] #header.ytd-universal-watch-card-renderer, 
+    ytd-universal-watch-card-renderer[rounded] #hero.ytd-universal-watch-card-renderer,
+
+    /* -- Related Searches -- */
+    ytd-search-refinement-card-renderer[round-container] a.ytd-search-refinement-card-renderer,
+
+    /* --- Player --- */
+    #ytd-player.ytd-watch-flexy,
+
+    /* Skeleton */
+    #player.skeleton.flexy #player-api.round,
+
+    /* Miniplayer */
+    .ytp-player-minimized.ytp-rounded-miniplayer :is(.html5-main-video, .ytp-miniplayer-scrim),
+    .ytp-player-minimized.ytp-rounded-miniplayer.html5-video-player,
+
+    /* Next Video Preview Tooltip */
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview,
+
+    /* Video Timeline Preview */
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail), 
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail) .ytp-tooltip-bg,
+    .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg,
+
+    /* Player Settings Menu */
+    .ytp-settings-menu,
+
+    /* Video End Cards */
+    .ytp-ce-video, 
+    .ytp-ce-playlist, 
+    .ytp-ce-expanding-overlay-background,
+
+    /* Video End Screen */
+    .ytp-videowall-still .ytp-videowall-still-image,
+
+    /* -- Description -- */
+    /* Chapters */
+    ytd-macro-markers-list-item-renderer[modern][rounded][layout="MACRO_MARKERS_LIST_ITEM_RENDERER_LAYOUT_VERTICAL"],
+    ytd-macro-markers-list-item-renderer[rounded] #thumbnail.ytd-macro-markers-list-item-renderer,
+
+    /* Featured Playlist */
+    #thumbnail.ytd-structured-description-playlist-lockup-renderer,
+
+    /* Info Cards */
+    ytd-media-lockup-renderer[is-compact] #thumbnail-container.ytd-media-lockup-renderer,
+    
+    /* -- Share Clip -- */
+    #panels ytd-engagement-panel-section-list-renderer,
+    #bar.yt-copy-link-renderer,
+
+    /* --- Playlist --- */
+    ytd-playlist-panel-renderer[js-panel-height] #container.ytd-playlist-panel-renderer,
+    ytd-playlist-thumbnail[size="medium"] a.ytd-playlist-thumbnail,
+    ytd-playlist-thumbnail[size="medium"]::before,
+    ytd-playlist-video-renderer[amsterdam],
 
     /* Liked Videos List */
-    ytd-playlist-video-renderer {
-      border-radius: var(--br);
-    }
+    ytd-playlist-video-renderer,
 
     /* --- Community Posts --- */
-    ytd-backstage-post-thread-renderer[rounded-container] {
-      border-radius: var(--br);
-    }
-
-    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer {
-      border-radius: var(--br);
-    }
+    ytd-backstage-post-thread-renderer[rounded-container],
+    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer,
 
     /* --- Show/Hide Chat Replay Button --- */
-    ytd-live-chat-frame[rounded-container], ytd-live-chat-frame[rounded-container] #show-hide-button.ytd-live-chat-frame ytd-toggle-button-renderer.ytd-live-chat-frame {
+    ytd-live-chat-frame[rounded-container], 
+    ytd-live-chat-frame[rounded-container] #show-hide-button.ytd-live-chat-frame ytd-toggle-button-renderer.ytd-live-chat-frame
+    
+    {
+    
       border-radius: var(--br);
+    
     }
+
   }
 }
 
