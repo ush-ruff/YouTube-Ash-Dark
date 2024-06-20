@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.17.1
+@version        2.17.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -860,6 +860,11 @@
       border-radius: var(--br);
     }
 
+    /* --- Player --- */
+    #ytd-player.ytd-watch-flexy {
+      border-radius: var(--br) !important;
+    }
+
     /* --- Video End Cards - Subscribe button --- */
     .ytp-ce-channel-subscribe .ytp-sb-rounded, 
     .ytp-sb-subscribe, .ytp-sb-unsubscribe {
@@ -952,8 +957,6 @@
     ytd-search-refinement-card-renderer[round-container] a.ytd-search-refinement-card-renderer,
 
     /* --- Player --- */
-    #ytd-player.ytd-watch-flexy,
-
     /* Skeleton */
     #player.skeleton.flexy #player-api.round,
 
