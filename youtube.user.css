@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.17.7
+@version        2.17.8
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1292,7 +1292,7 @@
 @-moz-document domain("youtube.com") {
   /* ----- Hide 100% Watched Videos on Home Page ----- */
   if (hideWatchedVideos == 1) {
-    ytd-browse[page-subtype="home"] .ytd-rich-grid-row > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
+    ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
       display: none !important;
     }
   }
