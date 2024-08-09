@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.17.8
+@version        2.18.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1085,128 +1085,99 @@
   /* ----- Custom Item Grid Size ----- */
   if (customGrid==1) {
     #primary > ytd-rich-grid-renderer > #contents {
-      --ytd-rich-grid-item-margin: 16px;
-      --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) + 1))) / var(--grid-columns-count));
-    }
-    
-    #contents.ytd-rich-grid-renderer {
-      display: block !important;
-    }
-    
-    #contents.ytd-rich-grid-renderer {
-      margin-inline-start: calc(var(--ytd-rich-grid-item-margin) / 2);
-    }
-
-    @media (max-width:1400px) {
-      ytd-two-column-browse-results-renderer:not([page-subtype="channels"]) div#contents.ytd-rich-grid-renderer {
-        margin-inline-start: var(--ytd-rich-grid-item-margin);
-      }
-    }
-
-    ytd-rich-grid-row.ytd-rich-grid-renderer {
-      display: inline !important;
-    }
-
-    ytd-rich-grid-row.ytd-rich-grid-renderer:not([is-shorts-grid]) > div {
-      display: inline !important;
-      margin: 0 !important;
-    }
-
-    ytd-rich-item-renderer:not([is-post], [is-slim-media]) {
-      display: inline-block !important;
-      width: var(--size) !important;
-      contain: none !important;
-      margin-inline: calc(var(--ytd-rich-grid-item-margin, 1rem) / 2);
-    }
-
-    ytd-rich-item-renderer[is-shorts-grid][is-slim-media] {
-      display: inline-block;
-    }
-
-    #contents ytd-rich-item-renderer[is-slim-grid] {
-      --size: calc((100% - (var(--ytd-rich-grid-item-margin) / 2 * (var(--grid-columns-count) + 1))) / var(--grid-columns-count));
-      margin-inline: calc(var(--ytd-rich-grid-item-margin) / 4);
-    }
-
-    ytd-rich-section-renderer {
-      width: calc(100% - var(--ytd-rich-grid-item-margin));
-    }
-
-    ytd-rich-section-renderer > #content.ytd-rich-section-renderer {
-      max-width: unset;
-      margin: 0;
-    }
-
-    ytd-rich-section-renderer > #content.ytd-rich-section-renderer ytd-rich-item-renderer {
-      margin-inline: var(--ytd-rich-grid-item-margin) 0;
-    }
-
-    ytd-rich-section-renderer > #content.ytd-rich-section-renderer ytd-rich-item-renderer[is-slim-media] {
-      margin-inline: calc(var(--ytd-rich-grid-item-margin) / 2);
-    }
-    
-    /* Add an inline margin for the whole content */
-    @media (min-width: 1400px) {
-      ytd-browse {
-        --grid-margin: 7rem;
+      --grid-columns-count: customGridColumns;
+      --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) - 1))) / var(--grid-columns-count));
+      
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+      gap: 4rem var(--ytd-rich-grid-item-margin);
+      padding-inline: calc(var(--ytd-rich-grid-gutter-margin) * 2);
+      
+      ytd-rich-item-renderer[rendered-from-rich-grid] {
+        width: auto;
+        margin: unset;
       }
       
-      ytd-two-column-browse-results-renderer[page-subtype="home"], 
-      ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] {
-        #primary > ytd-rich-grid-renderer {
-          margin-inline: var(--grid-margin);
+      /* --- Loader/Skeleton --- */
+      ytd-continuation-item-renderer {
+        display: grid;
+        place-items: center;
+        
+        #ghost-cards {
+          display: none;
         }
-
-        /* Fix filterbar width */
-        ytd-feed-filter-chip-bar-renderer {
-          margin-inline: calc(var(--grid-margin) * -1);
+        
+        #spinner {
+          --_size: 4.8rem;
+          width: var(--_size);
+          height: var(--_size);
+          margin: unset;
+          margin-block-start: -1.2rem;
         }
-
-        #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
-          width: calc(var(--ytd-rich-grid-chips-bar-width) + (var(--grid-margin) * 2));
+      }
+      
+      /* --- Sections --- */
+      ytd-rich-section-renderer {
+        grid-column: 1 / -1;
+        padding-block-start: 1rem;
+        border-block: 1px solid var(--yt-spec-10-percent-layer);
+        
+        #content {
+          max-width: unset;
+          margin: unset;
         }
-      }    
-    }
-
-    /* Fix "New to you" card */
-    #content.ytd-rich-item-renderer {
-      display: inline;
+        
+        #contents {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+          gap: 4rem var(--ytd-rich-grid-item-margin);
+          margin: unset;
+        }
+        
+        #rich-shelf-header {
+          margin: 0 0 1rem;
+        }
+        
+        /* Fix for YouTube Shorts */
+        #contents:has(ytd-rich-item-renderer[is-slim-media]) {
+          --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--ytd-rich-grid-slim-items-per-row) - 1))) / var(--ytd-rich-grid-slim-items-per-row));            
+        }
+        
+        ytd-rich-item-renderer {
+          width: auto;
+          margin: unset;
+        }
+        
+        /* Fix to always show selected number of grid items in sections */
+        ytd-rich-item-renderer:nth-child(-n + {customGridColumns}) {
+          display: block !important;
+        }
+        
+        /* Show more/less button */
+        #dismissible.ytd-rich-shelf-renderer {
+          margin-block-end: 52px;
+          border-bottom: unset;
+        }
+        
+        .button-container.ytd-rich-shelf-renderer {
+          width: 100%;
+          left: 0;
+          transform: unset;
+        }
+        
+        .expand-collapse-button.ytd-rich-shelf-renderer {
+          max-width: unset;
+        }
+      }
+      
     }
     
-    #content.ytd-rich-item-renderer ytd-feed-nudge-renderer {
-      position: relative;
-      top: unset !important;
-      bottom: calc(var(--grid-margin) * 1.85);
-      margin-bottom: calc(var(--grid-margin) * -1.85);
-    }
-
-    ytd-feed-nudge-renderer[is-dismissed] {
-      display: inline-block;
+    /* Fix to show number of grid items when a section is shown */
+    [page-subtype="home"] #primary > ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer:nth-of-type(-n + {customGridColumns * 2}) {
+      order: -1;
     }
     
-    /* Remove unloaded videos */
-    .ghost-grid.ytd-ghost-grid-renderer {
-      display: none;
-    }
-    
-    /* Display unloaded videos per row when refresh */
-    #home-page-skeleton .rich-grid-media-skeleton,
-    #home-page-skeleton .rich-shelf-videos .rich-grid-media-skeleton.mini-mode,
-    #home-page-skeleton #home-container-media .rich-grid-media-skeleton.mini-mode {
-      min-width: calc(100% / var(--grid-columns-count) - 1.6rem);
-      max-width: calc(100% / var(--grid-columns-count) - 1.6rem);
-    }
-
-    /* Fix dismissed video alignment */
-    ytd-rich-grid-media[is-dismissed] #dismissed.ytd-rich-grid-media {
-      display: inline-block;
-      width: 100%;
-    }
-
-    /* Fix dismissed videos still taking space */
-    ytd-rich-section-renderer:has(> #content #dismissed) {
-      display: none;
-    }
   }
 }
 
