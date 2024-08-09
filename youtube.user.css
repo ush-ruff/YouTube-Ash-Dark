@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.18.0
+@version        2.18.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -649,6 +649,11 @@
     }
   }
 
+  /* Hide "...more" button in channel description */
+  #page-header .page-header-view-model-wiz__page-header-headline-info .truncated-text-wiz__absolute-button {
+    display: none;
+  }
+
 
   /* ----- Channel Page - About ----- */
   ytd-section-list-renderer[engagement-panel-dialog][should-scroll-in-panel] #contents.ytd-section-list-renderer {
@@ -1013,6 +1018,7 @@
     /* --- Community Posts --- */
     ytd-backstage-post-thread-renderer[rounded-container],
     ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer,
+    ytd-backstage-post-thread-renderer[rounded-container] ytd-backstage-post-renderer,
 
     /* --- Show/Hide Chat Replay Button --- */
     ytd-live-chat-frame[rounded-container], 
