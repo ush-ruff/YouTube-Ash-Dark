@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.18.1
+@version        2.18.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1066,6 +1066,12 @@
       line-height: 0.8;
     }
   }
+
+  /* --- Sections - Header --- */
+  ytd-rich-shelf-renderer[modern-typography] #title.ytd-rich-shelf-renderer {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
   
   /* --- Channel Page - Headers --- */
   ytd-shelf-renderer[modern-typography] #title.ytd-shelf-renderer {
@@ -1126,7 +1132,7 @@
       /* --- Sections --- */
       ytd-rich-section-renderer {
         grid-column: 1 / -1;
-        padding-block-start: 1rem;
+        padding-block: 2rem;
         border-block: 1px solid var(--yt-spec-10-percent-layer);
         
         #content {
@@ -1162,13 +1168,16 @@
         
         /* Show more/less button */
         #dismissible.ytd-rich-shelf-renderer {
-          margin-block-end: 52px;
+          margin: unset;
+          padding: unset;
           border-bottom: unset;
         }
         
         .button-container.ytd-rich-shelf-renderer {
+          position: unset;
           width: 100%;
           left: 0;
+          margin-block-start: 3rem;
           transform: unset;
         }
         
@@ -1180,7 +1189,7 @@
     }
     
     /* Fix to show number of grid items when a section is shown */
-    [page-subtype="home"] #primary > ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer:nth-of-type(-n + {customGridColumns * 2}) {
+    [page-subtype="home"] #primary > ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer:nth-of-type(-n + {customGridColumns * 3}) {
       order: -1;
     }
     
@@ -1762,6 +1771,7 @@
       /* Save */
       "M22,13h-4v4h-2v-4h-4v-2h4V7h2v4h4V13z M14,7H2v1h12V7z M2,12h8v-1H2V12z M2,16h8v-1H2V16z":"M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z",
       "M22 13h-4v4h-2v-4h-4v-2h4V7h2v4h4v2zm-8-6H2v1h12V7zM2 12h8v-1H2v1zm0 4h8v-1H2v1z": "M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z",
+      "M18 4v15.06l-5.42-3.87-.58-.42-.58.42L6 19.06V4h12m1-1H5v18l7-5 7 5V3z":"M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z",
       /* Show translate */
       "M5,11h2v2H5V11z M15,15H5v2h10V15z M19,15h-2v2h2V15z M19,11H9v2h10V11z M22,6H2v14h20V6z M3,7h18v12H3V7z":"M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 12h4v2H4v-2zm10 6H4v-2h10v2zm6 0h-4v-2h4v2zm0-4H10v-2h10v2z",
       /* 3 dots vertical */
