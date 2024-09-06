@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.19.0
+@version        2.19.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -346,6 +346,11 @@
 
   .focused-line.tp-yt-paper-input-container {
     border-bottom-color: var(--accent-blue-dark);
+  }
+
+  /* Fix for search results background expanding beyond searchbar width */
+  iframe.sbdd_c {
+    display: none;
   }
 
 
@@ -705,15 +710,11 @@
     translate: calc((var(--_tab-gap) - 24px) * var(--tab-count, 0));
   }
 
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(2)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 1;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(3)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 2;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(4)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 3;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(5)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 4;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(6)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 5;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(7)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 6;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(8)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 7;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(9)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 8;}
-  .yt-tab-group-shape-wiz__tabs:has(:nth-child(10)[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {--tab-count: 9;}
+  for i in (1..9) {
+    .yt-tab-group-shape-wiz__tabs:has(:nth-child({i+1})[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {
+      --tab-count: i;
+    }
+  }
 
 
   /* ----- Channel Page - Community Posts ----- */
