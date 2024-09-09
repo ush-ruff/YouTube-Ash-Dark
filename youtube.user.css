@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.20.0
+@version        2.20.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1100,7 +1100,6 @@
 @-moz-document domain("youtube.com") {
   /* ----- Custom Item Grid Size ----- */
   if (customGrid==1) {
-    if (customGrid==1) {
     #primary > ytd-rich-grid-renderer > #contents, 
     #home-container-media {
       --grid-columns-count: customGridColumns;
