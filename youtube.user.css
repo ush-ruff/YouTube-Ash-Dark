@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.20.2
+@version        2.20.3
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -306,8 +306,10 @@
 
 
   /* ----- Thumbnail Time Overlay ----- */
-  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape {
+  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape, 
+  ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2] {
     background-color: rgba(0, 0, 0, 0.8);
+    color: #e2e2e2;
     border-radius: 2px;
   }
 
@@ -1083,17 +1085,19 @@
   }
 
   /* --- Channel Page - Playlists --- */
-  ytd-grid-playlist-renderer #details #view-more {
-    text-transform: uppercase;
-  }
-
   yt-dropdown-menu .yt-dropdown-menu[style-target="label-text"] {
     font-weight: 500;
   }
 
-  /* ---Thumbnail Details - Mixes --- */
+  /* --- Thumbnail Details - Mixes --- */
   #channel-name.long-byline.ytd-video-meta-block {
     --ytd-channel-name-text-font-size: 1.35rem;
+  }
+
+  /* --- Thumbnail Details - Playlists --- */
+  ytd-grid-playlist-renderer #details #view-more, 
+  ytd-rich-grid-media #details #view-more {
+    text-transform: uppercase;
   }
 }
 
@@ -1267,6 +1271,10 @@
           }
 
           #buttons {
+            grid-area: badges;
+          }
+
+          #view-more {
             grid-area: badges;
           }
         }
