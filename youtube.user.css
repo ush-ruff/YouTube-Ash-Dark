@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.20.3
+@version        2.20.4
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -417,23 +417,23 @@
   
   
   /* ----- Main Content - Section Separator ---- */
-  ytd-rich-shelf-renderer {
-    border-top-width: 1px;
-  }
+  // ytd-rich-shelf-renderer {
+  //   border-top-width: 1px;
+  // }
   
-  ytd-rich-shelf-renderer[is-show-more-hidden] #dismissible.ytd-rich-shelf-renderer {
-    border-bottom-width: 1px;
-  }
+  // ytd-rich-shelf-renderer[is-show-more-hidden] #dismissible.ytd-rich-shelf-renderer {
+  //   border-bottom-width: 1px;
+  // }
 
-  /* See More Button Border */
-  .expand-collapse-button.ytd-rich-shelf-renderer {
-    border-width: 1px;
-  }
+  // /* See More Button Border */
+  // .expand-collapse-button.ytd-rich-shelf-renderer {
+  //   border-width: 1px;
+  // }
 
-  /* Dismissed Section Border */
-  #dismissed.ytd-rich-shelf-renderer {
-    border-bottom-width: 1px;
-  }
+  // /* Dismissed Section Border */
+  // #dismissed.ytd-rich-shelf-renderer {
+  //   border-bottom-width: 1px;
+  // }
 
 
   /* ----- Player - Next Chapter Tooltip ----- */
@@ -1195,6 +1195,11 @@
         .expand-collapse-button.ytd-rich-shelf-renderer {
           max-width: unset;
         }
+
+        /* Dismissed section */
+        #dismissed.ytd-rich-shelf-renderer {
+          margin: 0;
+        }
       }
       
     }
@@ -1206,7 +1211,7 @@
       margin: unset;
 		}
     
-    /* --- Fix to show number of grid items when a section is shown --- */
+    /* --- Fix to show a minimum number of item rows before a section is shown (currently 3 rows) --- */
     [page-subtype="home"] #primary > ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer:nth-of-type(-n + {customGridColumns * 3}) {
       order: -1;
     }
