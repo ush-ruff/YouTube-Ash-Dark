@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.20.5
+@version        2.20.6
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -46,16 +46,19 @@
     --bg-750: #5c5c5c;
     --bg-900: #909090;
     
-    --cl-bright: #fff;
-    --cl-base: #ccc;
-    --cl-dim: #aaa;
+    --cl-100: #fff;
+    --cl-200: #e2e2e2;
+    --cl-300: #d2d2d2;
+    --cl-400: #ccc;
+    --cl-600: #aaa;
 
     --br: 0;
     
     --like: #23a923;
-    --dislike: hsl(0, 60%, 45%);
+    --dislike: #b82e2e;
     
     --accent-blue: #3ea6ff;
+    --accent-blue-hover: #65b8ff;
     --accent-blue-dark: #4285f4;
     --accent-red: #c00;
     --accent-red-dark: #b00;
@@ -64,9 +67,9 @@
     scrollbar-color: var(--bg-600) var(--bg-450) !important;
     scrollbar-width: thin !important;
 
-    --yt-spec-text-primary: var(--cl-base) !important;
-    --yt-spec-text-secondary: var(--cl-dim) !important;
-    --yt-button-color: var(--cl-base);
+    --yt-spec-text-primary: var(--cl-400) !important;
+    --yt-spec-text-secondary: var(--cl-600) !important;
+    --yt-button-color: var(--cl-400);
     --yt-spec-base-background: var(--bg-200) !important;
   }
 
@@ -87,7 +90,7 @@
 
   /* ----- Icons ----- */
   .yt-spec-icon-badge-shape--style-overlay .yt-spec-icon-badge-shape__icon {
-    color: var(--cl-base);
+    color: var(--cl-400);
   }
 
   #voice-search-button.ytd-masthead {
@@ -144,7 +147,7 @@
   }
 
   .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
-    color: var(--cl-base);
+    color: var(--cl-400);
   }
   
   /* Search - View More Buttons */
@@ -174,7 +177,7 @@
     text-transform: uppercase;
     background-color: var(--accent-red);
     border-radius: var(--yt-button-border-radius, 2px);
-    color: var(--cl-bright);
+    color: var(--cl-100);
   }
 
   /* Unsubscribe Button */
@@ -185,14 +188,14 @@
     text-transform: uppercase;
     background-color: var(--bg-500);
     border-radius: var(--yt-button-border-radius, 2px);
-    color: var(--cl-dim);
+    color: var(--cl-600);
   }
 
   /* Subscribe Buttons - Channels page (youtube.com/@handle/channels) */
   #subscribe {
     ytd-subscribe-button-renderer:not([subscribed]) button {
       background-color: var(--accent-red-dark);
-      color: var(--cl-bright);
+      color: var(--cl-100);
 
       &:hover, &:focus {
         background-color: var(--accent-red);
@@ -272,7 +275,7 @@
       padding: 0 16px;
       background-color: var(--bg-500);
       border-radius: var(--yt-button-border-radius, 2px);
-      color: var(--cl-dim);
+      color: var(--cl-600);
     }
     
     /* Remove dropdown arrow */
@@ -310,6 +313,7 @@
   ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2] {
     background-color: rgba(0, 0, 0, 0.8);
     color: #e2e2e2;
+    color: var(--cl-200);
     border-radius: 2px;
   }
 
@@ -323,7 +327,7 @@
     background-color: transparent;
 
     &:hover svg, &:focus-visible svg {
-      color: var(--cl-bright);
+      color: var(--cl-100);
     }
   }
 
@@ -343,7 +347,7 @@
   }
 
   .sbfl_b:hover {
-    color: var(--cl-base);
+    color: var(--cl-400);
   }
 
   .focused-line.tp-yt-paper-input-container {
@@ -414,26 +418,6 @@
   ytd-guide-renderer[guide-refresh] #sections.ytd-guide-renderer > ytd-guide-subscriptions-section-renderer.ytd-guide-renderer {
     padding-inline: 0;
   }
-  
-  
-  /* ----- Main Content - Section Separator ---- */
-  // ytd-rich-shelf-renderer {
-  //   border-top-width: 1px;
-  // }
-  
-  // ytd-rich-shelf-renderer[is-show-more-hidden] #dismissible.ytd-rich-shelf-renderer {
-  //   border-bottom-width: 1px;
-  // }
-
-  // /* See More Button Border */
-  // .expand-collapse-button.ytd-rich-shelf-renderer {
-  //   border-width: 1px;
-  // }
-
-  // /* Dismissed Section Border */
-  // #dismissed.ytd-rich-shelf-renderer {
-  //   border-bottom-width: 1px;
-  // }
 
 
   /* ----- Player - Next Chapter Tooltip ----- */
@@ -464,7 +448,7 @@
   }
 
   .ytp-ce-website-title, .ytp-ce-merchandise-title {
-    color: #d2d2d2;
+    color: var(--cl-300);
   }
 
   .ytp-ce-size-1920 .ytp-ce-expanding-icon {
@@ -475,13 +459,13 @@
   /* ----- Video End Card - Channel Button ----- */
   .ytp-ce-expanding-overlay-background {
     background-color: var(--bg-440);
-    color: #d2d2d2;
+    color: var(--cl-300);
   }
 
   .ytp-ce-channel-this .ytp-ce-channel-metadata, .yt-ui-ellipsis, .ytp-ce-channel-subscribers-text {
     background-color: transparent;
     border-color: var(--bg-550);
-    color: var(--cl-base);
+    color: var(--cl-400);
   }
 
   .ytp-ce-channel-title.ytp-ce-link, .ytp-ce-channel-title.ytp-ce-link:is(:hover, :visited) {
@@ -490,7 +474,7 @@
   }
 
   .ytp-ce-website-metadata, .ytp-ce-merchandise-metadata, .ytp-ce-merchandise-price-container {
-    color: var(--cl-dim);
+    color: var(--cl-600);
   }
   
   .ytp-ce-expanding-overlay .ytp-sb-unsubscribe {
@@ -511,8 +495,8 @@
   }
 
   #target[title="Embed"] path {
-    fill: var(--cl-bright);
-    stroke: var(--cl-bright);
+    fill: var(--cl-100);
+    stroke: var(--cl-100);
     stroke-width: 0.5;
   }
 
@@ -577,7 +561,7 @@
         content: "Dislike";
         text-transform: uppercase;
         margin-left: 6px;
-        color: var(--cl-base);
+        color: var(--cl-400);
       }
     }
   }
@@ -605,7 +589,7 @@
   :is(#primary-inner, #main.ytd-comment-view-model) #more .more-button::before {
     content: "show more";
     text-transform: uppercase;
-    color: var(--cl-dim);
+    color: var(--cl-600);
   }
 
   #more .more-button, #less .less-button {
@@ -630,7 +614,7 @@
 
   .truncated-text-wiz__absolute-button,
   .page-header-view-model-wiz__page-header-attribution {
-    color: #d2d2d2;
+    color: var(--cl-300);
   }
   
   /* Fix for new layout change - May-24 */
@@ -693,11 +677,11 @@
 
   .yt-tab-shape-wiz__tab--tab-selected, 
   .yt-tab-shape-wiz:focus .yt-tab-shape-wiz__tab {
-    color: var(--cl-base);
+    color: var(--cl-400);
   }
 
   .yt-tab-group-shape-wiz__slider {
-    background-color: var(--cl-base);
+    background-color: var(--cl-400);
   }
 
   ytd-expandable-tab-renderer:not([show-input=""]) > form {
@@ -751,7 +735,7 @@
 
     yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"][selected], yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
       background-color: var(--bg-500);
-      color: var(--cl-base);
+      color: var(--cl-400);
     }
   }
 
@@ -762,7 +746,7 @@
     border-radius: 3px;
 
     #text, #sub-text {
-      color: var(--cl-base);
+      color: var(--cl-400);
     }
 
     yt-button-renderer a, .yt-spec-button-shape-next--text {
@@ -792,7 +776,7 @@
   /* ---- Error 404 ---- */
   #error-page {
     background-color: var(--bg-200);
-    color: var(--cl-base);
+    color: var(--cl-400);
 
     p {
       text-shadow: 0 0 0 transparent, 0 1px 1px var(--bg-700);
@@ -1568,11 +1552,11 @@
 
     #reply-button-end .yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
       text-transform: uppercase;
-      color: var(--cl-dim);
+      color: var(--cl-600);
 
       &:hover, &:focus {
         text-decoration: none;
-        color: var(--cl-base);
+        color: var(--cl-400);
       }
     }
 
