@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.21.0
+@version        2.21.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -77,8 +77,8 @@
     background: var(--bg-750);
   }
 
-  html {
-    background: var(--bg-440);
+  html, html[dark] {
+    background: var(--bg-200) !important;
   }
 
 
