@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.20.6
+@version        2.21.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -148,6 +148,14 @@
 
   .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
     color: var(--cl-400);
+  }
+
+  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled {
+    background-color: var(--accent-blue);
+    
+    &:hover, &:focus-visible {
+      background-color: var(--accent-blue-hover);
+    }
   }
   
   /* Search - View More Buttons */
@@ -308,11 +316,17 @@
   }
 
 
-  /* ----- Thumbnail Time Overlay ----- */
-  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape, 
-  ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2] {
+  /* ----- Thumbnail Overlay - Time ----- */
+  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape {
     background-color: rgba(0, 0, 0, 0.8);
-    color: #e2e2e2;
+    color: var(--cl-200);
+    border-radius: 2px;
+  }
+
+
+  /* ----- Thumbnail Overlay - No. of videos in playlist ----- */
+  ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2] {
+    background-color: rgba(0,0,0,0.8) !important;
     color: var(--cl-200);
     border-radius: 2px;
   }
@@ -874,6 +888,11 @@
       border-radius: 0.6rem;
     }
 
+    /* --- YouTube Shorts - Buttons --- */
+    #shorts-container .yt-spec-button-shape-next--size-l {
+      border-radius: 50%;
+    }
+
     /* --- Menus --- */
     ytd-multi-page-menu-renderer,
     ytd-menu-popup-renderer,
@@ -1081,6 +1100,19 @@
   /* --- Thumbnail Details - Playlists --- */
   ytd-grid-playlist-renderer #details #view-more, 
   ytd-rich-grid-media #details #view-more {
+    text-transform: uppercase;
+  }
+
+  /* --- Thumbnail - Overlay Elements --- */
+  ytd-thumbnail-overlay-toggle-button-renderer[use-expandable-tooltip] #label.ytd-thumbnail-overlay-toggle-button-renderer {
+    font-size: 1.125rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--yt-spec-text-primary);
+  }
+
+  /* --- Links without icons --- */
+  ytd-compact-link-renderer #content-icon.ytd-compact-link-renderer[hidden] + #primary-text-container.ytd-compact-link-renderer > #label.ytd-compact-link-renderer {
     text-transform: uppercase;
   }
 }
