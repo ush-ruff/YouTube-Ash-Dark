@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.21.2
+@version        2.22.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -608,6 +608,36 @@
 
   #more .more-button, #less .less-button {
     text-transform: uppercase;
+  }
+
+
+  /* ----- YouTube Shorts - Progress Bar ----- */
+  #short-video-container {
+    .YtPlayerProgressBarDragContainer {
+      transform: translateY(-12px);
+    }
+    
+    .YtProgressBarLineProgressBarLine {
+      height: 5px;
+      border-radius: 100vw;
+    }
+  }
+  
+  /* ----- YouTube Shorts - Pivot Button ----- */
+  #shorts-container .YtwPivotButtonViewModelHostIcon {
+    background-color: var(--bg-530);
+    border-color: var(--bg-530);
+    color: var(--bg-900);
+    
+    &:hover {
+      background-color: var(--bg-600);
+      color: var(--cl-600);
+    }
+    
+    rect {
+      fill: currentcolor;
+      fill-opacity: 1;
+    }
   }
 
 
