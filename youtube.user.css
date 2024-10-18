@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.22.0
+@version        2.23.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -71,6 +71,10 @@
     --yt-spec-text-secondary: var(--cl-600) !important;
     --yt-button-color: var(--cl-400);
     --yt-spec-base-background: var(--bg-200) !important;
+    --yt-spec-icon-inactive: var(--bg-900) !important;
+    --yt-spec-call-to-action: var(--accent-blue) !important;
+    --yt-spec-call-to-action-inverse: var(--accent-blue-dark) !important;
+
   }
 
   ::selection {
@@ -146,7 +150,8 @@
     text-transform: uppercase;
   }
 
-  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
+  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal, 
+  .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--tonal {
     color: var(--cl-400);
   }
 
@@ -156,6 +161,11 @@
     &:hover, &:focus-visible {
       background-color: var(--accent-blue-hover);
     }
+  }
+
+  /* Text Only Buttons */
+  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text {
+    color: var(--yt-spec-text-primary);
   }
   
   /* Search - View More Buttons */
@@ -410,8 +420,14 @@
   }
 
 
+  /* ----- Main Content - Hide Frosted Background ----- */
+  ytd-masthead[frosted-glass="with-chipbar"] #background.ytd-masthead {
+    display: none;
+  }
+
+
   /* ----- Sidebar ----- */
-  #contentContainer:not(.tp-yt-app-header), #guide-content.ytd-app, ytd-mini-guide-renderer {
+  #contentContainer:not(.tp-yt-app-header), #guide-content.ytd-app, ytd-mini-guide-renderer, ytd-mini-guide-renderer[frosted-glass] {
     background-color: var(--bg-300);
   }
 
@@ -443,6 +459,13 @@
   
   .ytp-tooltip-bg {
     flex-grow: 1;
+  }
+
+
+  /* ----- Player - Video Progress Bar ----- */
+  .ytp-cairo-refresh-signature-moments .ytp-play-progress, 
+  .ytp-cairo-refresh .ytp-swatch-background-color {
+    background: var(--accent-red);
   }
 
 
