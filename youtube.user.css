@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.23.0
+@version        2.23.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -1212,8 +1212,13 @@
       /* --- Sections --- */
       ytd-rich-section-renderer {
         grid-column: 1 / -1;
-        padding-block: 2rem;
-        border-block: 1px solid var(--yt-spec-10-percent-layer);
+        padding-block-end: 2rem;
+        border-block-end: 1px solid var(--yt-spec-10-percent-layer);
+        
+        &:not(:nth-child(1)) {
+          padding-block-start: 2rem;
+          border-block-start: 1px solid var(--yt-spec-10-percent-layer);
+        }
         
         #content {
           max-width: unset;
