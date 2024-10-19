@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.25.0
+@version        2.25.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -2195,7 +2195,7 @@
       "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z": "M11.7622 16.5375c.2544-.0321 1.4941-.0599 1.7314-.0385 1.4257.1283 2.565.4703 3.576 1.0773.8208.4917 1.5283 1.2334 1.8297 1.9131l.0406.094-.1197.1047c-1.2975 1.1244-2.8002 1.8426-4.461 2.129-2.6526.4574-5.363-.2928-7.4278-2.052l-.2116-.1795.0363-.0812c.3848-.8422 1.1928-1.6181 2.238-2.1525.8144-.4168 1.7207-.6819 2.7681-.8144Zm.4597-10.042c.6583-.0961 1.276-.0406 1.9066.1689 2.1033.6989 3.2704 2.9561 2.627 5.0808-.4168 1.3723-1.5497 2.4475-2.9348 2.7852-1.4385.3506-2.9155-.0748-3.9394-1.135-1.0688-1.1073-1.4257-2.6826-.9384-4.1425.4852-1.4621 1.7656-2.5372 3.2789-2.7574Zm1.3443-4.5871c-.389-.0256-1.4535-.0085-1.8254.0321-.6926.0748-1.2783.186-1.9024.3634-3.14.8871-5.752 3.1764-7.0495 6.1774-1.7356 4.0121-.9234 8.6633 2.067 11.8396 1.3701 1.4557 3.0929 2.5052 4.9825 3.0374 2.0477.5771 4.2066.5515 6.2351-.0727 1.678-.5173 3.2234-1.4514 4.4888-2.7168 2.736-2.7295 3.8197-6.654 2.8792-10.416-.1881-.7524-.436-1.4215-.7887-2.1418-1.7228-3.512-5.177-5.8311-9.0865-6.1026Z",
     }
 
-    iconArr = (navbarIconsClick headerIconsClick subscriptionsPageIconsNoColors arrowIconsNoColor watchPageIconsNoColor shortsPageIconsNoColor playlistPageIconsNoColor livechatNoColor)
+    iconArr = (navbarIconsClick headerIconsClick subscriptionsPageIconsNoColors arrowIconsNoColor watchPageIconsNoColor shortsPageIconsNoColor playlistPageIconsNoColor livechatNoColor buttonIconsNoColor)
     iconArrColor = (subscriptionsPageIcons playlistPageIcons searchPageIcons arrowIcons navbarIcons headerIcons historyPageIcon watchPageIcons shortsPageIcons flyoutMenuIcon livechatColor) 
 
     replaceStr(str) {
