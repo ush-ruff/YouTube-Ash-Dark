@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.25.1
+@version        2.26.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -83,6 +83,12 @@
 
   html, html[dark] {
     background: var(--bg-200) !important;
+  }
+
+
+  /* ----- Page Navigation - Progress Bar ----- */
+  yt-page-navigation-progress[enable-refresh-signature-moments-web] #progress.yt-page-navigation-progress {
+    background: var(--accent-red-bright);
   }
 
 
@@ -166,6 +172,26 @@
   /* Text Only Buttons */
   .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text {
     color: var(--yt-spec-text-primary);
+  }
+
+  /* Buttons Overlayed on Backgrounds */
+  .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--filled {
+    text-transform: uppercase;
+    background-color: var(--accent-red);
+    border-radius: var(--yt-button-border-radius, 2px);
+    color: var(--cl-100);
+    
+    &:hover {
+      background-color: var(--accent-red-dark);
+    }
+  }
+  
+  .yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--tonal {
+    background-color: var(--bg-530);
+    
+    &:hover {
+      background-color: var(--bg-600);
+    }
   }
   
   /* Search - View More Buttons */
@@ -340,6 +366,12 @@
     background-color: rgba(0,0,0,0.8) !important;
     color: var(--cl-200);
     border-radius: 2px;
+  }
+
+
+  /* ----- Thumbnail Overlay - Progress Bar ----- */
+  ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer {
+    background: var(--accent-red-bright);
   }
 
 
@@ -937,11 +969,6 @@
       border-bottom-left-radius: var(--br);
     }
 
-    /* --- Playlist --- */
-    .immersive-header-container.ytd-playlist-header-renderer {
-      border-radius: 0.6rem;
-    }
-
     /* --- YouTube Shorts - Buttons --- */
     #shorts-container .yt-spec-button-shape-next--size-l {
       border-radius: 50%;
@@ -959,9 +986,12 @@
     yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer,
 
     /* --- Image Containers --- */
-    html ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
-    [dark] ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
+    ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer, 
     ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer yt-img-shadow.ytd-backstage-image-renderer,
+
+    /* Large Preview Image */
+    .image-wrapper.ytd-hero-playlist-thumbnail-renderer,
+    .yt-content-preview-image-view-model-wiz--large-rounded-image,
 
     /* --- Sidebar --- */
     ytd-guide-entry-renderer,
@@ -1078,6 +1108,10 @@
     /* Liked Videos List */
     ytd-playlist-video-renderer,
 
+    /* Playlist Sidebar */
+    .immersive-header-container.ytd-playlist-header-renderer,
+    .page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background,
+
     /* --- Community Posts --- */
     ytd-backstage-post-thread-renderer[rounded-container],
     ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer,
@@ -1098,6 +1132,11 @@
 
 @-moz-document domain("youtube.com") {
   /* ---- Typography Fixes ---- */
+  .yt-sans-28.yt-dynamic-sizing-formatted-string {
+    font-family: "Roboto", sans-serif;
+    font-size: 2.4rem;
+  }
+
   /* --- Comments Count --- */
   ytd-comments-header-renderer[modern-typography] {
     #count {
@@ -1168,6 +1207,26 @@
   /* --- Links without icons --- */
   ytd-compact-link-renderer #content-icon.ytd-compact-link-renderer[hidden] + #primary-text-container.ytd-compact-link-renderer > #label.ytd-compact-link-renderer {
     text-transform: uppercase;
+  }
+
+  /* --- Playlist - Sidebar Metadata --- */
+  .metadata-owner.ytd-playlist-header-renderer {
+    font-size: 1.6rem;
+  }
+
+  .metadata-stats.ytd-playlist-byline-renderer {
+    font-size: 1.3rem;
+  }
+
+  /* --- Popup - Playlist/Video Description --- */
+  ytd-engagement-panel-title-header-renderer[modern-panels]:not([ads-semantic-text]) #title-text.ytd-engagement-panel-title-header-renderer {
+    font-family: "Roboto", sans-serif;
+  }
+
+  /* --- Footer - Site Links --- */
+  #guide-links-primary.ytd-guide-renderer > a, 
+  #guide-links-secondary.ytd-guide-renderer > a {
+    font-weight: 400;
   }
 }
 
@@ -2002,7 +2061,7 @@
       /* Show transcript */
       "M5 11h2v2H5v-2zm10 4H5v2h10v-2zm4 0h-2v2h2v-2zm0-4H9v2h10v-2zm3-5H2v14h20V6zM3 7h18v12H3V7z": "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 12h4v2H4v-2zm10 6H4v-2h10v2zm6 0h-4v-2h4v2zm0-4H10v-2h10v2z",
       
-      /* */
+      /* Info (i) */
       "M13 17h-2v-6h2v6zm0-10h-2v2h2V7zm-1-4c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
     }
 
@@ -2053,7 +2112,6 @@
       "M12 16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM10.5 12c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5zm0-6c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5-1.5.67-1.5 1.5z":"M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z",
       
       /* Download */
-      // "M17 18v1H6v-1h11zm-.5-6.6-.7-.7-3.8 3.7V4h-1v10.4l-3.8-3.8-.7.7 5 5 5-4.9z":"M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z",
       "M17 18v1H6v-1h11zm-.5-6.6-.7-.7-3.8 3.7V4h-1v10.4l-3.8-3.8-.7.7 5 5 5-4.9z":"M18 18v2H6v-2h12zm-.6-6.3L16 10.3l-3 2.9V4h-2v9.2l-3-2.9-1.4 1.4 5.4 5.4 5.4-5.4z",
       
       /* Add videos */
@@ -2109,22 +2167,25 @@
       /* Left arrow */
       "M14.6,18.4L8.3,12l6.4-6.4l0.7,0.7L9.7,12l5.6,5.6L14.6,18.4z":"M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z",
       "M14.96 18.96 8 12l6.96-6.96.71.71L9.41 12l6.25 6.25-.7.71z":"M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z",
+
+      /* Down arrow */
+      "M5.47 8.47c.293-.293.767-.293 1.06 0L12 13.94l5.47-5.47c.293-.293.767-.293 1.06 0 .293.293.293.767 0 1.06l-6 6-.53.53-.53-.53-6-6c-.293-.293-.293-.767 0-1.06Z":"M17.7 10 16.149 8.449 11.1 13.487 6.051 8.449 4.5 10l6.6 6.6z",
+
+      /* Up arrow */
+      "m13.06 9 5.47 5.47c.293.293.293.767 0 1.06-.293.293-.767.293-1.06 0L12 10.06l-5.47 5.47c-.293.293-.767.293-1.06 0-.293-.293-.293-.767 0-1.06L10.94 9l.53-.53.53-.53.53.53.53.53Z":"M11.1 7.25l6.6 6.6-1.551 1.551L11.1 10.363 6.051 15.401 4.5 13.85Z",
       
       /* X (close) */
       "M12.7,12l6.6,6.6l-0.7,0.7L12,12.7l-6.6,6.6l-0.7-0.7l6.6-6.6L4.6,5.4l0.7-0.7l6.6,6.6l6.6-6.6l0.7,0.7L12.7,12z":"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
       "m12.71 12 8.15 8.15-.71.71L12 12.71l-8.15 8.15-.71-.71L11.29 12 3.15 3.85l.71-.71L12 11.29l8.15-8.15.71.71L12.71 12z":"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
       
-      /* */
+      /* Back arrow */
       "M21 11v1H5.64l6.72 6.72-.71.71-7.93-7.93 7.92-7.92.71.71L5.64 11H21z":"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
       
       /* Show more */
-      // "m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z":"M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
-      // "M12,15.7L5.6,9.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L12,15.7z":"M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z",
       "m18 9.28-6.35 6.35-6.37-6.35.72-.71 5.64 5.65 5.65-5.65z":"M7 10l5 5 5-5z",
       "M12,15.7L5.6,9.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L12,15.7z":"M7 10l5 5 5-5z",
       
       /* Show fewer */
-      // "M18.4 14.6 12 8.3l-6.4 6.3.8.8L12 9.7l5.6 5.7z":"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z",
       "M18.4 14.6 12 8.3l-6.4 6.3.8.8L12 9.7l5.6 5.7z":"M7 14l5-5 5 5z",
     }
 
@@ -2132,10 +2193,12 @@
     }
 
     searchPageIcons = {
+      /* Filter */
       "M15 17h6v1h-6v-1zm-4 0H3v1h8v2h1v-5h-1v2zm3-9h1V3h-1v2H3v1h11v2zm4-3v1h3V5h-3zM6 14h1V9H6v2H3v1h3v2zm4-2h11v-1H10v1z": "M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"
     }
 
     playlistPageIcons = {
+      /* Repeat */
       "M21 13h1v5l-18.07.03 2.62 2.62-.71.71-3.85-3.86 3.85-3.85.71.71-2.67 2.67L21 17v-4zM3 7l17.12-.03-2.67 2.67.71.71 3.85-3.85-3.85-3.85-.71.71 2.62 2.62L2 6v5h1V7z": "M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z",
       
       /* Play all */
@@ -2148,11 +2211,14 @@
       /* Shuffle */
       "M18.15,13.65l3.85,3.85l-3.85,3.85l-0.71-0.71L20.09,18H19c-2.84,0-5.53-1.23-7.39-3.38l0.76-0.65 C14.03,15.89,16.45,17,19,17h1.09l-2.65-2.65L18.15,13.65z M19,7h1.09l-2.65,2.65l0.71,0.71l3.85-3.85l-3.85-3.85l-0.71,0.71 L20.09,6H19c-3.58,0-6.86,1.95-8.57,5.09l-0.73,1.34C8.16,15.25,5.21,17,2,17v1c3.58,0,6.86-1.95,8.57-5.09l0.73-1.34 C12.84,8.75,15.79,7,19,7z M8.59,9.98l0.75-0.66C7.49,7.21,4.81,6,2,6v1C4.52,7,6.92,8.09,8.59,9.98z":"M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z",
       "M18.15 13.65 22 17.5l-3.85 3.85-.71-.71L20.09 18H19c-2.84 0-5.53-1.23-7.39-3.38l.76-.65C14.03 15.89 16.45 17 19 17h1.09l-2.65-2.65.71-.7zM19 7h1.09l-2.65 2.65.71.71L22 6.51l-3.85-3.85-.71.71L20.09 6H19c-3.58 0-6.86 1.95-8.57 5.09l-.73 1.34C8.16 15.25 5.21 17 2 17v1c3.58 0 6.86-1.95 8.57-5.09l.73-1.34C12.84 8.75 15.79 7 19 7zM8.59 9.98l.75-.66C7.49 7.21 4.81 6 2 6v1c2.52 0 4.92 1.09 6.59 2.98z":"M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z",
+
+      /* Move (2 line hamburger) */
+      "M21 10H3V9h18v1Zm0 4H3v1h18v-1Z": "M3 8.5v-2H21v2H3Zm0 5v-2H21v2H3Z"
     }
 
     playlistPageIconsNoColor = {
       /* Sort */
-      "M21,6H3V5h18V6z M15,11H3v1h12V11z M9,17H3v1h6V17z":"M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"
+      "M21,6H3V5h18V6z M15,11H3v1h12V11z M9,17H3v1h6V17z":"M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z",
       "M21 6H3V5h18v1zm-6 5H3v1h12v-1zm-6 6H3v1h6v-1z":"M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"
     }
 
