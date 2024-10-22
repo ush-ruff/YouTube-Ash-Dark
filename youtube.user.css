@@ -3,20 +3,20 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.26.1
+@version        2.26.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
-@var            checkbox customGrid             "Enable Custom Grid" 1
+@var            checkbox customGrid             "Enable Custom Grid Layout" 1
 @var            number   customGridColumns      " ↳ No. of Grid Columns" [5, 4, 10, 1]
 @var            checkbox disablePreview         "Disable Thumbnail Previews (Autoplay)" 1
-@var            checkbox customThumbnailMeta    "Enable Custom Thumbnail Details" 1
+@var            checkbox customThumbnailMeta    "Custom Thumbnail Metadata Style" 1
 @var            range    endCardOpacity         "Video End Card Opacity" [0.35, 0, 1, 0.05]
-@var            checkbox restoreDesc            "Restore Old Description Style" 1
+@var            checkbox restoreDesc            "Restore Description Style" 1
 @var            select   restoreDescVersion     " ↳ Fix Version" ["One", "Two"]
-@var            checkbox restoreCommentReplies  "Restore Old Comment Replies Style" 1
-@var            checkbox restoreOldIcons        "Restore Old Icons" 1
+@var            checkbox restoreCommentReplies  "Restore Comment Replies Style" 1
+@var            checkbox restoreSolidIcons      "Restore Solid Icons" 1
 @var            checkbox enablePlayerSize       "Custom Player Size" 0
 @var            text     playerSize             " ↳ Player Size" 880px
 @var            checkbox hideFilterBar          "Hide Filter Bar" 1
@@ -1231,8 +1231,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Custom Item Grid Size ----- */
-  if (customGrid==1) {
+  /* ----- Custom Item Grid Layout ----- */
+  if (customGrid) {
     #primary > ytd-rich-grid-renderer > #contents, 
     #home-container-media {
       --grid-columns-count: customGridColumns;
@@ -1355,7 +1355,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Disable Thumbnail Preview (Autoplay) ----- */
-  if (disablePreview==1) {
+  if (disablePreview) {
     ytd-thumbnail-overlay-time-status-renderer {
       display: inline-flex !important;
     }
@@ -1367,8 +1367,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Custom Thumbnail Details ----- */
-  if (customThumbnailMeta==1) {
+  /* ----- Custom Thumbnail Metadata Style ----- */
+  if (customThumbnailMeta) {
     @supports (grid-template-rows: subgrid) {
       ytd-two-column-browse-results-renderer[page-subtype="home"] #details.ytd-rich-grid-media, 
       ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] #details.ytd-rich-grid-media {
@@ -1428,8 +1428,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Recommended Filter Bar Hide ----- */
-  if (hideFilterBar==1) {
+  /* ----- Hide Filter Bar ----- */
+  if (hideFilterBar) {
     ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), yt-related-chip-cloud-renderer {
       display: none;
     }
@@ -1443,7 +1443,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Hide 100% Watched Videos on Home Page ----- */
-  if (hideWatchedVideos == 1) {
+  if (hideWatchedVideos) {
     ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
       display: none !important;
     }
@@ -1452,7 +1452,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Hide Player Overlays in Fullscreen ----- */
-  if (hidePlayerControls==1) {
+  if (hidePlayerControls) {
     /* -- Title -- */
     .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-gradient-top:not(:hover),
     .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top:not(:hover) {
@@ -1510,8 +1510,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Restore Old Description Style ----- */
-  if (restoreDesc==1) {
+  /* ----- Restore Description Style ----- */
+  if (restoreDesc) {
     if (restoreDescVersion=="One") {
       #primary-inner ytd-watch-metadata {
         display: none !important;
@@ -1649,8 +1649,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Comment Section - Hide ------ */
-  if (hideComments==1) {
+  /* ----- Hide Comment Section ------ */
+  if (hideComments) {
     #comments #contents {
       display: none;
     }
@@ -1665,8 +1665,8 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Restore Old Comment Replies Style ----- */
-  if (restoreCommentReplies==1) {
+  /* ----- Restore Comment Replies Style ----- */
+  if (restoreCommentReplies) {
     :is(#more-replies, #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
       font-size: 14px;
       text-transform: lowercase;
@@ -1730,7 +1730,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Hide YouTube Shorts ----- */
-  if (hideShorts==1) {
+  if (hideShorts) {
     ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
     ytd-reel-shelf-renderer {
       display: none;
@@ -1742,7 +1742,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Player Sizing ----- */
-  if (enablePlayerSize==1) {
+  if (enablePlayerSize) {
     ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]):not([is-extra-wide-video_]) {
       --ytd-watch-flexy-min-player-height: playerSize !important;
       --ytd-watch-flexy-min-player-width: calc(var(--ytd-watch-flexy-min-player-height) * var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio)) !important;
@@ -1758,12 +1758,12 @@
 }
 
 @-moz-document regexp("^https:\\/\\/www\\.youtube\\.com.+") {
-  /* ----- Restore Old Icons ----- */
+  /* ----- Restore Solid Icons ----- */
   // Original code from v2.5.0 of `AdashimaaTube
   // Link: https://github.com/sapondanaisriwan/AdashimaaTube
-  // Updated and bug fixes
-  
-  if (restoreOldIcons) {
+  // Various bug fixes and updated with new icons
+
+  if (restoreSolidIcons) {
     :root {
       --comment-icons-transform: scale(0.75) translateX(6px) translateY(3px);
       
