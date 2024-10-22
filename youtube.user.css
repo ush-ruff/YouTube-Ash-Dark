@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.26.0
+@version        2.26.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -454,7 +454,7 @@
 
 
   /* ----- Main Content - Hide Frosted Background ----- */
-  ytd-masthead[frosted-glass="with-chipbar"] #background.ytd-masthead {
+  #masthead #background.ytd-masthead {
     display: none;
   }
 
@@ -1431,6 +1431,11 @@
   /* ----- Recommended Filter Bar Hide ----- */
   if (hideFilterBar==1) {
     ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), yt-related-chip-cloud-renderer {
+      display: none;
+    }
+    
+    /* Hide skeleton */
+    html[dark] #home-chips {
       display: none;
     }
   }
