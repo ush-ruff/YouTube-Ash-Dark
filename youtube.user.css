@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.26.2
+@version        2.27.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -456,6 +456,16 @@
   /* ----- Main Content - Hide Frosted Background ----- */
   #masthead #background.ytd-masthead {
     display: none;
+  }
+
+
+  /* ----- Main Content - Section Borders ----- */
+  ytd-browse:not([page-subtype]) .ytd-two-column-browse-results-renderer > #contents.ytd-section-list-renderer > ytd-item-section-renderer {
+    border-top: 1px solid var(--bg-600);
+    
+    &:first-child {
+      margin-top: 2rem;
+    }
   }
 
 
@@ -932,6 +942,14 @@
       filter: brightness(0.9);
     }
   }
+
+
+  /* ----- Sponsorblock ----- */
+  #sponsorBlockPopupContainer iframe {
+    width: var(--ytd-watch-flexy-sidebar-width);
+    border: 1px solid var(--yt-spec-10-percent-layer);
+    border-radius: var(--br) !important;
+  }
   
   
 }
@@ -1216,6 +1234,12 @@
 
   .metadata-stats.ytd-playlist-byline-renderer {
     font-size: 1.3rem;
+  }
+
+  /* --- Playlist - Title --- */
+  #header-description.ytd-playlist-panel-renderer .title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
   }
 
   /* --- Popup - Playlist/Video Description --- */
