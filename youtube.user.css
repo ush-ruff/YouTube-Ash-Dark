@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.27.0
+@version        2.27.1
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -122,6 +122,10 @@
   /* Thumbnail Details */
   #details, ytd-compact-video-renderer .details {
     fixMenuIcon("#menu");
+  }
+
+  yt-lockup-view-model.ytd-item-section-renderer {
+    fixMenuIcon(".yt-lockup-metadata-view-model-wiz__menu-button");
   }
   
   /* Comments */
@@ -354,10 +358,21 @@
 
 
   /* ----- Thumbnail Overlay - Time ----- */
-  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape {
+  ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape, 
+  yt-thumbnail-overlay-badge-view-model .badge-shape-wiz--thumbnail-default {
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--cl-200);
     border-radius: 2px;
+  }
+
+  /* ----- Thumbnail Overlay - Watch Later & Add to Playlist ----- */
+  yt-thumbnail-hover-overlay-toggle-actions-view-model .yt-spec-button-shape-next--overlay-dark.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--enable-backdrop-filter-experiment {
+    width: 28px;
+    height: 28px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--cl-200);
+    border-radius: 2px;
+    backdrop-filter: unset;
   }
 
 
@@ -1038,6 +1053,7 @@
     ytd-thumbnail[size="large"]::before,
     ytd-thumbnail[size="medium"] a.ytd-thumbnail, 
     ytd-thumbnail[size="medium"]::before,
+    .yt-thumbnail-view-model,
 
     /* Thumbnail transitions */
     yt-interaction.extended :is(.fill, .stroke).yt-interaction,
