@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.27.1
+@version        2.27.2
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -639,15 +639,18 @@
 
   /* Fix for new style */
   #top-level-buttons-computed {
-    .YtSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper {
+    .YtSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, 
+    .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper {
       gap: 0.7rem;
     }
 
-    .YtLikeButtonViewModelHost button::after {
+    .YtLikeButtonViewModelHost button::after,
+    .ytLikeButtonViewModelHost button::after {
       content: unset;
     }
     
-    .YtDislikeButtonViewModelHost button {
+    .YtDislikeButtonViewModelHost button,
+    .ytDislikeButtonViewModelHost button {
       width: 95px;
       justify-content: start;
       padding-inline: 1rem;
@@ -2391,7 +2394,8 @@
     }
 
     /* Like Icon - Fix for new style */
-    #top-level-buttons-computed .YtLikeButtonViewModelHost {
+    #top-level-buttons-computed .YtLikeButtonViewModelHost,
+    #top-level-buttons-computed .ytLikeButtonViewModelHost {
       yt-icon {
         content: var(--like-img);
       }
