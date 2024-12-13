@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.27.2
+@version        2.27.3
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -391,7 +391,8 @@
 
 
   /* ----- Search ----- */
-  #container.ytd-searchbox, #search-icon-legacy.ytd-searchbox {
+  #container.ytd-searchbox, #search-icon-legacy.ytd-searchbox, 
+  .ytSearchboxComponentInputBox, .ytSearchboxComponentSearchButton, .ytSearchboxComponentSuggestionsContainer {
     border-radius: var(--br);
   }
 
@@ -403,22 +404,42 @@
     }
   }
 
-  .sbdd_b {
+  .sbdd_b, 
+  .ytSearchboxComponentSuggestionsContainer {
     background-color: var(--bg-450) !important;
     border: 1px solid var(--bg-600) !important;
     border-radius: var(--br);
   }
 
-  .sbsb_a {
+  .sbsb_a, 
+  .ytSuggestionComponentPersonalizedSuggestion {
     background-color: var(--bg-450) !important;
     border-radius: var(--br);
   }
-
-  .sbsb_d {
-    background-color: var(--bg-600) !important;
+  
+  .ytSuggestionComponentSuggestion, 
+  .ytSuggestionComponentPersonalizedSuggestion {
+    color: var(--cl-300);
+  }
+  
+  .ytSuggestionComponentSuggestion:not(.ytSuggestionComponentPersonalizedSuggestion) .ytSuggestionComponentBold {
+    color: var(--cl-200);
+  }
+  
+  .ytSuggestionComponentRemovedText {
+    font-style: italic;
+    background-color: var(--bg-300);
+    color: var(--cl-600);
   }
 
-  .sbfl_b:hover {
+  .sbsb_d, 
+  .ytSuggestionComponentSuggestion:hover {
+    background-color: var(--bg-600) !important;
+    color: var(--cl-300);
+  }
+
+  .sbfl_b:hover,
+  .ytSuggestionComponentSuggestion:hover {
     color: var(--cl-400);
   }
 
