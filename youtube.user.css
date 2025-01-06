@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.28.2
+@version        2.29.0
 @description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
 @author         ushruff
 @preprocessor   stylus
@@ -383,6 +383,10 @@
     border-radius: 2px;
   }
 
+  yt-thumbnail-overlay-badge-view-model .badge-shape-wiz--thumbnail-default .badge-shape-wiz__icon path {
+    color: inherit;
+  }
+
 
   /* ----- Thumbnail Overlay - Progress Bar ----- */
   ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer {
@@ -682,6 +686,59 @@
         margin-left: 6px;
         color: var(--cl-400);
       }
+    }
+  }
+
+
+  /* ----- AI Video Summary ----- */
+  #below ytd-watch-metadata ~ #expandable-metadata.ytd-watch-flexy:not(:empty) {
+    margin-block: 2.4rem 0.8rem;
+    
+    #header .yt-spec-button-shape-next:hover {
+      background-color: transparent;
+    }
+    
+    #header yt-touch-feedback-shape {
+      display: none;
+    }
+  }
+
+  video-summary-content-view-model .video-summary-content-view-model-wiz__bottomButtonsContainer {
+    .yt-spec-button-shape-next {
+      border-color: transparent;
+      color: var(--bg-900);
+      
+      &:hover {
+        background-color: transparent;
+        color: var(--cl-600);
+      }
+      
+      &[aria-pressed="true"] {
+        background-color: transparent;
+        color: var(--accent-blue);
+      }
+    }
+    
+    .ytLikeButtonViewModelHost path, 
+    .ytDislikeButtonViewModelHost path {
+      color: inherit;
+    }
+  }
+  
+  /* ----- AI Video Summary - Feedback Form ----- */
+  yt-gen-ai-feedback-form-view-model {
+    .yt-core-attributed-string--link-inherit-color[style*="color: rgb(255\, 255\, 255)"] {
+      color: var(--cl-300) !important;  
+    }
+    
+    .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--outline {
+      background-color: var(--bg-500);
+      border-color: var(--bg-500);
+      color: var(--cl-200);
+    }
+    
+    .ytGenAiFeedbackFormViewModelChipsContainer .yt-spec-button-shape-next__button-text-content {
+      text-transform: unset;
     }
   }
 
