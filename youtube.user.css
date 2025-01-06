@@ -3,8 +3,8 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.29.0
-@description    Fixes YouTube some layout elements in dark mode, restore and/or removes some annoying elements like the filter bar or new video description.
+@version        2.30.0
+@description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
@@ -972,6 +972,27 @@
     background: unset;
   }
 
+  /* ----- Playlist - All Items Page ----- */
+  .immersive-header-content.ytd-playlist-header-renderer {
+    scrollbar-width: thin;
+  }
+
+  /* Expand "...more" Button */
+  ytd-playlist-header-renderer #description-inline-expander {
+    #expand {
+      color: transparent;
+    }
+    
+    #expand::before {
+      content: "MORE";
+      color: var(--cl-300);
+    }
+    
+    #expand:hover::before {
+      color: var(--cl-200);
+    }
+  }
+
   
   /* ----- Show/Hide Chat Replay Button ----- */
   :is(html, [dark]) #chat-container ytd-toggle-button-renderer button {
@@ -1240,6 +1261,10 @@
     /* Playlist Sidebar */
     .immersive-header-container.ytd-playlist-header-renderer,
     .page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background,
+
+    /* Playlist Thumbnails */
+    .collections-stack-wiz__collection-stack1,
+    .collections-stack-wiz__collection-stack2,
 
     /* --- Community Posts --- */
     ytd-backstage-post-thread-renderer[rounded-container],
