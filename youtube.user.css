@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.31.0
+@version        2.32.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -14,7 +14,6 @@
 @var            checkbox customThumbnailMeta    "Custom Thumbnail Metadata Style" 1
 @var            range    endCardOpacity         "Video End Card Opacity" [0.35, 0, 1, 0.05]
 @var            checkbox restoreDesc            "Restore Description Style" 1
-@var            select   restoreDescVersion     " ↳ Fix Version" ["One", "Two"]
 @var            checkbox restoreCommentReplies  "Restore Comment Replies Style" 1
 @var            checkbox restoreSolidIcons      "Restore Solid Icons" 1
 @var            checkbox enablePlayerSize       "Custom Player Size" 0
@@ -509,9 +508,9 @@
 
 
   /* --- Search Results - Fix Thumbnail Size --- */
-  #container.ytd-search :is(#avatar-section.ytd-channel-renderer, ytd-thumbnail.ytd-video-renderer, ytd-playlist-thumbnail.ytd-playlist-renderer) {
-    max-width: 300px;
-  }
+  #container.ytd-search :is(#avatar-section.ytd-channel-renderer, ytd-thumbnail.ytd-video-renderer, ytd-playlist-thumbnail.ytd-playlist-renderer, .yt-lockup-view-model-wiz__content-image) {
+		max-width: 300px;
+	}
 
 
   /* ----- History - Search Input ----- */
@@ -558,6 +557,42 @@
   ytd-guide-renderer[guide-refresh] #sections.ytd-guide-renderer > ytd-guide-section-renderer.ytd-guide-renderer:not(:first-child),
   ytd-guide-renderer[guide-refresh] #sections.ytd-guide-renderer > ytd-guide-subscriptions-section-renderer.ytd-guide-renderer {
     padding-inline: 0;
+  }
+
+
+  /* ----- Right Sidebar - Channel Card ---- */
+  ytd-channel-renderer #content-section.ytd-channel-renderer {
+    display: grid;
+    grid-template-columns: 168px 1fr;
+    gap: 0.9rem;
+    padding-block: 1rem;
+    background-color: #252525;
+    
+    #avatar-section {
+      min-width: unset;
+      margin: unset;
+    }
+    
+    #avatar.ytd-channel-renderer {
+      width: unset;
+    }
+    
+    #info-section {
+      display: grid;
+      gap: 1rem;
+      
+      #info {
+        padding: unset;
+      }
+      
+      #description {
+        padding-inline-end: 1.8rem;
+      }
+      
+      #buttons, #buttons > div {
+        padding: unset;
+      }
+    }
   }
 
 
@@ -801,7 +836,7 @@
   }
 
 
-/* ----- YouTube Shorts - Progress Bar ----- */
+  /* ----- YouTube Shorts - Progress Bar ----- */
   #short-video-container {
     .YtPlayerProgressBarDragContainer, 
     .ytPlayerProgressBarDragContainer {
@@ -1737,136 +1772,95 @@
 @-moz-document domain("youtube.com") {
   /* ----- Restore Description Style ----- */
   if (restoreDesc) {
-    if (restoreDescVersion=="One") {
-      #primary-inner ytd-watch-metadata {
-        display: none !important;
+    #below {
+      display: grid;
+
+      /* --- Show old description style - (Title, Video watch stats, Like bar) --- */
+      div.ytd-watch-flexy:has(> #info) {
+        grid-row: 5;
+
+        #info-contents {
+          display: block !important;
+        }
       }
 
-      #info-contents, #meta-contents {
-        display: block !important;
-      }
+      /* --- Fix new description style --- */
+      ytd-watch-metadata.ytd-watch-flexy {
+        --_desc-max-width: 90%;
+        --_desc-spacing: 5.25rem;
+        --_gap: 1.6rem;
 
-      #info-contents #container .title {
-        font-family: "Roboto", sans-serif;
-        font-weight: 400;
-        font-size: 18px;
-      }
+        grid-row: 6;
+        margin-block-end: 0;
+        padding-block-end: 2.4rem;
+        border-bottom: 1px solid #464646;
 
-      #meta-contents {
-        --ytd-channel-name-text-font-size: 14px;
-      }
+        /* -- Hide redundant elements - (Title, Video watch stats, Like bar) -- */
+        #title, #actions, #ytd-watch-info-text {
+          display: none;
+        }
 
-      /* Fix description content width */
-      ytd-expander.ytd-video-secondary-info-renderer {
-        width: 90%;
-      }
+        /* -- Channel Details & Subscribe Button -- */
+        #owner {
+          justify-content: space-between;
+        }
 
-      #description.ytd-video-secondary-info-renderer {
-        max-width: unset;
-      }
+        #text.ytd-channel-name {
+          --ytd-channel-name-text-font-size: 14px;
+        }
 
-      /* Hide Info Cards Section */
-      ytd-video-description-infocards-section-renderer {
-        display: none;
-      }
+        /* -- Description -- */
+        #description {
+          padding-inline-start: var(--_desc-spacing);
+          background: transparent;
+        }
 
-      /* Hide Transcripts Button */
-      ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
-        display: none;
-      }
-    }
-    
-    if (restoreDescVersion=="Two") {
-      #below {
-        display: grid;
+        #description-inner {
+          max-width: var(--_desc-max-width);
+          margin: 0;
+        }
 
-        /* --- Show old description style - (Title, Video watch stats, Like bar) --- */
-        div.ytd-watch-flexy:has(> #info) {
-          grid-row: 5;
+        /* "Show More" Button */
+        #expand.ytd-text-inline-expander {
+          position: static;
+          display: block;
+          min-width: unset;
+          text-transform: uppercase;
+          margin-block-start: var(--_gap);
+          color: transparent;
 
-          #info-contents {
-            display: block !important;
+          &::before {
+            content: "Show More";
+            color: #999;
           }
         }
 
-        /* --- Fix new description style --- */
-        ytd-watch-metadata.ytd-watch-flexy {
-          --_desc-max-width: 90%;
-          --_desc-spacing: 5.25rem;
-          --_gap: 1.6rem;
+        /* "Show Less" Button */
+        #collapse.ytd-text-inline-expander {
+          text-transform: uppercase;
+          margin-block-start: var(--_gap);
+          color: #999;
+        }
 
-          grid-row: 6;
-          margin-block-end: 0;
-          padding-block-end: 2.4rem;
-          border-bottom: 1px solid #464646;
+        /* Hide Description Transiton */
+        #description-interaction {
+          display: none;
+        }
 
-          /* -- Hide redundant elements - (Title, Video watch stats, Like bar) -- */
-          #title, #actions, #ytd-watch-info-text {
-            display: none;
-          }
+        /* Hide Info Cards Section */
+        ytd-video-description-infocards-section-renderer {
+          display: none;
+        }
 
-          /* -- Channel Details & Subscribe Button -- */
-          #owner {
-            justify-content: space-between;
-          }
+        /* Hide Transcripts Button */
+        ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
+          display: none;
+        }
 
-          #text.ytd-channel-name {
-            --ytd-channel-name-text-font-size: 14px;
-          }
-
-          /* -- Description -- */
-          #description {
-            padding-inline-start: var(--_desc-spacing);
-            background: transparent;
-          }
-
-          #description-inner {
-            max-width: var(--_desc-max-width);
-            margin: 0;
-          }
-
-          /* "Show More" Button */
-          #expand.ytd-text-inline-expander {
-            position: static;
-            display: block;
-            min-width: unset;
-            text-transform: uppercase;
-            margin-block-start: var(--_gap);
-            color: transparent;
-
-            &::before {
-              content: "Show More";
-              color: #999;
-            }
-          }
-
-          /* "Show Less" Button */
-          #collapse.ytd-text-inline-expander {
-            text-transform: uppercase;
-            margin-block-start: var(--_gap);
-            color: #999;
-          }
-
-          /* Hide Description Transiton */
-          #description-interaction {
-            display: none;
-          }
-
-          /* Hide Info Cards Section */
-          ytd-video-description-infocards-section-renderer {
-            display: none;
-          }
-
-          /* Hide Transcripts Button */
-          ytd-structured-description-content-renderer:has(> #items > ytd-video-description-transcript-section-renderer) {
-            display: none;
-          }
-
-          /* -- Game Tags -- */
-          ytd-metadata-row-container-renderer {
-            max-width: var(--_desc-max-width);
-            padding-inline-start: var(--_desc-spacing);
-          }
+        /* -- Game Tags -- */
+        ytd-metadata-row-container-renderer {
+          max-width: var(--_desc-max-width);
+          padding-inline-start: var(--_desc-spacing);
         }
       }
     }
