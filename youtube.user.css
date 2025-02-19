@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.0
+@version        2.33.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -610,7 +610,8 @@
 
   /* ----- Player - Video Progress Bar ----- */
   .ytp-cairo-refresh-signature-moments .ytp-play-progress, 
-  .ytp-cairo-refresh .ytp-swatch-background-color {
+  .ytp-cairo-refresh .ytp-swatch-background-color, 
+  .ytp-play-progress, .ytp-swatch-background-color {
     background: var(--accent-red);
   }
 
