@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.1
+@version        2.33.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -408,6 +408,7 @@
 
 
   /* ----- Thumbnail Overlay - Progress Bar ----- */
+  #progress.ytd-thumbnail-overlay-resume-playback-renderer, 
   ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer {
     background: var(--accent-red-bright);
   }
@@ -1313,11 +1314,14 @@
 
     /* Next Video Preview Tooltip */
     .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview,
+    .ytp-tooltip.ytp-text-detail.ytp-preview,
+    .ytp-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg,
 
     /* Video Timeline Preview */
     .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail), 
     .ytp-tooltip.ytp-rounded-tooltip.ytp-preview:not(.ytp-text-detail) .ytp-tooltip-bg,
     .ytp-tooltip.ytp-rounded-tooltip.ytp-text-detail.ytp-preview .ytp-tooltip-bg,
+    .ytp-tooltip.ytp-preview:not(.ytp-text-detail), .ytp-tooltip-bg,
 
     /* Player Settings Menu */
     .ytp-settings-menu,
