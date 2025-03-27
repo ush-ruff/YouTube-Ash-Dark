@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.3
+@version        2.33.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2629,7 +2629,8 @@
       content: var(--bell-img);
     }
 
-    .YtAnimatedIconHost .animated-subscribe-icon {
+    .YtAnimatedIconHost .animated-subscribe-icon, 
+    .ytAnimatedIconHost .animated-subscribe-icon {
       --_size: 24px;
       content: var(--bell-img);
       width: var(--_size);
