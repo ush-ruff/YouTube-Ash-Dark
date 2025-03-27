@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.5
+@version        2.33.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1512,7 +1512,6 @@
   if (customGrid) {
     #primary > ytd-rich-grid-renderer > #contents, 
     #home-container-media {
-      --grid-columns-count: customGridColumns;
       --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) - 1))) / var(--grid-columns-count));
       
       box-sizing: border-box;
@@ -1611,6 +1610,20 @@
         }
       }
       
+    }
+    
+    /* --- Created Playlists List --- */
+    #primary > ytd-section-list-renderer > #contents > ytd-item-section-renderer > #contents > ytd-grid-renderer > #items {
+      --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) - 1))) / var(--grid-columns-count));
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+      gap: 3rem var(--ytd-rich-grid-item-margin);
+      
+      .lockup.ytd-grid-renderer {
+        width: auto;
+        margin: unset;
+      }
     }
     
     /* --- Home Page Skeleton --- */
