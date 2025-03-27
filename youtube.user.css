@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.4
+@version        2.33.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1026,6 +1026,10 @@
 
     yt-chip-cloud-chip-renderer {
       background-color: transparent;
+      border-radius: var(--br);
+    }
+
+    #chip-container.yt-chip-cloud-chip-renderer {
       border-radius: var(--br);
     }
 
