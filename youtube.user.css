@@ -3,19 +3,15 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
+@var            range       endCardOpacity         "Video End Card Opacity"                  [0.35, 0, 1, 0.05]
 @var            checkbox    customGrid             "Enable Custom Grid Layout"               1
 @var            number      customGridColumns      " ↳ No. of Columns"                       [5, 4, 10, 1]
 @var            checkbox    disablePreview         "Disable Thumbnail Previews (Autoplay)"   1
 @var            checkbox    customThumbnailMeta    "Custom Thumbnail Metadata Style"         1
-@var            range       endCardOpacity         "Video End Card Opacity"                  [0.35, 0, 1, 0.05]
-@var            checkbox    restoreDesc            "Restore Description Style"               1
-@var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"           1
-@var            checkbox    restoreSolidIcons      "Restore Solid Icons"                     1
 @var            checkbox    enablePlayerSize       "Enable Custom Player Size"               0
 @var            text        playerSize             " ↳ Player Size"                          880px
 @var            checkbox    hideFilterBar          "Hide Filter Bar"                         1
@@ -23,6 +19,9 @@
 @var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"      1
 @var            checkbox    hideComments           "Hide Comments"                           0
 @var            checkbox    hideShorts             "Hide YouTube Shorts"                     1
+@var            checkbox    restoreDesc            "Restore Description Style"               1
+@var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"           1
+@var            checkbox    restoreSolidIcons      "Restore Solid Icons"                     1
 ==/UserStyle== */
 @-moz-document domain("youtube.com") {
   /* ----- YouTube Style Fixes ----- */
@@ -956,10 +955,14 @@
 
 
   /* ----- Channel Page - Tabs ----- */
+  #tabs-container.ytd-tabbed-page-header {
+    height: 49px;
+  }
+  
   #tabsContainer {
     --_tab-gap: 6rem;
   }
-  
+
   #tabsContent, .yt-tab-group-shape-wiz {
     width: 100%;
   }
@@ -1719,6 +1722,23 @@
 }
 
 @-moz-document domain("youtube.com") {
+  /* ----- Player Sizing ----- */
+  if (enablePlayerSize) {
+    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]):not([is-extra-wide-video_]) {
+      --ytd-watch-flexy-min-player-height: playerSize !important;
+      --ytd-watch-flexy-min-player-width: calc(var(--ytd-watch-flexy-min-player-height) * var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio)) !important;
+
+      --ytd-watch-flexy-max-player-height: var(--ytd-watch-flexy-min-player-height) !important;
+      --ytd-watch-flexy-max-player-width: var(--ytd-watch-flexy-min-player-width) !important;
+    }
+
+    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]) #player-container-inner.ytd-watch-flexy {
+      padding-top: playerSize;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
   /* ----- Hide Filter Bar ----- */
   if (hideFilterBar) {
     ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), yt-related-chip-cloud-renderer {
@@ -1795,6 +1815,32 @@
     /* -- Hide Elements -- */
     /* Channel Logo */
     .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .iv-branding {
+      display: none;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide Comment Section ------ */
+  if (hideComments) {
+    #comments #contents {
+      display: none;
+    }
+
+    #comments::after {
+      content: "========== Comments Hidden by UserStyle ==========";
+      display: block;
+      font-size: 14px;
+      text-align: center;
+    }
+}
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide YouTube Shorts ----- */
+  if (hideShorts) {
+    ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+    ytd-reel-shelf-renderer {
       display: none;
     }
   }
@@ -1908,22 +1954,6 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Hide Comment Section ------ */
-  if (hideComments) {
-    #comments #contents {
-      display: none;
-    }
-
-    #comments::after {
-      content: "========== Comments Hidden by UserStyle ==========";
-      display: block;
-      font-size: 14px;
-      text-align: center;
-    }
-  }
-}
-
-@-moz-document domain("youtube.com") {
   /* ----- Restore Comment Replies Style ----- */
   if (restoreCommentReplies) {
     :is(#more-replies, #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
@@ -1982,36 +2012,6 @@
     /* Show more comments */
     #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
       text-transform: none;
-    }
-  }
-}
-
-
-@-moz-document domain("youtube.com") {
-  /* ----- Hide YouTube Shorts ----- */
-  if (hideShorts) {
-    ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-    ytd-reel-shelf-renderer {
-      display: none;
-    }
-  }
-
-}
-
-
-@-moz-document domain("youtube.com") {
-  /* ----- Player Sizing ----- */
-  if (enablePlayerSize) {
-    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]):not([is-extra-wide-video_]) {
-      --ytd-watch-flexy-min-player-height: playerSize !important;
-      --ytd-watch-flexy-min-player-width: calc(var(--ytd-watch-flexy-min-player-height) * var(--ytd-watch-flexy-width-ratio) / var(--ytd-watch-flexy-height-ratio)) !important;
-
-      --ytd-watch-flexy-max-player-height: var(--ytd-watch-flexy-min-player-height) !important;
-      --ytd-watch-flexy-max-player-width: var(--ytd-watch-flexy-min-player-width) !important;
-    }
-
-    ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]) #player-container-inner.ytd-watch-flexy {
-      padding-top: playerSize;
     }
   }
 }
