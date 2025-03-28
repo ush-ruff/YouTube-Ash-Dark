@@ -3,6 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
+@version        2.34.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -14,6 +15,9 @@
 @var            checkbox    customThumbnailMeta    "Custom Thumbnail Metadata Style"         1
 @var            checkbox    enablePlayerSize       "Enable Custom Player Size"               0
 @var            text        playerSize             " ↳ Player Size"                          880px
+@var            checkbox    customPageSize         "Enable Custom Channel Page Size"         1
+@var            number      customPageSizeMin      " ↳ Min width"                            [1284, 600, 4096, 1, 'px']
+@var            number      customPageSizeMax      " ↳ Max width"                            [1600, 600, 4096, 1, 'px']
 @var            checkbox    hideFilterBar          "Hide Filter Bar"                         1
 @var            checkbox    hideWatchedVideos      "Hide 100% Watched Videos on Home Page"   1
 @var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"      1
@@ -1734,6 +1738,60 @@
 
     ytd-watch-flexy:not([fullscreen]):not([simple-fullscreen]):not([theater]) #player-container-inner.ytd-watch-flexy {
       padding-top: playerSize;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Custom Channel Page Size ----- */
+  if (customPageSize == 1) {
+    .ytd-page-manager[page-subtype="channels"] {
+      --page-padding: 5rem;
+      --min-page-width: customPageSizeMin;
+      --max-page-width: customPageSizeMax;
+      --scroll-items-gap: var(--grid-columns-gap, 16px);
+
+      #contentContainer #page-header, 
+      #tabs-container #tabs, 
+      ytd-two-column-browse-results-renderer.ytd-browse {
+        max-width: unset;
+        width: var(--page-width) !important;      
+        margin-inline: auto;
+        padding-inline: unset;
+      }
+
+      .page-header-view-model-wiz {
+        --page-header-content-max-width: 100% !important;
+      }
+
+      ytd-rich-grid-renderer > #contents {
+        max-width: unset;
+      }
+
+      /* Channel Posts Page */
+      ytd-backstage-items {
+        margin-inline: auto;
+      }
+
+      /* Channel Home Page - Scroll Containers */
+      #scroll-container > #items > .yt-horizontal-list-renderer {
+        box-sizing: border-box;
+        width: calc(var(--scroll-container-width) / 6);
+        padding-inline-end: var(--scroll-items-gap);
+
+        ytd-thumbnail.ytd-grid-video-renderer {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9;
+        }
+      }
+    }
+
+    @css {
+      .ytd-page-manager[page-subtype="channels"] {
+        --page-width: max(var(--min-page-width), min(var(--max-page-width), 100% - var(--page-padding)));
+        --scroll-container-width: max(var(--min-page-width), min(var(--max-page-width), 80vw));
+      }
     }
   }
 }
