@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.33.6
+@version        2.33.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1378,6 +1378,7 @@
     ytd-backstage-post-thread-renderer[rounded-container],
     ytd-backstage-image-renderer[rounded] #image-container.ytd-backstage-image-renderer,
     ytd-backstage-post-thread-renderer[rounded-container] ytd-backstage-post-renderer,
+    yt-img-shadow.ytd-backstage-image-renderer,
 
     /* --- Show/Hide Chat Replay Button --- */
     ytd-live-chat-frame[rounded-container], 
