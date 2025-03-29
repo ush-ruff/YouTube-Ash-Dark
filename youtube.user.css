@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.35.0
+@version        2.35.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1454,7 +1454,6 @@
   /* --- Channel Page - Headers --- */
   ytd-shelf-renderer[modern-typography] #title.ytd-shelf-renderer {
     font-size: 1.8rem;
-    text-transform: capitalize;
   }
 
   /* --- Channel Page - Playlists --- */
