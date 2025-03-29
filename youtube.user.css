@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.34.0
+@version        2.34.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1750,6 +1750,8 @@
       --min-page-width: customPageSizeMin;
       --max-page-width: customPageSizeMax;
       --scroll-items-gap: var(--grid-columns-gap, 16px);
+      
+      container-type: inline-size;
 
       #contentContainer #page-header, 
       #tabs-container #tabs, 
@@ -1769,7 +1771,7 @@
       }
 
       /* Channel Posts Page */
-      ytd-backstage-items {
+      ytd-backstage-items:not(:has(+ ytd-comments.ytd-section-list-renderer)) {
         margin-inline: auto;
       }
 
@@ -1789,8 +1791,8 @@
 
     @css {
       .ytd-page-manager[page-subtype="channels"] {
-        --page-width: max(var(--min-page-width), min(var(--max-page-width), 100% - var(--page-padding)));
-        --scroll-container-width: max(var(--min-page-width), min(var(--max-page-width), 80vw));
+        --page-width: max(var(--min-page-width), min(var(--max-page-width), 100cqi - var(--page-padding)));
+        --scroll-container-width: max(var(--min-page-width), min(var(--max-page-width), 100cqi));
       }
     }
   }
