@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.34.1
+@version        2.35.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1454,11 +1454,29 @@
   /* --- Channel Page - Headers --- */
   ytd-shelf-renderer[modern-typography] #title.ytd-shelf-renderer {
     font-size: 1.8rem;
+    text-transform: capitalize;
   }
 
   /* --- Channel Page - Playlists --- */
   yt-dropdown-menu .yt-dropdown-menu[style-target="label-text"] {
     font-weight: 500;
+  }
+
+  /* --- Channel Page - Home - Videos --- */
+  .ytd-page-manager[page-subtype="channels"] #scroll-container > #items > .yt-horizontal-list-renderer {
+    #video-title, 
+    .yt-lockup-metadata-view-model-wiz__title, 
+    #title.ytd-grid-channel-renderer {
+      font-size: clamp(1.4rem, 1.067rem + 0.444vw, 1.6rem);
+    }
+    
+    #metadata-line, 
+    #channel-name,
+    .yt-content-metadata-view-model-wiz__metadata-text, 
+    .yt-spec-button-shape-next--size-s, 
+    #thumbnail-attribution.ytd-grid-channel-renderer {
+      font-size: clamp(1.2rem, 0.867rem + 0.444vw, 1.4rem);
+    }
   }
 
   /* --- Thumbnail Details - Mixes --- */
