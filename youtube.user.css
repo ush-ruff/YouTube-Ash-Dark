@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.35.2
+@version        2.35.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -529,6 +529,7 @@
 
   /* ----- Main Content - Hide Frosted Background ----- */
   #masthead #background.ytd-masthead, 
+  #frosted-glass.loading-with-chipbar.ytd-app, 
   #frosted-glass.with-chipbar.ytd-app {
     display: none;
   }
