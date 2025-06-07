@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.35.4
+@version        2.35.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -457,7 +457,7 @@
   
   .ytSuggestionComponentSuggestion, 
   .ytSuggestionComponentPersonalizedSuggestion {
-    height: 36px;
+    height: 36px !important;
     color: var(--cl-300);
     border-radius: var(--br);
   }
@@ -627,7 +627,8 @@
   /* ----- Player - Video Progress Bar ----- */
   .ytp-cairo-refresh-signature-moments .ytp-play-progress, 
   .ytp-cairo-refresh .ytp-swatch-background-color, 
-  .ytp-play-progress, .ytp-swatch-background-color {
+  .ytp-play-progress, .ytp-swatch-background-color, 
+  .ytProgressBarLineProgressBarPlayed {
     background: var(--accent-red);
   }
 
@@ -899,7 +900,7 @@
 
 
   /* ----- YouTube Shorts - Side/Anchored Panel ----- */
-  ytd-shorts[enable-anchored-panel] .anchored-panel.ytd-shorts {
+  ytd-shorts:is([enable-anchored-panel],[anchored-panel-active]) .anchored-panel.ytd-shorts {
     #header.ytd-engagement-panel-title-header-renderer {
       background-color: var(--yt-spec-brand-background-primary);
     }
@@ -1047,7 +1048,8 @@
       border-radius: var(--br);
     }
 
-    #chip-container.yt-chip-cloud-chip-renderer {
+    #chip-container.yt-chip-cloud-chip-renderer, 
+    .ytChipShapeChip {
       border-radius: var(--br);
     }
 
@@ -1405,7 +1407,9 @@
 
     /* --- YouTube Shorts --- */
     ytd-shorts[enable-anchored-panel] .anchored-panel.ytd-shorts,
-    ytd-shorts[enable-anchored-panel] .anchored-panel.ytd-shorts ytd-engagement-panel-section-list-renderer
+    ytd-shorts[enable-anchored-panel] .anchored-panel.ytd-shorts ytd-engagement-panel-section-list-renderer,
+    .anchored-panel.ytd-shorts,
+    .anchored-panel.ytd-shorts ytd-engagement-panel-section-list-renderer,
     
     {
     
