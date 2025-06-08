@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.35.5
+@version        2.35.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -323,6 +323,10 @@
     display: flex;
   }
 
+  #subscribe-button .smartimation__content {
+    display: flex;
+  }
+
   #notification-preference-toggle-button:not([hidden]) + yt-animated-action #notification-preference-button.ytd-subscribe-button-renderer[invisible], 
   #subscribe-button-shape.ytd-subscribe-button-renderer[invisible] {
     pointer-events: auto;
@@ -599,10 +603,7 @@
       
       #info {
         padding: unset;
-      }
-      
-      #description {
-        padding-inline-end: 1.8rem;
+        padding-inline-end: 1rem;
       }
       
       #buttons, #buttons > div {
