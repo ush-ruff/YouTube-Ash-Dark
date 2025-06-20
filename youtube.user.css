@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.36.0
+@version        2.36.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -592,7 +592,7 @@
   }
 
 
-  /* ----- Right Sidebar - Channel Card ---- */
+  /* ----- Channel Summary Card ---- */
   ytd-channel-renderer #content-section.ytd-channel-renderer {
     display: grid;
     grid-template-columns: 168px 1fr;
@@ -621,6 +621,22 @@
       #buttons, #buttons > div {
         padding: unset;
       }
+      
+      #subscribe-button[hidden] {
+        display: block !important;
+      }
+    }
+  }
+  
+  /* Fix for larger containers */
+  #contents:has(ytd-channel-renderer #content-section.ytd-channel-renderer) {
+    container-type: inline-size;
+  }
+  
+  @container (width > 640px) {
+    ytd-channel-renderer #content-section.ytd-channel-renderer #info-section {
+      display: flex !important;
+      padding-inline-end: 2rem;
     }
   }
 
