@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.38.1
+@version        2.38.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1667,6 +1667,7 @@
           grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
           gap: 4rem var(--ytd-rich-grid-item-margin);
           margin: unset;
+          clip-path: unset;
         }
         
         #rich-shelf-header {
@@ -1698,8 +1699,7 @@
         .button-container.ytd-rich-shelf-renderer {
           position: unset;
           width: 100%;
-          left: 0;
-          margin-block-start: 3rem;
+          margin-block: 3rem;
           transform: unset;
         }
         
