@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.38.0
+@version        2.38.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -563,16 +563,6 @@
   #frosted-glass.loading-with-chipbar.ytd-app, 
   #frosted-glass.with-chipbar.ytd-app {
     display: none;
-  }
-
-
-  /* ----- Main Content - Section Borders ----- */
-  ytd-browse:not([page-subtype]) .ytd-two-column-browse-results-renderer > #contents.ytd-section-list-renderer > ytd-item-section-renderer {
-    border-top: 1px solid var(--bg-600);
-    
-    &:first-child {
-      margin-top: 2rem;
-    }
   }
 
 
@@ -1352,6 +1342,9 @@
     #home-page-skeleton .rich-thumbnail.rounded-thumbs,
     #home-container-skeleton .rich-thumbnail.rounded-thumbs:before,
 
+    /* --- 'Sign In' card --- */
+    #contentWrapper.tp-yt-iron-dropdown > ytd-modal-with-title-and-button-renderer,
+
     /* --- Main Content --- */
     /* -- Video Thumbnail -- */
     #thumbnail,
@@ -1658,6 +1651,10 @@
         &:not(:nth-child(1)) {
           padding-block-start: 2rem;
           border-block-start: 1px solid var(--yt-spec-10-percent-layer);
+        }
+
+        &:has(+ ytd-rich-item-renderer) {
+          border-bottom: 1px solid var(--yt-spec-10-percent-layer);
         }
         
         #content {
