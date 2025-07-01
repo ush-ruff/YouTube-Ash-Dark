@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.38.2
+@version        2.38.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -395,7 +395,8 @@
 
   /* ----- Thumbnail Overlay - Time ----- */
   ytd-thumbnail-overlay-time-status-renderer .thumbnail-overlay-badge-shape.ytd-thumbnail-overlay-time-status-renderer badge-shape, 
-  yt-thumbnail-overlay-badge-view-model .badge-shape-wiz--thumbnail-default {
+  yt-thumbnail-overlay-badge-view-model .badge-shape-wiz--thumbnail-default, 
+  .ytThumbnailBottomOverlayViewModelBadgeContainer .badge-shape-wiz--thumbnail-default {
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--cl-200);
     border-radius: 2px;
@@ -428,7 +429,8 @@
 
   /* ----- Thumbnail Overlay - Progress Bar ----- */
   #progress.ytd-thumbnail-overlay-resume-playback-renderer, 
-  ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer {
+  ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer, 
+  .ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment {
     background: var(--accent-red-bright);
   }
 
