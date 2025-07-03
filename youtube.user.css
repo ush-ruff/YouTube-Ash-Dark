@@ -799,6 +799,33 @@
     }
   }
 
+    /* Fix for when using 'Return YouTube Dislike' Extension */
+    #top-level-buttons-computed .ryd-tooltip-new-design {
+      bottom: 0;
+      transform: scaleX(1.15) translateX(10%);
+    }
+
+    #top-level-buttons-computed:has(.ryd-tooltip-new-design) {
+      .YtSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, 
+      .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper {
+        gap: 2rem;
+      }
+
+      .YtDislikeButtonViewModelHost button, 
+      .ytDislikeButtonViewModelHost button {
+        width: auto;
+        padding-inline: 0;
+
+        > div::after {
+          content: unset;
+        }
+      }
+
+      button[aria-label="Share"] {
+        margin-inline-start: 2rem;
+      }
+    }
+
 
   /* ----- AI Video Summary ----- */
   #below ytd-watch-metadata ~ #expandable-metadata.ytd-watch-flexy:not(:empty) {
@@ -2012,46 +2039,108 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Restore Description Style ----- */
+  fullSubgrid() {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: subgrid;
+  }
+  
   if (restoreDesc) {
     #below {
-      display: grid;
+      --_desc-spacing: 5.25rem;
+      --_desc-max-width: calc(100% - 44px);
+      --_gap: 1.6rem;
 
-      /* --- Show old description style - (Title, Video watch stats, Like bar) --- */
+      display: grid;
+      grid-template-columns: 200px 1fr;
+
+      /* --- Show old description style - (Title, Video watch stats) --- */
       div.ytd-watch-flexy:has(> #info) {
-        grid-row: 5;
+        grid-row: 1 / 4;
+        grid-column: 1 / -1;
+        fullSubgrid();
+
+        > #info, #info-contents, ytd-video-primary-info-renderer, #container {
+          grid-row: 1 / -1;
+          grid-column: 1 / -1;
+          fullSubgrid();
+        }
 
         #info-contents {
-          display: block !important;
+          display: grid !important;
+          z-index: 1;
+
+          ytd-video-primary-info-renderer {
+            border: unset;
+          }
         }
-        
-        #menu {
-          inset: unset;
+
+        /* -- Hide redundant elements - (Action buttons) -- */
+        #menu-container {
+          display: none;
+        }
+
+        /* -- Video tags -- */
+        .super-title {
+          grid-row: 1;
+          grid-column: 1 / -1;
+        }
+
+        /* -- Title -- */
+        .title {
+          grid-row: 2;
+          grid-column: 1 / -1;
+        }
+
+        /* -- Views & Date -- */
+        #info.ytd-video-primary-info-renderer {
+          grid-row: 3;
+          grid-column: 1;
         }
       }
 
       /* --- Fix new description style --- */
       ytd-watch-metadata.ytd-watch-flexy {
-        --_desc-max-width: 90%;
-        --_desc-spacing: 5.25rem;
-        --_gap: 1.6rem;
-
-        grid-row: 6;
+        grid-row: 1 / 8;
+        grid-column: 1 / -1;
         margin-block-end: 0;
         padding-block-end: 2.4rem;
-        border-bottom: 1px solid #464646;
+        fullSubgrid();
 
-        /* -- Hide redundant elements - (Title, Video watch stats, Like bar) -- */
-        #title, #actions, #ytd-watch-info-text {
-          display: none;
+        #above-the-fold, #top-row {
+          grid-row: 1 / -1;
+          grid-column: 1 / -1;
+          fullSubgrid();
         }
 
-        /* -- Channel Details & Subscribe Button -- */
+        #above-the-fold {
+          border-bottom: 1px solid #464646;
+        }
+
         #top-row {
           border: unset !important;
         }
-        
+
+        /* -- Hide redundant elements - (Title, Video watch stats, Like bar) -- */
+        #title, #ytd-watch-info-text {
+          display: none;
+        }
+
+        /* -- Action buttons -- */
+        #actions {
+          grid-row: 3;
+          grid-column: 2 / 3;
+          margin: unset;
+        }
+
+        /* -- Channel Details & Subscribe Button -- */
         #owner {
+          grid-row: 4;
+          grid-column: 1 / -1;
           justify-content: space-between;
+          margin: unset;
+          padding-block-start: var(--_gap);
+          border-top: 1px solid #464646;
         }
 
         #text.ytd-channel-name {
@@ -2059,14 +2148,22 @@
         }
 
         /* -- Description -- */
+        #bottom-row.ytd-watch-metadata {
+          display: grid;
+          grid-row: 5;
+          grid-column: 1 / -1;
+          margin-inline: unset;
+        }
+
         #description {
+          margin-inline: 0;
           padding-inline-start: var(--_desc-spacing);
           background: transparent;
         }
 
         #description-inner {
           max-width: var(--_desc-max-width);
-          margin: 0;
+          margin: unset;
         }
 
         /* "Show More" Button */
@@ -2108,18 +2205,31 @@
 
         /* -- Game Tags -- */
         ytd-metadata-row-container-renderer {
+          grid-column: 1 / -1;
           max-width: var(--_desc-max-width);
+          margin-block-end: var(--_gap);
           padding-inline-start: var(--_desc-spacing);
+
+          #contents {
+            gap: 1rem;
+            margin: unset;
+          }
+
+          #contents > ytd-rich-metadata-renderer {
+            max-width: unset;
+            margin: unset;
+          }
         }
 
         /* -- Chat Replay Banner -- */
-        #bottom-row.ytd-watch-metadata {
-          display: grid;
-        }
-        
         #teaser-carousel.ytd-watch-metadata {
           width: auto;
         }
+      }
+
+      /* --- Stretch comment section across full area --- */
+      #comments {
+        grid-column: 1 / -1;
       }
     }
   }
