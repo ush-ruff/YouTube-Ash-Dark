@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.38.3
+@version        2.38.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2023,6 +2023,10 @@
         #info-contents {
           display: block !important;
         }
+        
+        #menu {
+          inset: unset;
+        }
       }
 
       /* --- Fix new description style --- */
@@ -2042,6 +2046,10 @@
         }
 
         /* -- Channel Details & Subscribe Button -- */
+        #top-row {
+          border: unset !important;
+        }
+        
         #owner {
           justify-content: space-between;
         }
