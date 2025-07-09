@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.38.4
+@version        2.39.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1178,6 +1178,12 @@
       border-color: var(--bg-550);
     }
   }
+
+
+  /* ----- Live Chat - Header ----- */
+  yt-live-chat-header-renderer {
+    background-color: #222;
+  }
   
 
   /* ---- Error 404 ---- */
@@ -1454,6 +1460,9 @@
     /* Playlist Thumbnails */
     .collections-stack-wiz__collection-stack1,
     .collections-stack-wiz__collection-stack2,
+
+    /* --- Live Chat --- */
+    ytd-live-chat-frame[rounded-container] iframe.ytd-live-chat-frame,
 
     /* --- Community Posts --- */
     ytd-backstage-post-thread-renderer[rounded-container],
@@ -2031,12 +2040,12 @@
 
       /* --- Fix new description style --- */
       ytd-watch-metadata.ytd-watch-flexy {
-        --_desc-max-width: 90%;
+        --_desc-max-width: calc(100% - 44px);
         --_desc-spacing: 5.25rem;
         --_gap: 1.6rem;
 
         grid-row: 6;
-        margin-block-end: 0;
+        margin-block-end: unset;
         padding-block-end: 2.4rem;
         border-bottom: 1px solid #464646;
 
@@ -2059,6 +2068,10 @@
         }
 
         /* -- Description -- */
+        #bottom-row.ytd-watch-metadata {
+          display: grid;
+        }
+
         #description {
           padding-inline-start: var(--_desc-spacing);
           background: transparent;
@@ -2066,7 +2079,7 @@
 
         #description-inner {
           max-width: var(--_desc-max-width);
-          margin: 0;
+          margin: unset;
         }
 
         /* "Show More" Button */
@@ -2110,13 +2123,19 @@
         ytd-metadata-row-container-renderer {
           max-width: var(--_desc-max-width);
           padding-inline-start: var(--_desc-spacing);
+
+          #contents {
+            gap: 1rem;
+            margin: unset;
+          }
+
+          #contents > ytd-rich-metadata-renderer {
+            max-width: unset;
+            margin: unset;
+          }
         }
 
         /* -- Chat Replay Banner -- */
-        #bottom-row.ytd-watch-metadata {
-          display: grid;
-        }
-        
         #teaser-carousel.ytd-watch-metadata {
           width: auto;
         }
