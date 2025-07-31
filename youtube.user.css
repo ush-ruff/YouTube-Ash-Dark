@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.39.4
+@version        2.39.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1763,7 +1763,7 @@
       display: inline-flex !important;
     }
 
-    ytd-video-preview, div#hover-overlays {
+    ytd-video-preview {
       display: none !important;
     }
   }
