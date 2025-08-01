@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.39.5
+@version        2.39.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -990,8 +990,8 @@
   }
   
   /* Fix for new layout change - May-24 */
-  ytd-tabbed-page-header.grid-6-columns[has-inset-banner] #page-header-banner.ytd-tabbed-page-header {
-    padding-inline: 0;
+  ytd-tabbed-page-header #contentContainer #page-header-banner.ytd-tabbed-page-header {
+    padding-inline: unset;
   }
   
   .yt-image-banner-view-model-wiz--inset {
