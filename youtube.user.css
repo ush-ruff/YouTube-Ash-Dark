@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.39.6
+@version        2.39.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -145,7 +145,7 @@
   
 
   /* ----- Buttons ----- */
-  .yt-spec-button-shape-next:not(.yt-spec-button-shape-next--icon-only-default) {
+  .yt-spec-button-shape-next:not(.yt-spec-button-shape-next--icon-only-default, .yt-spec-button-shape-next--icon-button) {
     border-radius: 0;
 
     .yt-spec-button-shape-next--button-text-content {
@@ -390,6 +390,14 @@
     background: unset !important;
     border-radius: unset;
     box-shadow: unset !important;
+  }
+
+
+  /* ----- Thumbnail - Remove touch feedback ----- */
+  ytd-rich-item-renderer.ytd-rich-grid-renderer {
+    > #interaction, yt-touch-feedback-shape {
+      display: none;
+    }
   }
 
 
@@ -1772,59 +1780,100 @@
 @-moz-document domain("youtube.com") {
   /* ----- Custom Thumbnail Metadata Style ----- */
   if (customThumbnailMeta) {
-    @supports (grid-template-rows: subgrid) {
-      ytd-two-column-browse-results-renderer[page-subtype="home"] #details.ytd-rich-grid-media, 
-      ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] #details.ytd-rich-grid-media {
+    ytd-two-column-browse-results-renderer[page-subtype="home"] #details.ytd-rich-grid-media, 
+    ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] #details.ytd-rich-grid-media {
+      display: grid;
+      grid-template-areas: "title title menu" "logo meta meta" "empty badges badges";
+      grid-template-columns: auto 1fr 24px;
+      gap: 0.5rem 0;
+      margin-block-end: -1.5rem;
+
+      #avatar-link, #avatar-container {
+        grid-area: logo;
+        width: 36px;
+        margin: 0 1rem 0 0;
+      }
+
+      #meta {
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
         display: grid;
-        grid-template-areas: "title title menu" "logo meta meta" "empty badges badges";
-        grid-template-columns: auto 1fr 24px;
-        gap: 0.5rem 0;
-        margin-block-end: -1.5rem;
+        grid-template-rows: subgrid;
+        grid-template-columns: subgrid;
+        padding: 0;
 
-        #avatar-link, #avatar-container {
-          grid-area: logo;
-          width: 36px;
-          margin: 0 1rem 0 0;
+        h3 {
+          grid-area: title;
         }
 
-        #meta {
-          grid-row: 1 / -1;
-          grid-column: 1 / -1;
-          display: grid;
-          grid-template-rows: subgrid;
-          grid-template-columns: subgrid;
-          padding: 0;
-
-          h3 {
-            grid-area: title;
-          }
-
-          .badge-style-type-collection.ytd-badge-supported-renderer {
-            padding: 0 0 0.2rem;
-          }
-
-          ytd-video-meta-block {
-            grid-area: meta;
-          }
-
-          .video-badge {
-            grid-area: badges;
-            margin-inline-start: 1rem;
-          }
-
-          #buttons {
-            grid-area: badges;
-          }
-
-          #view-more {
-            grid-area: badges;
-          }
+        .badge-style-type-collection.ytd-badge-supported-renderer {
+          padding: 0 0 0.2rem;
         }
 
-        #menu ytd-menu-renderer {
-          top: 6px;
-          right: -6px;
+        ytd-video-meta-block {
+          grid-area: meta;
         }
+
+        .video-badge {
+          grid-area: badges;
+          margin-inline-start: 1rem;
+        }
+
+        #buttons {
+          grid-area: badges;
+        }
+
+        #view-more {
+          grid-area: badges;
+        }
+      }
+
+      #menu ytd-menu-renderer {
+        top: 6px;
+        right: -6px;
+      }
+    }
+    
+    /* Fix for new YouTube Layout */
+    ytd-two-column-browse-results-renderer[page-subtype="home"] yt-lockup-metadata-view-model, 
+    ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] yt-lockup-metadata-view-model {
+      display: grid;
+      grid-template-areas: "title title menu" "logo meta meta";
+      grid-template-columns: auto 1fr 24px;
+      gap: 0.5rem 0;
+      margin-block-end: -1.5rem;
+
+      /* Avatar */
+      .yt-lockup-metadata-view-model-wiz__avatar {
+        grid-area: logo;
+        width: 36px;
+        margin: 0;
+      }
+
+      /* Text */
+      .yt-lockup-metadata-view-model-wiz__text-container {
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-template-columns: subgrid;
+        padding: 0;
+
+        /* Title */
+        h3 {
+          grid-area: title;
+        }
+
+        /* Metadata */
+        .yt-lockup-metadata-view-model-wiz__metadata {
+          grid-area: meta;
+          padding-inline-start: 1rem;
+        }
+      }
+
+      /* Adjust menu icon position */
+      .yt-lockup-metadata-view-model-wiz__menu-button {
+        right: -6px;
       }
     }
   }
