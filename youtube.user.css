@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.1
+@version        2.40.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1332,6 +1332,7 @@
     .yt-list-item-view-model-wiz__container--tappable:hover,
     .dropdown-content.tp-yt-paper-menu-button, 
     #menu.yt-dropdown-menu, 
+    .ytSheetViewModelContextual, 
 
     /* --- Inputs --- */
     yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer,
