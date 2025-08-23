@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.2
+@version        2.40.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -374,7 +374,8 @@
 
 
   /* ----- Thumbnail Image - Default Background ----- */
-  .yt-thumbnail-view-model__image {
+  .yt-thumbnail-view-model__image, 
+  .ytThumbnailViewModelImage {
     background-color: rgba(255, 255, 255, 0.1);
   }
   
