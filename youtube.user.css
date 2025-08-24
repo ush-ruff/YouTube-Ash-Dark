@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.3
+@version        2.40.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2073,6 +2073,10 @@
   if (hideShorts) {
     ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
     ytd-reel-shelf-renderer {
+      display: none;
+    }
+
+    ytd-video-renderer:has(> #dismissible > ytd-thumbnail #overlays [overlay-style="shorts" i]) {
       display: none;
     }
   }
