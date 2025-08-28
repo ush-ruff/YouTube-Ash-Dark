@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.4
+@version        2.40.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -131,6 +131,7 @@
 
   yt-lockup-view-model.ytd-item-section-renderer, yt-lockup-view-model {
     fixMenuIcon(".yt-lockup-metadata-view-model-wiz__menu-button");
+    fixMenuIcon(".yt-lockup-metadata-view-model__menu-button");
   }
   
   /* Comments */
@@ -1853,6 +1854,7 @@
       margin-block-end: -1.5rem;
 
       /* Avatar */
+      .yt-lockup-metadata-view-model__avatar,
       .yt-lockup-metadata-view-model-wiz__avatar {
         grid-area: logo;
         width: 36px;
@@ -1860,6 +1862,7 @@
       }
 
       /* Text */
+      .yt-lockup-metadata-view-model__text-container, 
       .yt-lockup-metadata-view-model-wiz__text-container {
         grid-row: 1 / -1;
         grid-column: 1 / -1;
@@ -1874,6 +1877,7 @@
         }
 
         /* Metadata */
+        .yt-lockup-metadata-view-model__metadata, 
         .yt-lockup-metadata-view-model-wiz__metadata {
           grid-area: meta;
           padding-inline-start: 1rem;
