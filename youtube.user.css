@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.6
+@version        2.40.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -247,7 +247,8 @@
   .ytp-sb-subscribe, a.ytp-sb-subscribe, 
   ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal, 
   yt-subscribe-button-view-model .yt-subscribe-button-view-model-wiz__container .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled, 
-  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled[aria-label="subscribe" i] {
+  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled[aria-label="subscribe" i], 
+  .ytSubscribeButtonViewModelContainer .yt-spec-button-shape-next {
     text-transform: uppercase;
     background-color: var(--accent-red);
     border-radius: var(--yt-button-border-radius, 2px);
@@ -315,12 +316,13 @@
   /* Remove Unsubscribe button from bell icon flyout menu */
   @css {
     ytd-menu-service-item-renderer[use-icons]:has(tp-yt-paper-item[style-target="host"] > yt-icon.ytd-menu-service-item-renderer [d^="M13.72,11.93C15.58,11.59,17,9.96,17,8c0-2.21-1.79-4-4-4S9,5.79,9,8c0,1.96,1.42,3.59,3.28,3.93"]),
-    ytd-menu-service-item-renderer[use-icons]:has(tp-yt-paper-item[style-target="host"] > yt-icon.ytd-menu-service-item-renderer [d="M13.72 11.93C15.58 11.59 17 9.96 17 8c0-2.21-1.79-4-4-4S9 5.79 9 8c0 1.96 1.42 3.59 3.28 3.93C6.77 12.21 4 15.76 4 20h18c0-4.24-2.77-7.79-8.28-8.07zM10 8c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 4.9c5.33 0 7.56 2.99 7.94 6.1H5.06c.38-3.11 2.61-6.1 7.94-6.1zM7 12H2v-1h5v1z"]) {
+    ytd-menu-service-item-renderer[use-icons]:has(tp-yt-paper-item[style-target="host"] > yt-icon.ytd-menu-service-item-renderer [d="M13.72 11.93C15.58 11.59 17 9.96 17 8c0-2.21-1.79-4-4-4S9 5.79 9 8c0 1.96 1.42 3.59 3.28 3.93C6.77 12.21 4 15.76 4 20h18c0-4.24-2.77-7.79-8.28-8.07zM10 8c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 4.9c5.33 0 7.56 2.99 7.94 6.1H5.06c.38-3.11 2.61-6.1 7.94-6.1zM7 12H2v-1h5v1z"]), 
+    .ytListViewModelHost .yt-list-item-view-model:last-child {
       display: none;
     }
   }
   
-  /* Fix bell Icon is misaligned when subscribed (ui changes) */
+  /* Fix to show unsubscribe button and for bell icon being misaligned when subscribed (ui changes) */
   .smartimation__content > __slot-el {
     display: flex;
   }
@@ -341,7 +343,8 @@
     width: auto !important;
   }
   
-  yt-subscribe-button-view-model .animated-action__content-with-background .yt-subscribe-button-view-model-wiz__container > button:not([aria-label*="Subscribe to" i]) {
+  yt-subscribe-button-view-model .animated-action__content-with-background .yt-subscribe-button-view-model-wiz__container > button:not([aria-label*="Subscribe to" i]), 
+  yt-subscribe-button-view-model .ytAnimatedActionContentWithBackground .ytSubscribeButtonViewModelContainer > button:not([aria-label*="Subscribe to" i]) {
     display: flex;
     flex-direction: row-reverse;
     gap: 1.625rem;
@@ -987,35 +990,17 @@
 
 
   /* ----- Channel Page - Header ----- */
-  #header #contentContainer.tp-yt-app-header-layout {
-    background-color: transparent;
-  }
-
-  #header .page-header-banner.ytd-c4-tabbed-header-renderer {
-    margin: 0;
-    border-radius: 0;
-  }
-
-  #channel-header #inner-header-container {
-    display: grid;
-    grid-template-columns: 1fr min-content;
-  }
-
-  .truncated-text-wiz__absolute-button,
-  .page-header-view-model-wiz__page-header-attribution {
-    color: var(--cl-300);
-  }
-  
-  /* Fix for new layout change - May-24 */
   ytd-tabbed-page-header #contentContainer #page-header-banner.ytd-tabbed-page-header {
     padding-inline: unset;
   }
   
-  .yt-image-banner-view-model-wiz--inset {
+  .yt-image-banner-view-model-wiz--inset, 
+  .ytImageBannerViewModelInset {
     border-radius: 0;
   }
   
-  #page-header .page-header-view-model-wiz__page-header-headline-info {
+  #page-header .page-header-view-model-wiz__page-header-headline-info, 
+  #page-header .yt-page-header-view-model__page-header-headline-info {
     display: grid;
     grid-template-columns: 1fr min-content;
     
@@ -1028,9 +1013,16 @@
       grid-column: 2;
     }
   }
+  
+  .yt-page-header-view-model__page-header-title, 
+  .yt-content-metadata-view-model__metadata-row--metadata-row-inline > span:first-child > span, 
+  .yt-page-header-view-model__page-header-attribution > span:last-child a {
+    color: var(--cl-200) !important;
+  }
 
   /* Hide "...more" button in channel description */
-  #page-header .page-header-view-model-wiz__page-header-headline-info .truncated-text-wiz__absolute-button {
+  #page-header .page-header-view-model-wiz__page-header-headline-info .truncated-text-wiz__absolute-button, 
+  #page-header .yt-page-header-view-model__page-header-description .yt-truncated-text__absolute-button {
     display: none;
   }
 
@@ -1043,55 +1035,48 @@
 
 
   /* ----- Channel Page - Tabs ----- */
-  #tabs-container.ytd-tabbed-page-header {
-    height: 49px;
-  }
-  
   #tabsContainer {
     --_tab-gap: 6rem;
   }
 
-  #tabsContent, .yt-tab-group-shape-wiz {
+  #tabsContent, 
+  yt-tab-group-shape.tabGroupShapeHost {
     width: 100%;
   }
 
-  .yt-tab-shape-wiz {
+  .yt-tab-shape {
     margin-right: var(--_tab-gap);
   }
 
-  .yt-tab-shape-wiz__tab--last-tab {
-    margin-inline: auto 0;
-  }
-
-  .yt-tab-shape-wiz__tab {
+  .yt-tab-shape__tab {
     font-size: 1.5rem;
     text-transform: uppercase;
   }
 
-  .yt-tab-shape-wiz__tab--tab-selected, 
-  .yt-tab-shape-wiz:focus .yt-tab-shape-wiz__tab {
+  .yt-tab-shape__tab--tab-selected, 
+  .yt-tab-shape:focus .yt-tab-shape__tab {
     color: var(--cl-400);
   }
 
-  .yt-tab-group-shape-wiz__slider {
-    background-color: var(--cl-400);
+  /* Align search icon/input to the right */
+  .yt-tab-shape__tab--last-tab {
+    margin-inline: auto 0;
   }
 
+  /* Hide search input while unfocused */
   ytd-expandable-tab-renderer:not([show-input=""]) > form {
     display: none;
   }
 
-  ytd-expandable-tab-renderer > form > tp-yt-paper-input.ytd-expandable-tab-renderer {
-    --paper-input-container-underline-border-bottom: 1px solid var(--yt-spec-icon-disabled, #717171);
-  }
-
-  .yt-tab-group-shape-wiz__slider {
-    translate: calc((var(--_tab-gap) - 24px) * var(--tab-count, 0));
+  /* Selected tab underline */
+  .tabGroupShapeSlider {
+    background-color: var(--cl-400);
+    translate: calc((var(--_tab-gap) - 24px) * var(--_tab-count, 0));
   }
 
   for i in (1..9) {
-    .yt-tab-group-shape-wiz__tabs:has(:nth-child({i+1})[aria-selected="true"]) + .yt-tab-group-shape-wiz__slider {
-      --tab-count: i;
+    .tabGroupShapeTabs:has(:nth-child({i+1})[aria-selected="true"]) + .tabGroupShapeSlider {
+      --_tab-count: i;
     }
   }
 
