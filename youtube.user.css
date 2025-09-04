@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.7
+@version        2.40.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -568,7 +568,7 @@
 
 
   /* --- Search Results - Fix Thumbnail Size --- */
-  #container.ytd-search :is(#avatar-section.ytd-channel-renderer, ytd-thumbnail.ytd-video-renderer, ytd-playlist-thumbnail.ytd-playlist-renderer, .yt-lockup-view-model-wiz__content-image) {
+  #container.ytd-search :is(#avatar-section.ytd-channel-renderer, ytd-thumbnail.ytd-video-renderer, ytd-playlist-thumbnail.ytd-playlist-renderer, .yt-lockup-view-model-wiz__content-image,  yt-lockup-view-model .yt-lockup-view-model__content-image) {
 		max-width: 300px;
 	}
 
@@ -1465,6 +1465,8 @@
     /* Playlist Thumbnails */
     .collections-stack-wiz__collection-stack1,
     .collections-stack-wiz__collection-stack2,
+    .ytCollectionsStackCollectionStack1,
+    .ytCollectionsStackCollectionStack2,
 
     /* --- Live Chat --- */
     ytd-live-chat-frame[rounded-container] iframe.ytd-live-chat-frame,
