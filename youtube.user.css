@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.40.8
+@version        2.40.9
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1504,14 +1504,14 @@
   }
 
   /* --- Comments Count --- */
-  ytd-comments-header-renderer[modern-typography] {
+  ytd-comments-header-renderer[modern-typography], .ytd-comments-header-renderer {
     #count {
       margin-block-start: -0.5rem;
       margin-inline-end: 1.7rem;
     }
     
     .count-text.ytd-comments-header-renderer {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 500;
     }
   } 
