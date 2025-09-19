@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.0
+@version        2.41.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -394,6 +394,24 @@
       font-size: 1.4rem;
       font-weight: 500;
     }
+  }
+
+  /* Fix for YouTube update in 2025 */
+  .ytNotificationMultiActionRendererHost {
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1.5rem 2rem; 
+    border-radius: var(--br);
+    color: var(--yt-spec-text-primary);
+    
+    .yt-spec-button-shape-next {
+      height: auto;
+      line-height: 2.5;
+    }
+  }
+  
+  .ytNotificationMultiActionRendererTextContainer {
+    margin: unset;
   }
 
 
