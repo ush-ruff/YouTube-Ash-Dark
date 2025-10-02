@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.2
+@version        2.41.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1444,6 +1444,7 @@
     .ytp-ce-element.ytp-ce-video, 
     .ytp-ce-element.ytp-ce-playlist, 
     .ytp-ce-element.ytp-ce-expanding-overlay-background,
+    .ytp-ce-element .ytp-ce-expanding-overlay-background, 
     
 
     /* Video End Screen */
