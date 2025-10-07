@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.3
+@version        2.41.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1387,6 +1387,9 @@
 
     /* Thumbnail transitions */
     yt-interaction.extended :is(.fill, .stroke).yt-interaction,
+    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__stroke, 
+    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__fill,
+    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__hover-effect,
 
     /* Dismissed video */
     ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media,
@@ -1480,7 +1483,7 @@
     /* Playlist Sidebar */
     .immersive-header-container.ytd-playlist-header-renderer,
     .page-header-view-model-wiz--display-as-sidebar .page-header-view-model-wiz__page-header-background,
-    ytd-playlist-panel-renderer[modern-panels]:not([within-miniplayer]) #container.ytd-playlist-panel-renderer,
+    #secondary ytd-playlist-panel-renderer #container,
 
     /* Playlist Thumbnails */
     .collections-stack-wiz__collection-stack1,
