@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.4
+@version        2.41.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2112,6 +2112,7 @@
       /* --- Show old description style - (Title, Video watch stats, Like bar) --- */
       div.ytd-watch-flexy:has(> #info) {
         grid-row: 5;
+        display: block !important;
 
         #info-contents {
           display: block !important;
