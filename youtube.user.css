@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.5
+@version        2.41.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -412,6 +412,17 @@
   
   .ytNotificationMultiActionRendererTextContainer {
     margin: unset;
+
+    > span {
+      text-wrap: pretty;
+    }
+  }
+  
+  .ytNotificationMultiActionRendererButtonContainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 1rem;
   }
 
 
@@ -424,7 +435,7 @@
 
 
   /* ----- Thumbnail - Remove touch feedback ----- */
-  ytd-rich-item-renderer.ytd-rich-grid-renderer {
+  ytd-rich-item-renderer.ytd-rich-grid-renderer, .yt-lockup-view-model {
     > #interaction, yt-touch-feedback-shape {
       display: none;
     }
@@ -1378,18 +1389,14 @@
     /* --- Main Content --- */
     /* -- Video Thumbnail -- */
     #thumbnail,
-    ytd-thumbnail[size="large"] a.ytd-thumbnail, 
-    ytd-thumbnail[size="large"]::before,
-    ytd-thumbnail[size="medium"] a.ytd-thumbnail, 
-    ytd-thumbnail[size="medium"]::before,
+    ytd-thumbnail[size] a.ytd-thumbnail, 
+    ytd-thumbnail[size]::before,
     .yt-thumbnail-view-model,
     .ytThumbnailViewModelHost,
 
     /* Thumbnail transitions */
     yt-interaction.extended :is(.fill, .stroke).yt-interaction,
-    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__stroke, 
-    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__fill,
-    .yt-spec-touch-feedback-shape .yt-spec-touch-feedback-shape__hover-effect,
+    .yt-lockup-view-model > .yt-spec-touch-feedback-shape > div,
 
     /* Dismissed video */
     ytd-rich-grid-media[rounded-container] #dismissed.ytd-rich-grid-media,
@@ -1473,8 +1480,8 @@
 
     /* --- Playlist --- */
     ytd-playlist-panel-renderer[js-panel-height] #container.ytd-playlist-panel-renderer,
-    ytd-playlist-thumbnail[size="medium"] a.ytd-playlist-thumbnail,
-    ytd-playlist-thumbnail[size="medium"]::before,
+    ytd-playlist-thumbnail[size] a.ytd-playlist-thumbnail,
+    ytd-playlist-thumbnail[size]::before,
     ytd-playlist-video-renderer[amsterdam],
 
     /* Liked Videos List */
