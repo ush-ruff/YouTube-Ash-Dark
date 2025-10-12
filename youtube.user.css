@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.7
+@version        2.41.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -281,6 +281,11 @@
       text-transform: uppercase;
     }
   }
+
+  /* Subscribe Button - Animation Fix */
+  .ytAnimatedActionContentWithBackground > .ytAnimatedActionLottie {
+    display: none;
+  }
   
   /* Unsubscribe Button - Fix on watch pages (after immediately subscribing) */
   #subscribe-button ytd-subscribe-button-renderer {
@@ -292,7 +297,7 @@
     display: block !important;
   }
 
-  /* --- Revert notification button --- */
+  /* --- Revert notification button (Bell Icon) --- */
   #notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button {
     /* Removes background color around bell icon */
     &.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal {
