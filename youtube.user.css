@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.41.8
+@version        2.41.9
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -487,6 +487,12 @@
   ytd-thumbnail-overlay-resume-playback-renderer[enable-refresh-signature-moments-web] #progress.ytd-thumbnail-overlay-resume-playback-renderer, 
   .ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment {
     background: var(--accent-red-bright);
+  }
+
+
+  /* ----- Thumbnail Metadata ----- */
+  .yt-lockup-metadata-view-model__metadata {
+    color: #aaa !important;
   }
 
 
@@ -2093,7 +2099,7 @@
       font-size: 14px;
       text-align: center;
     }
-}
+  }
 }
 
 @-moz-document domain("youtube.com") {
