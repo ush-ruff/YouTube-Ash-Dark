@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.42.0
+@version        2.42.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2409,8 +2409,8 @@
           z-index: 25;
         }
 
-        &:not(.ytp-hide-info-bar)::before, 
-        &:is(.paused-mode, .unstarted-mode, :hover)::before {
+        &.ytp-fullscreen:is(.paused-mode, .unstarted-mode)::before, 
+        &.ytp-fullscreen:has(.ytp-overlay-top-left:hover)::before {
           content: "";
         }
 
@@ -2424,7 +2424,7 @@
         }
 
         &:is(.paused-mode, .unstarted-mode, :hover)::after, 
-        &:not(.ytp-big-mode) {
+        &:not(.ytp-fullscreen)::after {
           content: "";
         }
         
@@ -2465,12 +2465,12 @@
           overflow: hidden;
         }
         
-        &.ytp-big-mode .ytPlayerOverlayVideoDetailsRendererSingleLineTitle {
+        &.ytp-fullscreen .ytPlayerOverlayVideoDetailsRendererSingleLineTitle {
           font-size: 27px;
         }
         
-        &.ytp-big-mode.paused-mode .ytp-overlay-top-left,
-        &.ytp-big-mode .ytp-overlay-top-left:hover {
+        &.ytp-fullscreen.paused-mode .ytp-overlay-top-left,
+        &.ytp-fullscreen .ytp-overlay-top-left:hover {
           opacity: 1;
         }
         
@@ -2628,7 +2628,7 @@
           opacity: 1;
         }
         
-        &.ytp-big-mode:not(.unstarted-mode) .ytp-chrome-bottom:not(:hover) {
+        &.ytp-fullscreen:not(.unstarted-mode) .ytp-chrome-bottom:not(:hover) {
           opacity: 0;
         }
 
