@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.42.4
+@version        2.42.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2350,6 +2350,8 @@
         
         --player-controls-size: 48px;
         
+        --endcard-grid-font-size: 11px;
+        
         /* --volume-icon-size: 36px; */
         --volume-icon-size: calc(var(--player-controls-size) - 12px);
         --volume-slider-handle-size: 12px;
@@ -2366,6 +2368,8 @@
           --progress-bar-handle-left: -10px;
           
           --player-controls-size: 54px;
+          
+          --endcard-grid-font-size: 17px;
           
           /* --volume-icon-size: 42px; */
           --volume-slider-handle-size: 18px;
@@ -2830,8 +2834,27 @@
           fill-rule: evenodd;
         }
         
-        .ytp-subtitles-button[aria-pressed="false"] .ytp-subtitles-button-icon {
-          fill-opacity: 0.7;
+        .ytp-subtitles-button[aria-pressed]::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 2px;
+          display: block;
+          bottom: 10px;
+          left: 24px;
+          background-color: var(--yt-spec-red-indicator, #e1002d);
+          border-radius: 3px;
+          transition: left .1s cubic-bezier(0.4, 0, 1, 1), width .1s cubic-bezier(0.4, 0, 1, 1);
+        }
+        
+        .ytp-subtitles-button[aria-pressed="true"]::after {
+          width: 23.1166px;
+          left: 12px;
+        }
+        
+        &.ytp-big-mode .ytp-subtitles-button[aria-pressed="true"]::after {
+          width: 26.2666px;
+          left: 13px;
         }
 
         /* -- Fullscreen -- */
@@ -2844,44 +2867,82 @@
       
       /* --- Video End Cards - Recommended Videos --- */
       .ytp-fullscreen-grid-active.ytp-grid-scrollable .ytp-fullscreen-grid {
-        inset: 0 auto;
+        inset: 0 auto var(--tooltip-position);
         align-content: center;
         
         .ytp-fullscreen-grid-main-content {
-          align-content: center;
+          position: unset;
         }
         
         .ytp-fullscreen-grid-stills-container {
           grid-template-columns: repeat(4, 1fr);
-          gap: 2rem;
+          gap: 0.5rem;
           padding-inline: 5%;
         }
         
         .ytp-modern-videowall-still {
+          position: relative;
+          font-size: var(--endcard-grid-font-size);
           margin: unset;
           background: transparent;
           border-radius: var(--br);
           box-shadow: unset;
           transition: opacity 150ms ease-in;
+          
+          &:nth-child(n + 4) {
+            display: revert;
+          }
+          
+          &:nth-child(n + 9) {
+            display: none;
+          }
+          
+          &:hover {
+            --_opacity: 1;
+          }
         }
         
         .ytp-modern-videowall-still-image {
           border-radius: inherit;
         }
         
-        .ytp-modern-videowall-still:nth-child(n+4) {
-          display: revert;
+        .ytp-modern-videowall-still-info-duration {
+          font-size: 11px;
+          right: 2px;
+          bottom: 2px;
+          opacity: var(--_opacity, 0);
+          transition: opacity .3s ease;
         }
         
-        .ytp-modern-videowall-still:nth-child(n+9) {
-          display: none;
+        .ytp-modern-videowall-still-info {
+          position: absolute;
+          top: 0;
         }
         
-        .ytp-fullscreen-grid-stills-container:has(> .ytp-modern-videowall-still:hover) .ytp-modern-videowall-still:not(:hover) {
-          opacity: 0.8;
+        .ytp-modern-videowall-still-info {
+          position: absolute;
+          inset: 0;
+          margin: unset;
+          padding: 10px;
+          background-image: linear-gradient(to bottom, rgba(12, 12, 12, 0.8) 0, transparent 100px);
+          color: #fff;
+          opacity: var(--_opacity, 0);
+          transition: opacity .3s ease;
         }
         
-        .ytp-modern-videowall-still-info-author, 
+        .ytp-modern-videowall-still-info-title {
+          font-size: 118%;
+          font-weight: 500;
+          line-height: 1.2;
+        }
+        
+        .ytp-modern-videowall-still-info-author {
+          font-size: var(--endcard-grid-font-size);
+          margin: unset;
+          color: #fff;
+        }
+        
+        
         .ytp-modern-videowall-still-view-count-and-date-info {
           display: none;
         }
