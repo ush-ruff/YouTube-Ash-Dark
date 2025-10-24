@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.42.5
+@version        2.42.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2644,6 +2644,10 @@
         &.ytp-fullscreen:not(.unstarted-mode, .ended-mode) .ytp-chrome-bottom:not(:hover) {
           opacity: 0;
         }
+        
+        &:is(.unstarted-mode, .ended-mode) .ytp-chrome-bottom {
+          opacity: 1;
+        }
 
         .ytp-chrome-bottom .ytp-button svg {
           width: 100%;
@@ -2907,9 +2911,13 @@
         }
         
         .ytp-modern-videowall-still-info-duration {
-          font-size: 11px;
           right: 2px;
           bottom: 2px;
+          font-size: var(--endcard-grid-font-size);
+          line-height: 1.8;
+          padding: 1px 4px;
+          background-color: rgba(0, 0, 0, 0.8);
+          border-radius: 2px;
           opacity: var(--_opacity, 0);
           transition: opacity .3s ease;
         }
