@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.42.8
+@version        2.42.9
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2021,7 +2021,10 @@
 @-moz-document domain("youtube.com") {
   /* ----- Hide 100% Watched Videos on Home Page ----- */
   if (hideWatchedVideos) {
-    ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]), 
+    ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
+      display: none !important;
+    }
+
     ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style="width: 100%;"]) {
       display: none !important;
     }
