@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.42.7
+@version        2.42.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2341,7 +2341,9 @@
       #movie_player.ytp-delhi-modern {
         --ytp-grid-scroll-percentage: 0 !important;
         
-        --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 2px);
+        --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 4px);
+        
+        --player-controls-padding: 12px;
         
         --progress-bar-height: 5px;
         --progress-bar-position: 47px;
@@ -2362,6 +2364,8 @@
         position: relative;
         
         &.ytp-big-mode {
+          --player-controls-padding: 24px;
+          
           --progress-bar-height: 8px;
           --progress-bar-position: 52.5px;
           --progress-bar-handle-size: 20px;
@@ -2393,6 +2397,10 @@
         }
         
         &.ytp-fullscreen:not(.ended-mode) .ytp-fullscreen-grid {
+          display: none;
+        }
+        
+        .ytp-ce-hide-button-container {
           display: none;
         }
         
@@ -2430,8 +2438,9 @@
           z-index: 24;
         }
 
-        /*  &.ytp-fullscreen:is(.paused-mode, .unstarted-mode)::after,  */
-        &:not(.ytp-fullscreen)::after {
+        &.ytp-fullscreen:has(.ytp-chrome-bottom:hover)::after, 
+        &:is(.unstarted-mode, .ended-mode)::after, 
+        &:not(.ytp-fullscreen, .ytp-autohide)::after {
           content: "";
         }
         
@@ -2484,9 +2493,14 @@
           font-size: 27px;
         }
         
-        &.ytp-fullscreen:is(.paused-mode, .unstarted-mode) :is(.ytp-overlay-top-left, .ytp-overlay-top-right),
+        &.ytp-fullscreen:is(.paused-mode, .unstarted-mode, .ended-mode) :is(.ytp-overlay-top-left, .ytp-overlay-top-right),
         &.ytp-fullscreen .ytp-overlays-container:hover :is(.ytp-overlay-top-left, .ytp-overlay-top-right) {
           opacity: 1;
+        }
+        
+        .ytp-chrome-top-buttons {
+          padding-top: 20px;
+          z-index: 99;
         }
         
         
@@ -2496,8 +2510,12 @@
           transition: unset;
         }
 
-        .ytp-tooltip:not([aria-hidden="true"]) {
+        .ytp-tooltip:not([aria-hidden="true"], [style*="top: 86px"]) {
           bottom: var(--tooltip-position);
+        }
+        
+        .ytp-tooltip.ytp-tooltip-opaque[style*="top: 86px"] {
+          top: var(--tooltip-position) !important;
         }
         
         .ytp-tooltip-bottom-text {
@@ -2635,7 +2653,9 @@
           
           --branding-image-width: 400px;
           
+          width: calc(100% - (var(--player-controls-padding) * 2)) !important;
           bottom: 0;
+          left: var(--player-controls-padding) !important;
           
           &[style*="height: "] {
             height: var(--player-controls-size) !important;
@@ -2650,7 +2670,7 @@
           opacity: 1;
         }
 
-        .ytp-chrome-bottom .ytp-button svg {
+        .ytp-chrome-bottom .ytp-button svg:not(.sbChapterVoteButton) {
           width: 100%;
           height: 100%;
           padding: unset;
