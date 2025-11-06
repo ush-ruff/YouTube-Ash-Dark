@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.44.0
+@version        2.45.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -89,6 +89,16 @@
 
   html, html[dark] {
     background: var(--bg-200) !important;
+  }
+  
+  
+  /* ---- Page - Skeleton ----- */
+  #home-container-skeleton {
+    background: var(--bg-200) !important;
+  }
+  
+  #scrim.tp-yt-app-drawer {
+    background: unset;
   }
 
 
@@ -2021,7 +2031,7 @@
     }
     
     /* Hide skeleton */
-    html[dark] #home-chips {
+    #home-chips {
       display: none;
     }
   }
