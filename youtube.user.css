@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.45.3
+@version        2.46.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2073,20 +2073,20 @@
   /* ----- Hide Player Overlays in Fullscreen ----- */
   if (hidePlayerControls) {
     /* -- Title -- */
-    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-gradient-top:not(:hover),
-    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top:not(:hover) {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode):not(.ytp-delhi-modern) .ytp-gradient-top:not(:hover),
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-top:not(:hover) {
       opacity: 0;
     }
 
     /* -- Controls -- */
-    .ytp-fullscreen:not(.ended-mode) .ytp-gradient-bottom:not(:hover),
-    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom:not(:hover) {
+    .ytp-fullscreen:not(.ended-mode):not(.ytp-delhi-modern) .ytp-gradient-bottom:not(:hover),
+    .ytp-fullscreen:not(.ended-mode:not(.ytp-delhi-modern)) .ytp-chrome-bottom:not(:hover) {
       opacity: 0;
     }
 
     /* -- Background gradient -- */
-    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top::before,
-    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-top::before,
+    .ytp-fullscreen:not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-bottom::before {
       content: "";
       position: absolute;
       height: 70px;
@@ -2098,20 +2098,20 @@
       z-index: -1;
     }
 
-    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-top::before {
       inset: 0 -10em auto;
       padding-bottom: 76px;
       background-position: top;
     }
 
-    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom::before {
+    .ytp-fullscreen:not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-bottom::before {
       inset: auto -10em 0;
       padding-top: 76px;
       background-position: bottom;
     }
 
-    .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .ytp-chrome-top:hover::before,
-    .ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom:hover::before {
+    .ytp-fullscreen:not(.paused-mode):not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-top:hover::before,
+    .ytp-fullscreen:not(.ended-mode):not(.ytp-delhi-modern) .ytp-chrome-bottom:hover::before {
       opacity: 1;
     }
 
@@ -2124,6 +2124,56 @@
     /* Channel Logo */
     .ytp-fullscreen:not(.paused-mode):not(.ended-mode) .iv-branding {
       display: none;
+    }
+
+    /* --- Delhi Player --- */
+    #movie_player.ytp-delhi-modern {
+      /* -- Title -- */
+      .ytp-overlay-top-left, .ytp-overlay-top-right {
+        opacity: 0 !important;
+      }
+      
+      &.ytp-fullscreen.paused-mode .ytp-overlay-top-left,
+      &.ytp-fullscreen.unstarted-mode .ytp-overlay-top-left,
+      &.ytp-fullscreen.ended-mode .ytp-overlay-top-left,
+      &.ytp-fullscreen.paused-mode .ytp-overlay-top-right,
+      &.ytp-fullscreen.unstarted-mode .ytp-overlay-top-right,
+      &.ytp-fullscreen.ended-mode .ytp-overlay-top-right, 
+      &.ytp-fullscreen .ytp-overlays-container:hover .ytp-overlay-top-left, 
+      &.ytp-fullscreen .ytp-overlays-container:hover .ytp-overlay-top-right {
+        opacity: 1 !important;
+      }
+      
+      /* -- Controls -- */
+      &.ytp-fullscreen:not(.unstarted-mode) .ytp-chrome-bottom:not(:hover), 
+      &.ytp-fullscreen:not(.ended-mode) .ytp-chrome-bottom:not(:hover) {
+        opacity: 0 !important;
+      }
+      
+      &.unstarted-mode .ytp-chrome-bottom, 
+      &.ended-mode .ytp-chrome-bottom {
+        opacity: 1 !important;
+      }
+
+      /* -- Background Gradient -- */
+      &::before, &::after {
+        content: unset !important;
+      }
+
+      /* -- Gradient Top -- */
+      &.ytp-fullscreen.paused-mode::before,
+      &.ytp-fullscreen.unstarted-mode::before,
+      &.ytp-fullscreen:has(.ytp-overlays-container:hover)::before {
+        content: "" !important;
+      }
+
+      /* -- Gradient Bottom -- */
+      &.ytp-fullscreen:has(.ytp-chrome-bottom:hover)::after,
+      &.unstarted-mode::after,
+      &.ended-mode::after,
+      &:not(.ytp-fullscreen):not(.ytp-autohide)::after {
+        content: "" !important;
+      }
     }
   }
 }
@@ -2458,6 +2508,14 @@
           transition: opacity .25s cubic-bezier(0, 0, 0.2, 1);
           pointer-events: none;
         }
+        
+        &.ytp-fullscreen:not(.ytp-autohide)::before {
+          content: "";
+        }
+        
+        &:not(.ytp-autohide)::after {
+          content: "";
+        }
 
         /* --- Gradient Top --- */
         &::before {
@@ -2468,11 +2526,6 @@
           z-index: 25;
         }
 
-        &.ytp-fullscreen:is(.paused-mode, .unstarted-mode)::before, 
-        &.ytp-fullscreen:has(.ytp-overlays-container:hover)::before {
-          content: "";
-        }
-
         /* --- Gradient Bottom --- */
         &::after {
           height: 61px;
@@ -2480,12 +2533,6 @@
           padding-top: 37px;
           background-position: bottom;
           z-index: 24;
-        }
-
-        &.ytp-fullscreen:has(.ytp-chrome-bottom:hover)::after, 
-        &:is(.unstarted-mode, .ended-mode)::after, 
-        &:not(.ytp-fullscreen, .ytp-autohide)::after {
-          content: "";
         }
         
         /* --- Title --- */
@@ -2537,8 +2584,7 @@
           font-size: 27px;
         }
         
-        &.ytp-fullscreen:is(.paused-mode, .unstarted-mode, .ended-mode) :is(.ytp-overlay-top-left, .ytp-overlay-top-right),
-        &.ytp-fullscreen .ytp-overlays-container:hover :is(.ytp-overlay-top-left, .ytp-overlay-top-right) {
+        &.ytp-fullscreen:not(.ytp-autohide) .ytp-overlays-container :is(.ytp-overlay-top-left, .ytp-overlay-top-right) {
           opacity: 1;
         }
         
@@ -2546,7 +2592,6 @@
           padding-top: 20px;
           z-index: 99;
         }
-        
         
         /* --- Tooltip - Text --- */
         .ytp-tooltip {
@@ -2758,14 +2803,6 @@
           &[style*="height: "] {
             height: var(--player-controls-size) !important;
           }
-        }
-        
-        &.ytp-fullscreen:not(.unstarted-mode, .ended-mode) .ytp-chrome-bottom:not(:hover) {
-          opacity: 0;
-        }
-        
-        &:is(.unstarted-mode, .ended-mode) .ytp-chrome-bottom {
-          opacity: 1;
         }
 
         .ytp-chrome-bottom .ytp-button svg:not(.sbChapterVoteButton) {
@@ -3161,6 +3198,9 @@
     for key, value in playerIconsDelhi {
       changePath(key, value);
     }
+    
+    
+    
     
   }
 }
