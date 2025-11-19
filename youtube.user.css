@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.3
+@version        2.46.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -93,6 +93,12 @@
   
   
   /* ---- Page - Skeleton ----- */
+  ytd-masthead.shell.dark,
+  ytd-masthead.shell.theater, 
+  ytd-masthead.shell.full-window-mode {
+    background-color: unset !important
+  }
+
   #guide-skeleton {
     background-color: var(--bg-300) !important;
   }
