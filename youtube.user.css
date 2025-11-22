@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.4
+@version        2.46.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2180,6 +2180,17 @@
         &:not(.ytp-fullscreen):not(.ytp-autohide)::after {
           content: "" !important;
         }
+
+        /* -- Subtitles -- */
+        .caption-window.ytp-caption-window-bottom {
+          margin-bottom: 0 !important;
+        }
+
+        &.ytp-fullscreen:has(.ytp-chrome-bottom:hover) .caption-window.ytp-caption-window-bottom, 
+        &:is(.unstarted-mode, .ended-mode) .caption-window.ytp-caption-window-bottom,
+        &:not(.ytp-fullscreen):not(.ytp-autohide) .caption-window.ytp-caption-window-bottom {
+          margin-bottom: calc(var(--player-controls-size)) !important;
+        }
       }
     }
   }
@@ -2784,6 +2795,15 @@
             border-radius: 50%;
             transform: unset;
           }
+        }
+
+        /* --- Subtitles --- */
+        &.ytp-fullscreen:not(.ytp-autohide):not(.ended-mode) .ytp-caption-window-container {
+          margin: unset;
+        }
+        
+        &:not(.ytp-autohide) .caption-window.ytp-caption-window-bottom {
+          margin-bottom: calc(var(--player-controls-size)) !important;
         }
 
         /* --- Player Controls --- */
