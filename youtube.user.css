@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.5
+@version        2.46.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2796,7 +2796,7 @@
             transform: unset;
           }
         }
-
+        
         /* --- Subtitles --- */
         &.ytp-fullscreen:not(.ytp-autohide):not(.ended-mode) .ytp-caption-window-container {
           margin: unset;
@@ -2805,7 +2805,7 @@
         &:not(.ytp-autohide) .caption-window.ytp-caption-window-bottom {
           margin-bottom: calc(var(--player-controls-size)) !important;
         }
-
+        
         /* --- Player Controls --- */
         .ytp-chrome-bottom {
           --yt-delhi-bottom-controls-height: var(--player-controls-size);
@@ -3052,7 +3052,7 @@
           left: 13px;
         }
         
-        .ytp-settings-button.ytp-hd-quality-badge::after {
+        .ytp-settings-button:is(.ytp-hd-quality-badge, .ytp-hdr-quality-badge, .ytp-4k-quality-badge, .ytp-5k-quality-badge, .ytp-8k-quality-badge, .ytp-3d-badge-grey, .ytp-3d-badge)::after {
           content: "";
           position: absolute;
           top: 10px;
@@ -3061,10 +3061,32 @@
           height: 9px;
           line-height: normal;
           background-color: var(--yt-spec-red-indicator, #e1002d);
-          background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbC1vcGFjaXR5PSIwLjY0NzEiIGZpbGw9IiMwMDAiIGQ9Ik01LDcgTDYsNyBMNiw4IEw1LDggTDUsNyBaIE0xMCwzIEwxMCw0IEw4LDQgTDgsMyBMMTAsMyBaIE0zLDYgTDMsNSBMNSw1IEw1LDYgTDMsNiBaIE0yLDcgTDMsNyBMMyw4IEwyLDggTDIsNyBaIE03LDcgTDEwLDcgTDEwLDggTDcsOCBMNyw3IFogTTEwLDYgTDExLDYgTDExLDcgTDEwLDcgTDEwLDYgWiIgLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNmZmYiIGQ9Ik01LDcgTDUsNiBMNSw1IEwzLDUgTDMsNiBMMyw3IEwyLDcgTDIsMiBMMywyIEwzLDQgTDUsNCBMNSwyIEw2LDIgTDYsNyBMNSw3IFogTTExLDYgTDEwLDYgTDEwLDcgTDcsNyBMNywyIEwxMCwyIEwxMCwzIEwxMSwzIEwxMSw2IFogTTEwLDQgTDEwLDMgTDgsMyBMOCw0IEw4LDYgTDEwLDYgTDEwLDQgWiIgLz48L3N2Zz4=);
+          background-repeat: no-repeat;
+          background-size: cover;
           border-radius: 1px;
         }
-
+        
+        .ytp-settings-button.ytp-hd-quality-badge::after {
+          background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbC1vcGFjaXR5PSIwLjY0NzEiIGZpbGw9IiMwMDAiIGQ9Ik01LDcgTDYsNyBMNiw4IEw1LDggTDUsNyBaIE0xMCwzIEwxMCw0IEw4LDQgTDgsMyBMMTAsMyBaIE0zLDYgTDMsNSBMNSw1IEw1LDYgTDMsNiBaIE0yLDcgTDMsNyBMMyw4IEwyLDggTDIsNyBaIE03LDcgTDEwLDcgTDEwLDggTDcsOCBMNyw3IFogTTEwLDYgTDExLDYgTDExLDcgTDEwLDcgTDEwLDYgWiIgLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNmZmYiIGQ9Ik01LDcgTDUsNiBMNSw1IEwzLDUgTDMsNiBMMyw3IEwyLDcgTDIsMiBMMywyIEwzLDQgTDUsNCBMNSwyIEw2LDIgTDYsNyBMNSw3IFogTTExLDYgTDEwLDYgTDEwLDcgTDcsNyBMNywyIEwxMCwyIEwxMCwzIEwxMSwzIEwxMSw2IFogTTEwLDQgTDEwLDMgTDgsMyBMOCw0IEw4LDYgTDEwLDYgTDEwLDQgWiIgLz48L3N2Zz4=);
+        }
+        
+        .ytp-settings-button.ytp-4k-quality-badge::after {
+          background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbC1vcGFjaXR5PSIwLjY0NzEiIGZpbGw9IiMwMDAiIGQ9Ik0xMCw0IEwxMSw0IEwxMSw1IEwxMCw1IEwxMCw0IFogTTEwLDcgTDExLDcgTDExLDggTDEwLDggTDEwLDcgWiBNOCw1IEwxMCw1IEwxMCw2IEw4LDYgTDgsNSBaIE03LDcgTDgsNyBMOCw4IEw3LDggTDcsNyBaIE01LDYgTDYsNiBMNiw3IEw1LDcgTDUsNiBaIE00LDcgTDUsNyBMNSw4IEw0LDggTDQsNyBaIE0yLDYgTDQsNiBMNCw3IEwyLDcgTDIsNiBaIE0zLDQgTDQsNCBMNCw1IEwzLDUgTDMsNCBaIiAvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZiIgZD0iTTExLDUgTDExLDcgTDEwLDcgTDEwLDYgTDEwLDUgTDExLDUgWiBNMTAsNSBMOCw1IEw4LDYgTDgsNyBMNyw3IEw3LDIgTDgsMiBMOCw0IEwxMCw0IEwxMCw1IFogTTQsNCBMMyw0IEwzLDUgTDQsNSBMNCw0IFogTTQsNyBMNCw2IEwyLDYgTDIsNCBMMyw0IEwzLDMgTDQsMyBMNCwyIEw1LDIgTDUsNSBMNiw1IEw2LDYgTDUsNiBMNSw3IEw0LDcgWiBNMTAsMiBMMTEsMiBMMTEsNCBMMTAsNCBMMTAsMiBaIiAvPjwvc3ZnPg==)
+        }
+        
+        .ytp-settings-button.ytp-5k-quality-badge::after {
+          background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbC1vcGFjaXR5PSIwLjY0NzEiIGZpbGw9IiMwMDAiIGQ9Ik0xMCw0IEwxMSw0IEwxMSw1IEwxMCw1IEwxMCw0IFogTTEwLDcgTDExLDcgTDExLDggTDEwLDggTDEwLDcgWiBNOCw1IEwxMCw1IEwxMCw2IEw4LDYgTDgsNSBaIE03LDcgTDgsNyBMOCw4IEw3LDggTDcsNyBaIE01LDYgTDYsNiBMNiw3IEw1LDcgTDUsNiBaIE0yLDcgTDUsNyBMNSw4IEwyLDggTDIsNyBaIE0yLDUgTDUsNSBMNSw2IEwyLDYgTDIsNSBaIiAvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZiIgZD0iTTExLDUgTDExLDcgTDEwLDcgTDEwLDYgTDEwLDUgTDExLDUgTTEwLDUgTDgsNSBMOCw2IEw4LDcgTDcsNyBMNywyIEw4LDIgTDgsNCBMMTAsNCBMMTAsNSBNMTAsMiBMMTEsMiBMMTEsNCBMMTAsNCBMMTAsMiBNMiw2IEw1LDYgTDUsNyBMMiw3IE01LDUgTDYsNSBMNiw2IEw1LDYgTTUsNCBMMyw0IEwzLDMgTDYsMyBMNiwyIEwyLDIgTDIsNSBMNSw1IEw1LDQgWiIgLz48L3N2Zz4=)
+        }
+        
+        .ytp-settings-button.ytp-8k-quality-badge::after {
+          background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbC1vcGFjaXR5PSIwLjY0NzEiIGZpbGw9IiMwMDAiIGQ9Ik0xMCw0IEwxMSw0IEwxMSw1IEwxMCw1IEwxMCw0IFogTTEwLDcgTDExLDcgTDExLDggTDEwLDggTDEwLDcgWiBNOCw1IEwxMCw1IEwxMCw2IEw4LDYgTDgsNSBaIE03LDcgTDgsNyBMOCw4IEw3LDggTDcsNyBaIE01LDYgTDYsNiBMNiw3IEw1LDcgTDUsNiBaIE0zLDUgTDUsNSBMNSw2IEwzLDYgTDMsNSBaIE0zLDMgTDUsMyBMNSw0IEwzLDQgTDMsMyBaIE01LDQgTDYsNCBMNiw1IEw1LDUgTDUsNCBaIE0yLDQgTDMsNCBMMyw1IEwyLDUgTDIsNCBaIE0yLDYgTDMsNiBMMyw3IEwyLDcgTDIsNiBaIE0zLDcgTDUsNyBMNSw4IEwzLDggTDMsNyBaIiAvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2ZmZiIgZD0iTTExLDUgTDExLDcgTDEwLDcgTDEwLDYgTDEwLDUgTDExLDUgTTEwLDUgTDgsNSBMOCw2IEw4LDcgTDcsNyBMNywyIEw4LDIgTDgsNCBMMTAsNCBMMTAsNSBNMTAsMiBMMTEsMiBMMTEsNCBMMTAsNCBMMTAsMiBNMyw2IEw1LDYgTDUsNyBMMyw3IE0zLDIgTDUsMiBMNSwzIEwzLDMgTDMsMiBaIE01LDUgTDYsNSBMNiw2IEw1LDYgTDUsNSBaIE0zLDQgTDUsNCBMNSw1IEwzLDUgTDMsNCBaIE01LDMgTDYsMyBMNiw0IEw1LDQgTDUsMyBaIE0yLDUgTDMsNSBMMyw2IEwyLDYgTDIsNSBaIE0yLDMgTDMsMyBMMyw0IEwyLDQgTDIsMyBaIiAvPjwvc3ZnPg==)
+        }
+        
+        .ytp-settings-button.ytp-3d-badge-grey::after,
+        .ytp-settings-button.ytp-3d-badge::after {
+          background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9Ik0yIDJoNHY1aC00di0xaDN2LTFoLTN2LTFoM3YtMWgtM3pNNyAyaDN2MWgtMnYzaDJ2MWgtM3pNMTAgM2gxdjNoLTF6IiBmaWxsPSIjZmZmIiAvPjxwYXRoIGQ9Ik0yIDNoM3YxaC0zek04IDNoMnYxaC0yek0yIDVoM3YxaC0zek0xMCA2aDF2MWgtMXpNMiA3aDR2MWgtNHpNNyA3aDN2MWgtM3oiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC42NDcxIiAvPjwvc3ZnPg==)
+        }
+        
         /* -- Fullscreen -- */
         .ytp-fullscreen-button path {
           scale: 0.8;
@@ -4185,7 +4207,7 @@
     "M21.007 6.298 11.7.924l-.077-.04a.85.85 0 00-.772 1.51l.735.425-3.394 5.878-1.718.46a1.5 1.5 0 00-.91.698l-1.012 1.753a.75.75 0 00.274 1.024l9.479 5.473a.75.75 0 001.024-.275l1.01-1.752a1.501 1.501 0 00.15-1.14l-.46-1.715 3.395-5.88.734.425a.85.85 0 00.849-1.47Zm-11.083 3.4 3.243-5.617 4.373 2.525-3.242 5.616a2 2 0 00-.2 1.518l.407 1.517-.283.49-7.313-4.22.283-.49 1.518-.41a2 2 0 001.214-.93ZM7.15 21.814l3.395-5.88-1.96-1.13-3.393 5.879-.152 2.525 2.11-1.394Z": "M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1H8v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z",
 
     /* Chat Replay */
-    "": "M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z",
+    "M16 2H4a3 3 0 00-3 3v8a3 3 0 003 3h1v2.14a.8.8 0 001.188.7L11.3 16H16a3 3 0 003-3V5a3 3 0 00-3-3ZM4 4h12a1 1 0 011 1v8a1 1 0 01-1 1h-5.218l-.452.252L7 16.1V14H4a1 1 0 01-1-1V5a1 1 0 011-1Zm17 2.174A3 3 0 0123 9v8a3 3 0 01-2.846 2.996L20 20v2.14a.8.8 0 01-1.189.7L13.701 20H8.216l3.6-2h2.402l.453.252L18 20.101V18.05l1.95-.05.113-.003A1 1 0 0021 17V6.174Z": "M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z",
     
   }
 
@@ -4354,6 +4376,9 @@
     /* Back arrow */
     "M10.293 4.293 2.586 12l7.707 7.706a1 1 0 101.414-1.413L6.414 13H20a1 1 0 000-2H6.414l5.293-5.292a1 1 0 00-1.414-1.415Z": "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
     
+    /* Double arrow */
+    "m21.41,23.29l-0.71,-0.71l4.59,-4.58l-4.59,-4.59l0.71,-0.71l5.3,5.3l-5.3,5.29zm-6.12,-0.7l-4.58,-4.59l4.59,-4.59l-0.71,-0.7l-5.3,5.29l5.29,5.29l0.71,-0.7z": "M15.91 22.59 11.33 18l4.58-4.59L14.5 12 8.5 18l6 6 1.41-1.41Zm4.18 0 4.58-4.59-4.58-4.59L21.5 12l6 6-6 6-1.41-1.41z",
+    
   }
 
   arrowIconsNoColorDelhi = {
@@ -4411,6 +4436,9 @@
     
     /* No. of videos */
     "M8 7.697a.25.25 0 01.38-.213l2.87 1.766-2.87 1.766a.25.25 0 01-.38-.213V7.697ZM7 9.5H2a.5.5 0 010-1h5v1Zm3-4a.5.5 0 010 1H2a.5.5 0 010-1h8Zm0-3a.5.5 0 010 1H2a.5.5 0 010-1h8Z": "M1.879 4.439h7.168V5.632h-7.168V4.439zm0-2.391h7.168v1.193h-7.168V2.048zm0 4.777H6.656v1.1981H1.879v-1.1981zm5.9699 0v3.584l2.9901-1.792-2.9901-1.792z",
+    
+    /* Playlist Saved */
+    "M19 2H5a2 2 0 00-2 2v16.887c0 1.266 1.382 2.048 2.469 1.399L12 18.366l6.531 3.919c1.087.652 2.469-.131 2.469-1.397V4a2 2 0 00-2-2Z": "M14 10H3v2h11V10zm0-4H3v2h11V6zM3 16h7v-2H3v2zm12.18 2.74-3.68-3.68 1.6-1.52 2.08 2.08 4.92-4.92 1.6 1.6-6.52 6.44Z",
     
   }
 
