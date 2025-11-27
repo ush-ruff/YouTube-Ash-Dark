@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.6
+@version        2.46.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -3085,6 +3085,40 @@
         .ytp-settings-button.ytp-3d-badge-grey::after,
         .ytp-settings-button.ytp-3d-badge::after {
           background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9Ik0yIDJoNHY1aC00di0xaDN2LTFoLTN2LTFoM3YtMWgtM3pNNyAyaDN2MWgtMnYzaDJ2MWgtM3pNMTAgM2gxdjNoLTF6IiBmaWxsPSIjZmZmIiAvPjxwYXRoIGQ9Ik0yIDNoM3YxaC0zek04IDNoMnYxaC0yek0yIDVoM3YxaC0zek0xMCA2aDF2MWgtMXpNMiA3aDR2MWgtNHpNNyA3aDN2MWgtM3oiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC42NDcxIiAvPjwvc3ZnPg==)
+        }
+        
+        &.ytp-big-mode .ytp-settings-button:is(.ytp-hd-quality-badge, .ytp-hdr-quality-badge, .ytp-4k-quality-badge, .ytp-5k-quality-badge, .ytp-8k-quality-badge, .ytp-3d-badge-grey, .ytp-3d-badge)::after {
+          top: 4px;
+          right: 4px;
+          width: auto;
+          height: auto;
+          background-image: none;
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-hd-quality-badge::after {
+          content:"HD"
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-hdr-quality-badge::after {
+          content:"HDR";
+          font-size:8px
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-4k-quality-badge::after {
+          content:"4K";
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-5k-quality-badge::after {
+          content:"5K"
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-8k-quality-badge::after {
+          content:"8K"
+        }
+        
+        &.ytp-big-mode .ytp-settings-button.ytp-3d-badge-grey::after,
+        &.ytp-big-mode .ytp-settings-button.ytp-3d-badge::after {
+          content:"3D"
         }
         
         /* -- Fullscreen -- */
