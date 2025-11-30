@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.7
+@version        2.46.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2611,17 +2611,28 @@
           z-index: 99;
         }
         
+        .ytp-overlay-top-right .ytp-playlist-menu-button {
+          display: block !important;
+          background-color: transparent;
+          opacity: 1 !important;
+          z-index: 99;
+        }
+        
         /* --- Tooltip - Text --- */
         .ytp-tooltip {
           top: unset !important;
           transition: unset;
         }
 
-        .ytp-tooltip:not([aria-hidden="true"], [style*="top: 86px"]) {
+        .ytp-tooltip:not([aria-hidden="true"], [style*="top: 86px"], [style*="top: 88px"]) {
           bottom: var(--tooltip-position);
         }
         
         .ytp-tooltip.ytp-tooltip-opaque[style*="top: 86px"] {
+          top: var(--tooltip-position) !important;
+        }
+        
+        .ytp-tooltip[style*="top: 88px"] {
           top: var(--tooltip-position) !important;
         }
         
@@ -3281,10 +3292,7 @@
     for key, value in playerIconsDelhi {
       changePath(key, value);
     }
-    
-    
-    
-    
+
   }
 }
 
