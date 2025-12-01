@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.46.8
+@version        2.47.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -137,6 +137,10 @@
 
   #voice-search-button.ytd-masthead {
     background-color: transparent !important;
+  }
+
+  .yt-badge-shape--no-text {
+    background: unset;
   }
 
 
@@ -688,6 +692,21 @@
   ytd-guide-renderer[guide-refresh] #sections.ytd-guide-renderer > ytd-guide-section-renderer.ytd-guide-renderer:not(:first-child),
   ytd-guide-renderer[guide-refresh] #sections.ytd-guide-renderer > ytd-guide-subscriptions-section-renderer.ytd-guide-renderer {
     padding-inline: 0;
+  }
+
+
+  /* ----- Sidebar - Fix sidebar order ----- */
+  #sections.ytd-guide-renderer {
+    display: flex;
+    flex-direction: column;
+
+    ytd-guide-section-renderer.style-scope:nth-child(1) {
+      order: -2;
+    }
+
+    ytd-guide-section-renderer.style-scope:nth-child(3) {
+      order: -1;
+    }
   }
 
 
@@ -2606,12 +2625,13 @@
           opacity: 1;
         }
         
+        /* --- Top Buttons --- */
         .ytp-chrome-top-buttons {
           padding-top: 20px;
           z-index: 99;
         }
         
-        .ytp-overlay-top-right .ytp-playlist-menu-button {
+        .ytp-overlay-top-right .ytp-playlist-menu-button:not([aria-label="null"]) {
           display: block !important;
           background-color: transparent;
           opacity: 1 !important;
@@ -3292,7 +3312,7 @@
     for key, value in playerIconsDelhi {
       changePath(key, value);
     }
-
+    
   }
 }
 
@@ -4363,7 +4383,7 @@
     "": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z",
 
     /* Unlisted */
-    "": "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
+    "M9 18c.226 0 .448-.012.667-.037A8.001 8.001 0 018.07 16H7a4 4 0 110-8h2a4 4 0 014 4 2 2 0 001.668 1.973A5.999 5.999 0 009 6H7a6 6 0 100 12h2Zm8 0a6 6 0 100-12h-2c-.225 0-.448.012-.667.036A8 8 0 0115.93 8H17a4 4 0 110 8h-2a4 4 0 01-4-4 2 2 0 00-1.668-1.973A6 6 0 0015 18h2Z": "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
 
     /* Private */
     "M12 1a5 5 0 00-5 5v3H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V11a2 2 0 00-2-2h-2V6a5 5 0 00-5-5Zm0 2a3 3 0 013 3v3H9V6a3 3 0 013-3ZM5 21V11h14v10H5Zm7-8a2 2 0 00-1 3.73v1.77a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1.77A2 2 0 0012 13Z": "M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z",
@@ -4394,6 +4414,9 @@
     
     /* Number of video views for channel */
     "M1.283 18.719a1 1 0 001.415 0l6.056-6.056 3.621 3.62a1 1 0 001.414 0l7.221-7.22v3.268a1 1 0 002 0V5.65h-6.682a1 1 0 100 2h3.267l-6.513 6.514-3.62-3.622a1 1 0 00-1.416 0l-6.763 6.764a1 1 0 000 1.413Z": "M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z",
+    
+    /* Tick */
+    "M19.793 5.793 8.5 17.086l-4.293-4.293a1 1 0 10-1.414 1.414L8.5 19.914 21.207 7.207a1 1 0 10-1.414-1.414Z": "M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z",
     
     /* Sentiment - Very Good */
     "M15,14.5c0,1.38-1.12,2.5-2.5,2.5S10,15.88,10,14.5s1.12-2.5,2.5-2.5S15,13.12,15,14.5z M23.5,12c-1.38,0-2.5,1.12-2.5,2.5  s1.12,2.5,2.5,2.5s2.5-1.12,2.5-2.5S24.88,12,23.5,12z M24.77,22.27c0.15-0.23,0.08-0.54-0.16-0.69c-0.23-0.15-0.54-0.08-0.69,0.16  C22.63,23.78,20.42,25,18,25c-2.42,0-4.63-1.22-5.92-3.27c-0.15-0.23-0.46-0.3-0.69-0.16c-0.23,0.15-0.3,0.46-0.16,0.69  C12.71,24.6,15.24,26,18,26C20.76,26,23.29,24.6,24.77,22.27z M18,3C9.73,3,3,9.73,3,18s6.73,15,15,15s15-6.73,15-15S26.27,3,18,3   M18,2c8.84,0,16,7.16,16,16s-7.16,16-16,16S2,26.84,2,18S9.16,2,18,2L18,2z": "M16.983 0C7.599 0 0 7.616 0 17s7.599 17 16.983 17C26.384 34 34 26.384 34 17S26.384 0 16.983 0ZM17 30.6C9.486 30.6 3.4 24.514 3.4 17S9.486 3.4 17 3.4 30.6 9.486 30.6 17 24.514 30.6 17 30.6ZM8.5 20.4c1.326 3.978 4.624 6.8 8.5 6.8s7.174-2.822 8.5-6.8H8.5Zm2.55-5.1c-1.411 0-2.55-1.139-2.55-2.55s1.139-2.55 2.55-2.55 2.55 1.139 2.55 2.55-1.139 2.55-2.55 2.55Zm11.9 0c-1.411 0-2.55-1.139-2.55-2.55s1.139-2.55 2.55-2.55 2.55 1.139 2.55 2.55-1.139 2.55-2.55 2.55Z",
