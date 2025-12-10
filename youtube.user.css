@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.48.4
+@version        2.49.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -94,7 +94,7 @@
   }
   
   
-  /* ---- Page - Skeleton ----- */
+  /* ----- Skeleton - Page ----- */
   ytd-masthead.shell.dark,
   ytd-masthead.shell.theater, 
   ytd-masthead.shell.full-window-mode {
@@ -116,6 +116,12 @@
   #home-page-skeleton .rich-thumbnail::before {
     border-radius: 0;
     background: unset;
+  }
+
+
+  /* ----- Skeleton - Cards ----- */
+  .skeleton-bg-color.ytd-ghost-grid-renderer {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
 
@@ -1483,6 +1489,7 @@
     #home-page-skeleton .rich-thumbnail,
     #home-page-skeleton .rich-thumbnail.rounded-thumbs,
     #home-container-skeleton .rich-thumbnail.rounded-thumbs:before,
+    .rich-thumbnail.ytd-ghost-grid-renderer, 
 
     /* --- 'Sign In' card --- */
     #contentWrapper.tp-yt-iron-dropdown > ytd-modal-with-title-and-button-renderer,
@@ -1888,6 +1895,21 @@
       max-width: unset !important;
       margin: unset;
 		}
+    
+    /* --- Explore Section - Cards Skeleton --- */
+    ytd-ghost-grid-renderer .ghost-grid.ytd-ghost-grid-renderer {
+      --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) - 1))) / var(--grid-columns-count));
+      
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--size), 1fr));
+      gap: 4rem var(--ytd-rich-grid-item-margin);
+      padding-inline: calc(var(--ytd-rich-grid-gutter-margin) * 0.5);
+      
+      .ghost-card.ytd-ghost-grid-renderer {
+        width: auto;
+        margin: unset;
+      }
     
     /* --- Fix to show a minimum number of item rows before a section is shown (currently 3 rows) --- */
     [page-subtype="home"] #primary > ytd-rich-grid-renderer > #contents > ytd-rich-item-renderer:nth-of-type(-n + {customGridColumns * 3}) {
