@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.1
+@version        2.49.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2525,7 +2525,6 @@
         --ytp-grid-scroll-percentage: 0 !important;
         
         --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 4px);
-        --tooltip-timestamp-position: 40px;
         
         --progress-bar-height: 5px;
         --progress-bar-position: 47px;
@@ -2546,8 +2545,7 @@
         position: relative;
         
         &.ytp-big-mode {
-          --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 20px);
-          --tooltip-timestamp-position: 56px;
+          /* --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 20px); */
           
           --progress-bar-height: 8px;
           --progress-bar-position: 52.5px;
@@ -2588,6 +2586,10 @@
         }
         
         .ytp-ce-hide-button-container {
+          display: none;
+        }
+        
+        .ytp-gradient-top, .ytp-gradient-bottom {
           display: none;
         }
         
@@ -2739,34 +2741,73 @@
         }
         
         /* --- Tooltip - Thumbnail --- */
-        .ytp-tooltip.ytp-preview:not(.ytp-has-duration) {
-          bottom: calc(var(--tooltip-position) + 32px);
-        }
-
         .ytp-tooltip.ytp-preview:not(.ytp-text-detail) {
+          display: grid;
+          grid-template-areas: "seek" "image" "title" "time";
+          gap: 0.5rem;
           padding: 2px;
-        }
-        
-        .ytp-preview:not(.ytp-text-detail) .ytp-tooltip-title {
-          width: 100%;
-          top: calc(var(--tooltip-timestamp-position)) !important;
-          right: 0 !important;
-          text-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
-        }
-        
-        .ytp-tooltip-progress-bar-pill {
-          top: var(--tooltip-timestamp-position);
-          background-color: rgba(28, 28, 28, 0.9);
-          border-radius: 2px;
-          padding: 4px 9px;
+          background: transparent;
+          transform: unset !important;
+          
+          .ytp-tooltip-text-wrapper {
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            position: static;
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-template-rows: subgrid;
+            justify-items: center;
+            transform: unset !important;
+          }
+          
+          .ytp-tooltip-edu {
+            grid-area: seek;
+            position: static;
+            transform: unset !important;
+          }
+          
+          .ytp-tooltip-title {
+            grid-area: title;
+            position: static;
+            width: auto;
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+          }
+          
+          .ytp-tooltip-progress-bar-pill {
+            grid-area: time;
+            position: static;
+            inset: unset !important;
+            padding: 4px 9px;
+            background-color: rgba(28, 28, 28, 0.9);
+            border-radius: 2px;
+            transform: unset;
+          }
+          
+          .ytp-tooltip-bg {
+            grid-area: image;
+            position: static;
+            border: 3px solid white;
+          }
         }
         
         .ytp-tooltip-text-wrapper:has(.ytp-tooltip-title) .ytp-tooltip-progress-bar-pill-title {
           display: none;
         }
         
-        .ytp-tooltip-progress-bar-pill {
-          top: calc(var(--tooltip-timestamp-position) - 6px);
+        .ytp-tooltip.ytp-preview:not(.ytp-text-detail):has(.ytp-tooltip-text-wrapper > .ytp-tooltip-title:nth-child(2 of .ytp-tooltip-title[style*="display: inline-block"])) {
+          grid-template-areas: "seek" "image" "sponsor" "title" "time";
+          
+          .ytp-tooltip-title:nth-child(1 of .ytp-tooltip-title.sponsorCategoryTooltip) {
+            grid-area: sponsor;
+          }
+          
+          .ytp-tooltip-title:nth-child(2 of .ytp-tooltip-title.sponsorCategoryTooltip) {
+            grid-area: title
+          }
+        }
+        
+        &:not(.ytp-big-mode) .ytp-tooltip.sponsorCategoryTooltipVisible.sponsorTwoTooltips > .ytp-tooltip-text-wrapper {
+          transform: unset !important;
         }
         
         /* --- Tooltip - Next Video --- */
