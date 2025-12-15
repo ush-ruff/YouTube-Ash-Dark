@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.2
+@version        2.49.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2714,22 +2714,19 @@
           transition: unset;
         }
 
-        .ytp-tooltip:not([aria-hidden="true"], [style*="top: 86px"], [style*="top: 88px"]) {
+        .ytp-tooltip:not([aria-hidden="true"]) {
           bottom: var(--tooltip-position);
         }
         
-        .ytp-tooltip.ytp-tooltip-opaque[style*="top: 86px"] {
+        &:has(.ytp-overlay-top-right:hover) .ytp-tooltip:not([aria-hidden="true"]) {
           top: var(--tooltip-position) !important;
-        }
-        
-        .ytp-tooltip[style*="top: 88px"] {
-          top: var(--tooltip-position) !important;
+          bottom: unset;
         }
         
         .ytp-tooltip-bottom-text {
           background-color: rgba(28, 28, 28, 0.9);
-          border-radius: 4px;
           padding: 5px 9px;
+          border-radius: 4px;
         }
         
         .ytp-tooltip-keyboard-shortcut {
