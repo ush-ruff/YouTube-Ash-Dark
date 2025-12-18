@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.3
+@version        2.49.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2438,62 +2438,129 @@
 @-moz-document domain("youtube.com") {
   /* ----- Restore Comment Replies Style ----- */
   if (restoreCommentReplies) {
-    :is(#more-replies, #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-      font-size: 14px;
-      text-transform: lowercase;
-    }
+    // :is(#more-replies, #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
+    //   font-size: 14px;
+    //   text-transform: lowercase;
+    // }
+      
+    // #more-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
+    //   content: "View ";
+    //   text-transform: capitalize;
+    // }
+      
+    // #less-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
+    //   content: "Hide ";
+    //   text-transform: capitalize;
+    // }
+      
+    // :is(#more-replies, #less-replies) button.yt-spec-button-shape-next[aria-label="1 reply" i] :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
+    //   color: transparent;
+      
+    //   &::before {
+    //     color: var(--accent-blue);
+    //     text-transform: initial;
+    //   }
+    // }
+      
+    // #more-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
+    //   content: "View reply";
+    //   text-transform: initial;
+    // }
 
-    #more-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
-      content: "View ";
-      text-transform: capitalize;
-    }
+    // #less-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
+    //   content: "Hide reply";
+    //   text-transform: initial;
+    // }
+      
+    // #more-replies-icon yt-icon, #less-replies-icon yt-icon {
+    //   color: var(--accent-blue);
+    // }
+      
+    // #reply-button-end .yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
+    //   text-transform: uppercase;
+    //   color: var(--cl-600);
+      
+    //   &:hover, &:focus {
+    //     text-decoration: none;
+    //     color: var(--cl-400);
+    //   }
+    // }
+      
+    // /* Arrow Icon size fix */
+    // :is(#more-replies, #less-replies) .yt-spec-button-shape-next__icon svg {
+    //   scale: 1.25;
+    // }
+      
+    // /* Show more comments */
+    // #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
+    //   text-transform: none;
+    // }
 
-    #less-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
-      content: "Hide ";
-      text-transform: capitalize;
-    }
-
-    :is(#more-replies, #less-replies) button.yt-spec-button-shape-next[aria-label="1 reply" i] :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-      color: transparent;
-
-      &::before {
-        color: var(--accent-blue);
-        text-transform: initial;
+    @css {
+      #comments {
+        .thread-hitbox, .threadline, .ytSubThreadThreadline {
+          display: none;
+        }
+        
+        .ytSubThreadSubThreadContent {
+          margin: unset;
+          padding-inline-start: 5rem;
+        }
+        
+        .ytSubThreadHost:not(.ytSubThreadHasButton) {
+          margin-block-start: 1rem;
+        }
+        
+        #more-replies-sub-thread, #less-replies-sub-thread {
+          --icon-color: var(--accent-blue);
+          
+          button {
+            padding: unset;
+          }
+          
+          button::after {
+            margin-inline-start: 0.5rem;
+            color: var(--icon-color);
+          }
+          
+          .yt-spec-button-shape-next__button-text-content {
+            display: none;
+          }
+          
+          .yt-spec-button-shape-next__icon {
+            margin: unset;
+          }
+        }
+        
+        #more-replies-sub-thread button::after {
+          content: 'View ' attr(aria-label);
+        }
+        
+        #less-replies-sub-thread button::after {
+          content: 'Hide replies';
+        }
+        
+        #reply-button-end .yt-spec-button-shape-next__button-text-content span {
+          text-transform: uppercase;
+          color: var(--cl-600);
+        }
+        
+        /* Fix author profile picture size */
+        #author-thumbnail .ytd-comment-view-model {
+          width: 36px;
+          height: 36px;
+        }
+        
+        /* Arrow Icon size fix */
+        :is(#more-replies-sub-thread, #less-replies-sub-thread) .yt-spec-button-shape-next__icon svg {
+          scale: 1.25;
+        }
+        
+        /* Show more comments */
+        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
+          text-transform: none;
+        }
       }
-    }
-
-    #more-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
-      content: "View reply";
-      text-transform: initial;
-    }
-
-    #less-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
-      content: "Hide reply";
-      text-transform: initial;
-    }
-
-    #more-replies-icon yt-icon, #less-replies-icon yt-icon {
-      color: var(--accent-blue);
-    }
-
-    #reply-button-end .yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-      text-transform: uppercase;
-      color: var(--cl-600);
-
-      &:hover, &:focus {
-        text-decoration: none;
-        color: var(--cl-400);
-      }
-    }
-
-    /* Arrow Icon size fix */
-    :is(#more-replies, #less-replies) .yt-spec-button-shape-next__icon svg {
-      scale: 1.25;
-    }
-
-    /* Show more comments */
-    #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
-      text-transform: none;
     }
   }
 }
