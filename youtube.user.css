@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.4
+@version        2.49.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2498,6 +2498,8 @@
 
     @css {
       #comments {
+        --_reply-btn-color: var(--accent-blue);
+        
         .thread-hitbox, .threadline, .ytSubThreadThreadline {
           display: none;
         }
@@ -2512,7 +2514,7 @@
         }
         
         #more-replies-sub-thread, #less-replies-sub-thread {
-          --icon-color: var(--accent-blue);
+          --icon-color: var(--_reply-btn-color);
           
           button {
             padding: unset;
@@ -2520,7 +2522,7 @@
           
           button::after {
             margin-inline-start: 0.5rem;
-            color: var(--icon-color);
+            color: var(--_reply-btn-color);
           }
           
           .yt-spec-button-shape-next__button-text-content {
@@ -2529,6 +2531,19 @@
           
           .yt-spec-button-shape-next__icon {
             margin: unset;
+          }
+        }
+        
+        #creator-thumbnail {
+          order: 99;
+          margin: unset;
+          border: 1px solid rgb(from white r g b / 0.12);
+          border-radius: 50%;
+          
+          + .dot {
+            order: 98;
+            margin-inline: 0.5rem;
+            color: var(--cl-900);
           }
         }
         
