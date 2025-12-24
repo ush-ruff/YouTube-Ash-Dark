@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.5
+@version        2.49.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2513,7 +2513,7 @@
           margin-block-start: 1rem;
         }
         
-        #more-replies-sub-thread, #less-replies-sub-thread {
+        #more-replies-sub-thread, #less-replies-sub-thread, .replies-continuation {
           --icon-color: var(--_reply-btn-color);
           
           button {
@@ -2553,6 +2553,10 @@
         
         #less-replies-sub-thread button::after {
           content: 'Hide replies';
+        }
+        
+        .replies-continuation button:after {
+          content: attr(aria-label);
         }
         
         #reply-button-end .yt-spec-button-shape-next__button-text-content span {
