@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.6
+@version        2.49.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1268,6 +1268,21 @@
 
     yt-button-renderer a, .yt-spec-button-shape-next--text {
       color: var(--accent-blue);
+    }
+  }
+
+  .snackbarViewModelHost {
+    --_br: 3px;
+    background-color: var(--bg-500);
+    border-radius: var(--_br);
+    color: var(--cl-400);
+    
+    .snackbarViewModelImageContainer {
+      border-radius: var(--_br) 0 0 var(--_br);
+    }
+    
+    .snackbarViewModelTitle, .yt-spec-button-shape-next--text {
+      color: inherit;
     }
   }
 
