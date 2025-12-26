@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.49.7
+@version        2.50.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -25,6 +25,7 @@
 @var            checkbox    hideComments           "Hide Comments"                           0
 @var            checkbox    hideShorts             "Hide YouTube Shorts"                     1
 @var            checkbox    hideShortsSearch       "Hide YouTube Shorts in Search Results"   1
+@var            checkbox    hideCreateButton       "Hide Create Button"                      1
 @var            checkbox    restoreDesc            "Restore Description Style"               1
 @var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"           1
 @var            checkbox    restorePlayer          "Restore Video Player Style"              1
@@ -2323,6 +2324,16 @@
 }
 
 @-moz-document domain("youtube.com") {
+  /* ----- Hide Create Button ----- */
+  if (hideCreateButton == 1) {
+    ytd-button-renderer:has(> yt-button-shape > button[aria-label="Create"]) {
+      display: none !important;
+      
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
   /* ----- Restore Description Style ----- */
   if (restoreDesc) {
     #below {
@@ -2453,64 +2464,6 @@
 @-moz-document domain("youtube.com") {
   /* ----- Restore Comment Replies Style ----- */
   if (restoreCommentReplies) {
-    // :is(#more-replies, #less-replies) button.yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-    //   font-size: 14px;
-    //   text-transform: lowercase;
-    // }
-      
-    // #more-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
-    //   content: "View ";
-    //   text-transform: capitalize;
-    // }
-      
-    // #less-replies button.yt-spec-button-shape-next:not([aria-label="1 reply" i]) :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string)::before {
-    //   content: "Hide ";
-    //   text-transform: capitalize;
-    // }
-      
-    // :is(#more-replies, #less-replies) button.yt-spec-button-shape-next[aria-label="1 reply" i] :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-    //   color: transparent;
-      
-    //   &::before {
-    //     color: var(--accent-blue);
-    //     text-transform: initial;
-    //   }
-    // }
-      
-    // #more-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
-    //   content: "View reply";
-    //   text-transform: initial;
-    // }
-
-    // #less-replies button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content::before {
-    //   content: "Hide reply";
-    //   text-transform: initial;
-    // }
-      
-    // #more-replies-icon yt-icon, #less-replies-icon yt-icon {
-    //   color: var(--accent-blue);
-    // }
-      
-    // #reply-button-end .yt-spec-button-shape-next :is(.yt-spec-button-shape-next--button-text-content, .yt-core-attributed-string) {
-    //   text-transform: uppercase;
-    //   color: var(--cl-600);
-      
-    //   &:hover, &:focus {
-    //     text-decoration: none;
-    //     color: var(--cl-400);
-    //   }
-    // }
-      
-    // /* Arrow Icon size fix */
-    // :is(#more-replies, #less-replies) .yt-spec-button-shape-next__icon svg {
-    //   scale: 1.25;
-    // }
-      
-    // /* Show more comments */
-    // #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
-    //   text-transform: none;
-    // }
-
     @css {
       #comments {
         --_reply-btn-color: var(--accent-blue);
