@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.50.0
+@version        2.51.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -684,6 +684,33 @@
   #frosted-glass.loading-with-chipbar.ytd-app, 
   #frosted-glass.with-chipbar.ytd-app {
     display: none;
+  }
+
+
+  /* ----- Main Content - Hide Empty Sections on Home Page ----- */
+  .ytd-rich-grid-renderer:has(> #content > ytd-statement-banner-renderer > #dismissed) {
+    display: none;
+  }
+
+
+  /* ----- Main Content - Explore Topics Section - Scroller Button Color ----- */
+  @css {
+    .ytChipsShelfViewModelGradientButton {
+      --_bg: var(--bg-200);
+      
+      .ytChipsShelfViewModelLeftArrow, 
+      .ytChipsShelfViewModelRightArrow {
+        background-color: var(--_bg);
+      }
+
+      .ytChipsShelfViewModelLeftArrowContainer::before {
+        background: linear-gradient(to left, oklch(from var(--_bg) l c h / 0), var(--_bg) 100%);
+      }
+
+      .ytChipsShelfViewModelRightArrowContainer::before {
+        background: linear-gradient(to right, oklch(from var(--_bg) l c h / 0), var(--_bg) 100%);
+      }
+    }
   }
 
 
