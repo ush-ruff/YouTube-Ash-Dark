@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.51.1
+@version        2.51.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -83,7 +83,7 @@
     --yt-spec-call-to-action: var(--accent-blue) !important;
     --yt-spec-call-to-action-inverse: var(--accent-blue-dark) !important;
     --yt-spec-static-overlay-background-brand: var(--accent-red) !important;
-    --yt-spec-10-percent-layer: rgb(255, 255, 255, 0.1) !important;
+    --yt-spec-10-percent-layer: rgba(255, 255, 255, 0.1) !important;
 
   }
 
