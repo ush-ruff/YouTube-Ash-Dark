@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.51.2
+@version        2.52.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -22,6 +22,7 @@
 @var            checkbox    hideCreateButton       "Hide Create Button on Home Page"              1
 @var            checkbox    hideWatchedVideos      "Hide 100% Watched Videos on Home Page"        1
 @var            checkbox    hideMembersOnlyVideos  "Hide Members Only Videos on Home Page"        1
+@var            checkbox    hideExploreSection     "Hide \"Explore More\" Section on Home Page"   0
 @var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"           1
 @var            checkbox    hideComments           "Hide Comments"                                0
 @var            checkbox    hideShorts             "Hide YouTube Shorts"                          1
@@ -2203,6 +2204,17 @@
   if (hideMembersOnlyVideos) {
     ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#meta .badge-style-type-members-only) {
       display: none !important;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide "Explore More" section on Home Page ----- */
+  if (hideExploreSection == 1) {
+    @css {
+      ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(> #content > .ytdChipsShelfWithVideoShelfRendererHost ) {
+        display: none;
+      }
     }
   }
 }
