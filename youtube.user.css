@@ -8,28 +8,28 @@
 @author         ushruff
 @preprocessor   stylus
 @license        GNU GPLv3
-@var            range       endCardOpacity         "Video End Card Opacity"                  [0.35, 0, 1, 0.05]
-@var            checkbox    customGrid             "Enable Custom Grid Layout"               1
-@var            number      customGridColumns      " ↳ No. of Columns"                       [5, 4, 10, 1]
-@var            checkbox    disablePreview         "Disable Thumbnail Previews (Autoplay)"   1
-@var            checkbox    customThumbnailMeta    "Custom Thumbnail Metadata Style"         1
-@var            checkbox    enablePlayerSize       "Enable Custom Player Size"               0
-@var            text        playerSize             " ↳ Player Size"                          880px
-@var            checkbox    customPageSize         "Enable Custom Channel Page Size"         1
-@var            number      customPageSizeMin      " ↳ Min width"                            [1284, 600, 4096, 1, 'px']
-@var            number      customPageSizeMax      " ↳ Max width"                            [1600, 600, 4096, 1, 'px']
-@var            checkbox    hideFilterBar          "Hide Filter Bar"                         1
-@var            checkbox    hideWatchedVideos      "Hide 100% Watched Videos on Home Page"   1
-@var            checkbox    hideMembersOnlyVideos  "Hide Members Only Videos on Home Page"   1
-@var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"      1
-@var            checkbox    hideComments           "Hide Comments"                           0
-@var            checkbox    hideShorts             "Hide YouTube Shorts"                     1
-@var            checkbox    hideShortsSearch       "Hide YouTube Shorts in Search Results"   1
-@var            checkbox    hideCreateButton       "Hide Create Button"                      1
-@var            checkbox    restoreDesc            "Restore Description Style"               1
-@var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"           1
-@var            checkbox    restorePlayer          "Restore Video Player Style"              1
-@var            checkbox    restoreSolidIcons      "Restore Solid Icons"                     1
+@var            range       endCardOpacity         "Video End Card Opacity"                       [0.35, 0, 1, 0.05]
+@var            checkbox    customGrid             "Enable Custom Grid Layout"                    1
+@var            number      customGridColumns      " ↳ No. of Columns"                            [5, 4, 10, 1]
+@var            checkbox    disablePreview         "Disable Thumbnail Previews (Autoplay)"        1
+@var            checkbox    customThumbnailMeta    "Custom Thumbnail Metadata Style"              1
+@var            checkbox    enablePlayerSize       "Enable Custom Player Size"                    0
+@var            text        playerSize             " ↳ Player Size"                               880px
+@var            checkbox    customPageSize         "Enable Custom Channel Page Size"              1
+@var            number      customPageSizeMin      " ↳ Min width"                                 [1284, 600, 4096, 1, 'px']
+@var            number      customPageSizeMax      " ↳ Max width"                                 [1600, 600, 4096, 1, 'px']
+@var            checkbox    hideFilterBar          "Hide Filter Bar"                              1
+@var            checkbox    hideCreateButton       "Hide Create Button on Home Page"              1
+@var            checkbox    hideWatchedVideos      "Hide 100% Watched Videos on Home Page"        1
+@var            checkbox    hideMembersOnlyVideos  "Hide Members Only Videos on Home Page"        1
+@var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"           1
+@var            checkbox    hideComments           "Hide Comments"                                0
+@var            checkbox    hideShorts             "Hide YouTube Shorts"                          1
+@var            checkbox    hideShortsSearch       "Hide YouTube Shorts in Search Results"        1
+@var            checkbox    restoreDesc            "Restore Description Style"                    1
+@var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"                1
+@var            checkbox    restorePlayer          "Restore Video Player Style"                   1
+@var            checkbox    restoreSolidIcons      "Restore Solid Icons"                          1
 ==/UserStyle== */
 @-moz-document domain("youtube.com") {
   /* ----- YouTube Style Fixes ----- */
@@ -2176,6 +2176,16 @@
 }
 
 @-moz-document domain("youtube.com") {
+  /* ----- Hide Create Button on Home Page ----- */
+  if (hideCreateButton == 1) {
+    ytd-browse[page-subtype="home"] ytd-button-renderer:has(> yt-button-shape > button[aria-label="Create"]) {
+      display: none !important;
+      
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
   /* ----- Hide 100% Watched Videos on Home Page ----- */
   if (hideWatchedVideos) {
     ytd-browse[page-subtype="home"] :is(.ytd-rich-grid-row, .ytd-rich-grid-renderer) > ytd-rich-item-renderer:has(#overlays #progress[style="width: 100%;"]) {
@@ -2347,16 +2357,6 @@
   if (hideShortsSearch) {
     grid-shelf-view-model:has(> div > .ytGridShelfViewModelGridShelfRow > .ytGridShelfViewModelGridShelfItem > .shortsLockupViewModelHost) {
       display: none;
-    }
-  }
-}
-
-@-moz-document domain("youtube.com") {
-  /* ----- Hide Create Button ----- */
-  if (hideCreateButton == 1) {
-    ytd-button-renderer:has(> yt-button-shape > button[aria-label="Create"]) {
-      display: none !important;
-      
     }
   }
 }
