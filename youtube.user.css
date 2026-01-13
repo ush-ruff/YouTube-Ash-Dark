@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.52.0
+@version        2.52.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -19,7 +19,7 @@
 @var            number      customPageSizeMin      " ↳ Min width"                                 [1284, 600, 4096, 1, 'px']
 @var            number      customPageSizeMax      " ↳ Max width"                                 [1600, 600, 4096, 1, 'px']
 @var            checkbox    hideFilterBar          "Hide Filter Bar"                              1
-@var            checkbox    hideCreateButton       "Hide Create Button on Home Page"              1
+@var            checkbox    hideCreateButton       "Hide Create Button on Navbar"                 1
 @var            checkbox    hideWatchedVideos      "Hide 100% Watched Videos on Home Page"        1
 @var            checkbox    hideMembersOnlyVideos  "Hide Members Only Videos on Home Page"        1
 @var            checkbox    hideExploreSection     "Hide \"Explore More\" Section on Home Page"   0
@@ -2177,11 +2177,10 @@
 }
 
 @-moz-document domain("youtube.com") {
-  /* ----- Hide Create Button on Home Page ----- */
+  /* ----- Hide Create Button on Navbar ----- */
   if (hideCreateButton == 1) {
-    ytd-browse[page-subtype="home"] ytd-button-renderer:has(> yt-button-shape > button[aria-label="Create"]) {
+    .ytd-masthead ytd-button-renderer:has(> yt-button-shape > button[aria-label="Create"]) {
       display: none !important;
-      
     }
   }
 }
