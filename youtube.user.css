@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.52.2
+@version        2.52.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2629,7 +2629,6 @@
         
         --endcard-grid-font-size: 11px;
         
-        /* --volume-icon-size: 36px; */
         --volume-icon-size: calc(var(--player-controls-size) - 12px);
         --volume-slider-handle-size: 12px;
         --volume-slider-width: 64px;
@@ -2637,9 +2636,7 @@
 
         position: relative;
         
-        &.ytp-big-mode {
-          /* --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 20px); */
-          
+        &.ytp-big-mode, &.ytp-fullscreen {
           --progress-bar-height: 8px;
           --progress-bar-position: 52.5px;
           --progress-bar-handle-size: 20px;
@@ -2650,7 +2647,10 @@
           
           --endcard-grid-font-size: 17px;
           
-          /* --volume-icon-size: 42px; */
+          font-size: 14px;
+        }
+        
+        &.ytp-big-mode {
           --volume-slider-handle-size: 18px;
           --volume-slider-width: 96px;
           --volume-slider-height: 4px;
@@ -2800,6 +2800,13 @@
           opacity: 1 !important;
           z-index: 99;
         }
+        
+        .ytp-cards-button-icon, 
+        .ytp-playlist-menu-button-icon {
+          width: var(--player-controls-size);
+          height: var(--player-controls-size);
+        }
+
         
         /* --- Tooltip - Text --- */
         .ytp-tooltip {
@@ -3006,8 +3013,70 @@
           transition: opacity .1s cubic-bezier(0, 0, 0.2, 1);
           overflow: hidden;
           
-          .ytp-menuitem-icon [d="M21.20 3.01L21 3H3L2.79 3.01C2.30 3.06 1.84 3.29 1.51 3.65C1.18 4.02 .99 4.50 1 5V19L1.01 19.20C1.05 19.66 1.26 20.08 1.58 20.41C1.91 20.73 2.33 20.94 2.79 20.99L3 21H21L21.20 20.98C21.66 20.94 22.08 20.73 22.41 20.41C22.73 20.08 22.94 19.66 22.99 19.20L23 19V5C23.00 4.50 22.81 4.02 22.48 3.65C22.15 3.29 21.69 3.06 21.20 3.01ZM3 19V5H21V19H3ZM6.97 8.34C6.42 8.64 5.96 9.09 5.64 9.63L5.50 9.87C5.16 10.53 4.99 11.26 5 12L5.00 12.27C5.04 12.92 5.21 13.55 5.50 14.12L5.64 14.36C5.96 14.90 6.42 15.35 6.97 15.65L7.21 15.77C7.79 16.01 8.43 16.06 9.03 15.91L9.29 15.83C9.88 15.61 10.39 15.23 10.77 14.73C10.93 14.53 11.00 14.27 10.97 14.02C10.94 13.77 10.82 13.53 10.63 13.37C10.44 13.20 10.19 13.11 9.93 13.12C9.68 13.13 9.44 13.24 9.26 13.43L9.19 13.50C9.05 13.70 8.85 13.85 8.62 13.94L8.54 13.97C8.35 14.02 8.16 14.00 7.99 13.92L7.91 13.88C7.67 13.75 7.48 13.56 7.35 13.32L7.28 13.20C7.11 12.88 7.02 12.52 7.00 12.16L7 12C6.99 11.58 7.09 11.16 7.28 10.79L7.35 10.67C7.48 10.43 7.67 10.24 7.91 10.11C8.10 10.00 8.32 9.97 8.54 10.02L8.62 10.05C8.81 10.12 8.98 10.24 9.11 10.39L9.19 10.49L9.26 10.57C9.43 10.74 9.66 10.85 9.91 10.87C10.15 10.89 10.40 10.81 10.59 10.66C10.79 10.51 10.92 10.29 10.96 10.05C11.01 9.80 10.96 9.55 10.83 9.34L10.77 9.26L10.60 9.05C10.24 8.65 9.79 8.35 9.29 8.16L9.03 8.08C8.34 7.91 7.60 8.00 6.97 8.34ZM14.97 8.34C14.42 8.64 13.96 9.09 13.64 9.63L13.50 9.87C13.16 10.53 12.99 11.26 13 12L13.00 12.27C13.04 12.92 13.21 13.55 13.50 14.12L13.64 14.36C13.96 14.90 14.42 15.35 14.97 15.65L15.21 15.77C15.79 16.01 16.43 16.06 17.03 15.91L17.29 15.83C17.88 15.61 18.39 15.23 18.77 14.73C18.93 14.53 19.00 14.27 18.97 14.02C18.94 13.77 18.82 13.53 18.63 13.37C18.44 13.20 18.19 13.11 17.93 13.12C17.68 13.13 17.44 13.24 17.26 13.43L17.19 13.50C17.05 13.70 16.85 13.85 16.62 13.94L16.54 13.97C16.35 14.02 16.16 14.00 15.99 13.92L15.91 13.88C15.67 13.75 15.48 13.56 15.35 13.32L15.28 13.20C15.11 12.88 15.02 12.52 15.00 12.16L15 12C14.99 11.58 15.09 11.16 15.28 10.79L15.35 10.67C15.48 10.43 15.67 10.24 15.91 10.11C16.10 10.00 16.32 9.97 16.54 10.02L16.62 10.05C16.81 10.12 16.98 10.24 17.11 10.39L17.19 10.49L17.26 10.57C17.43 10.74 17.66 10.85 17.91 10.87C18.15 10.89 18.40 10.81 18.59 10.66C18.79 10.51 18.92 10.29 18.96 10.05C19.01 9.80 18.96 9.55 18.83 9.34L18.77 9.26L18.60 9.05C18.24 8.65 17.79 8.35 17.29 8.16L17.03 8.08C16.34 7.91 15.60 8.00 14.97 8.34Z"] {
-            d: path("M21.20 3.01L21 3H3L2.79 3.01C2.30 3.06 1.84 3.29 1.51 3.65C1.18 4.02 .99 4.50 1 5V19L1.01 19.20C1.05 19.66 1.26 20.08 1.58 20.41C1.91 20.73 2.33 20.94 2.79 20.99L3 21H21L21.20 20.98C21.66 20.94 22.08 20.73 22.41 20.41C22.73 20.08 22.94 19.66 22.99 19.20L23 19V5C23.00 4.50 22.81 4.02 22.48 3.65C22.15 3.29 21.69 3.06 21.20 3.01ZM3 19V5H21V19H3ZM6.97 8.34C6.42 8.64 5.96 9.09 5.64 9.63L5.50 9.87C5.16 10.53 4.99 11.26 5 12L5.00 12.27C5.04 12.92 5.21 13.55 5.50 14.12L5.64 14.36C5.96 14.90 6.42 15.35 6.97 15.65L7.21 15.77C7.79 16.01 8.43 16.06 9.03 15.91L9.29 15.83C9.88 15.61 10.39 15.23 10.77 14.73C10.93 14.53 11.00 14.27 10.97 14.02C10.94 13.77 10.82 13.53 10.63 13.37C10.44 13.20 10.19 13.11 9.93 13.12C9.68 13.13 9.44 13.24 9.26 13.43L9.19 13.50C9.05 13.70 8.85 13.85 8.62 13.94L8.54 13.97C8.35 14.02 8.16 14.00 7.99 13.92L7.91 13.88C7.67 13.75 7.48 13.56 7.35 13.32L7.28 13.20C7.11 12.88 7.02 12.52 7.00 12.16L7 12C6.99 11.58 7.09 11.16 7.28 10.79L7.35 10.67C7.48 10.43 7.67 10.24 7.91 10.11C8.10 10.00 8.32 9.97 8.54 10.02L8.62 10.05C8.81 10.12 8.98 10.24 9.11 10.39L9.19 10.49L9.26 10.57C9.43 10.74 9.66 10.85 9.91 10.87C10.15 10.89 10.40 10.81 10.59 10.66C10.79 10.51 10.92 10.29 10.96 10.05C11.01 9.80 10.96 9.55 10.83 9.34L10.77 9.26L10.60 9.05C10.24 8.65 9.79 8.35 9.29 8.16L9.03 8.08C8.34 7.91 7.60 8.00 6.97 8.34ZM14.97 8.34C14.42 8.64 13.96 9.09 13.64 9.63L13.50 9.87C13.16 10.53 12.99 11.26 13 12L13.00 12.27C13.04 12.92 13.21 13.55 13.50 14.12L13.64 14.36C13.96 14.90 14.42 15.35 14.97 15.65L15.21 15.77C15.79 16.01 16.43 16.06 17.03 15.91L17.29 15.83C17.88 15.61 18.39 15.23 18.77 14.73C18.93 14.53 19.00 14.27 18.97 14.02C18.94 13.77 18.82 13.53 18.63 13.37C18.44 13.20 18.19 13.11 17.93 13.12C17.68 13.13 17.44 13.24 17.26 13.43L17.19 13.50C17.05 13.70 16.85 13.85 16.62 13.94L16.54 13.97C16.35 14.02 16.16 14.00 15.99 13.92L15.91 13.88C15.67 13.75 15.48 13.56 15.35 13.32L15.28 13.20C15.11 12.88 15.02 12.52 15.00 12.16L15 12C14.99 11.58 15.09 11.16 15.28 10.79L15.35 10.67C15.48 10.43 15.67 10.24 15.91 10.11C16.10 10.00 16.32 9.97 16.54 10.02L16.62 10.05C16.81 10.12 16.98 10.24 17.11 10.39L17.19 10.49L17.26 10.57C17.43 10.74 17.66 10.85 17.91 10.87C18.15 10.89 18.40 10.81 18.59 10.66C18.79 10.51 18.92 10.29 18.96 10.05C19.01 9.80 18.96 9.55 18.83 9.34L18.77 9.26L18.60 9.05C18.24 8.65 17.79 8.35 17.29 8.16L17.03 8.08C16.34 7.91 15.60 8.00 14.97 8.34Z");
+          .ytp-panel-menu {
+            width: 100%;
+            padding: 8px 0;
+          }
+          
+          .ytp-menuitem:not(.ytp-menuitem-with-footer) {
+            height: 40px;
+          }
+          
+          .ytp-menuitem-icon {
+            display: none;
+          }
+          
+          .ytp-menuitem-label {
+            font-size: 118%;
+            font-weight: 500;
+            padding-inline: 1.5rem 0;
+          }
+          
+          .ytp-menuitem-content {
+            font-size: 115%;
+            font-weight: 500;
+            padding-inline-end: 1.5rem;
+            border-radius: unset;
+          }
+          
+          .ytp-menuitem[aria-haspopup="true"] .ytp-menuitem-content {
+            padding-inline: 0 3.5rem;
+            background-repeat: no-repeat;
+            background-position: right 5px center;
+            background-size: 32px 32px;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIj48cGF0aCBkPSJtIDEyLjU5LDIwLjM0IDQuNTgsLTQuNTkgLTQuNTgsLTQuNTkgMS40MSwtMS40MSA2LDYgLTYsNiB6IiBmaWxsPSIjZmZmIiAvPjwvc3ZnPg==);
+          }
+          
+          .ytp-menuitem[role="menuitemradio"] .ytp-menuitem-label {
+            text-align: right;
+            padding-inline-end: 1.5rem;
+          }
+          
+          .ytp-menuitem-container-with-badge {
+            justify-content: end;
+          }
+          
+          .ytp-menuitem-label > .ytp-menuitem-label-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 1rem;
+          }
+          
+          .ytp-menuitem-toggle-checkbox {
+            height: 14px;
+            width: 36px;
+            background: rgba(255, 255, 255, 0.3);
+          }
+          
+          .ytp-menuitem-toggle-checkbox::after {
+            width: 20px;
+            height: 20px;
+            margin: unset;
+            margin-top: -3px;
+            background-color: #bdbdbd;
+            border-radius: 20px;
+            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
           }
         }
         
@@ -3147,13 +3216,14 @@
           top: 50%;
           width: var(--volume-slider-handle-size);
           height: var(--volume-slider-handle-size);
-          border-radius: 50%;
           margin-top: calc(var(--volume-slider-handle-size) / -2);
           background: #fff;
+          border-radius: 50%;
           filter: unset;
         }
 
-        .ytp-volume-slider-handle::before, .ytp-volume-slider-handle::after {
+        .ytp-volume-slider-handle::before, 
+        .ytp-volume-slider-handle::after {
           content: "";
           top: 50%;
           width: var(--volume-slider-width);
@@ -3161,8 +3231,8 @@
           margin-top: -2px;
         }
 
-        &.ytp-big-mode .ytp-volume-slider-active .ytp-volume-panel {
-          width: 85px;
+        &:is(.ytp-big-mode) .ytp-volume-slider-active .ytp-volume-panel {
+          width: calc(var(--volume-slider-width) + var(--volume-slider-handle-size));
         }
 
         /* -- Time -- */
@@ -3245,7 +3315,7 @@
           }
         }
         
-        &.ytp-big-mode .ytp-autonav-toggle-button {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-autonav-toggle-button {
           width: 45px;
           height: 18px;
           border-radius: 18px;
@@ -3295,7 +3365,7 @@
           left: 12px;
         }
         
-        &.ytp-big-mode .ytp-subtitles-button[aria-pressed="true"]::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-subtitles-button[aria-pressed="true"]::after {
           width: 26.2666px;
           left: 13px;
         }
@@ -3335,37 +3405,44 @@
           background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMyA5IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9Ik0yIDJoNHY1aC00di0xaDN2LTFoLTN2LTFoM3YtMWgtM3pNNyAyaDN2MWgtMnYzaDJ2MWgtM3pNMTAgM2gxdjNoLTF6IiBmaWxsPSIjZmZmIiAvPjxwYXRoIGQ9Ik0yIDNoM3YxaC0zek04IDNoMnYxaC0yek0yIDVoM3YxaC0zek0xMCA2aDF2MWgtMXpNMiA3aDR2MWgtNHpNNyA3aDN2MWgtM3oiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC42NDcxIiAvPjwvc3ZnPg==)
         }
         
-        &.ytp-big-mode .ytp-settings-button:is(.ytp-hd-quality-badge, .ytp-hdr-quality-badge, .ytp-4k-quality-badge, .ytp-5k-quality-badge, .ytp-8k-quality-badge, .ytp-3d-badge-grey, .ytp-3d-badge)::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button:is(.ytp-hd-quality-badge, .ytp-hdr-quality-badge, .ytp-4k-quality-badge, .ytp-5k-quality-badge, .ytp-8k-quality-badge, .ytp-3d-badge-grey, .ytp-3d-badge)::after {
           top: 4px;
           right: 4px;
           width: auto;
           height: auto;
+          font-family: Verdana, sans-serif;
+          font-size: 10px;
+          font-weight: bold;
+          text-shadow: 0 2px 0 rgba(0,0,0,.6);
+          padding: 2px;
           background-image: none;
+          border-radius: 1.5px;
+          color: #fff;
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-hd-quality-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-hd-quality-badge::after {
           content:"HD"
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-hdr-quality-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-hdr-quality-badge::after {
           content:"HDR";
           font-size:8px
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-4k-quality-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-4k-quality-badge::after {
           content:"4K";
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-5k-quality-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-5k-quality-badge::after {
           content:"5K"
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-8k-quality-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-8k-quality-badge::after {
           content:"8K"
         }
         
-        &.ytp-big-mode .ytp-settings-button.ytp-3d-badge-grey::after,
-        &.ytp-big-mode .ytp-settings-button.ytp-3d-badge::after {
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-3d-badge-grey::after,
+        &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-settings-button.ytp-3d-badge::after {
           content:"3D"
         }
         
