@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.52.3
+@version        2.52.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1232,15 +1232,16 @@
   }
 
   /* Selected tab underline */
-  .tabGroupShapeSlider {
-    background-color: var(--cl-400);
-    translate: calc((var(--_tab-gap) - 24px) * var(--_tab-count, 0));
+  .yt-tab-shape[aria-selected="true"] {
+    anchor-name: --active-tab;
   }
-
-  for i in (1..9) {
-    .tabGroupShapeTabs:has(:nth-child({i + 1})[aria-selected="true"]) + .tabGroupShapeSlider {
-      --_tab-count: i;
-    }
+  
+  .tabGroupShapeSlider {
+    position-anchor: --active-tab;
+    left: anchor(left);
+    right: anchor(right);
+    background-color: var(--cl-400);
+    transform: unset !important;
   }
 
 
@@ -1503,6 +1504,7 @@
     .ytSheetViewModelContextual, 
     tp-yt-paper-item.ytd-menu-service-item-renderer, 
     tp-yt-paper-item.ytd-menu-navigation-item-renderer, 
+    .yt-list-item-view-model__container, 
 
     /* --- Inputs --- */
     yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer,
