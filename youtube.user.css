@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.52.5
+@version        2.52.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -270,13 +270,24 @@
     }
   }
 
-  .ytSurveyIconsTitle, .ytSurveyIconsAnswersText {
+  .ytSurveyIconsTitle {
     font-weight: 600;
     color: var(--yt-spec-text-primary);
   }
 
+  .ytSurveyIconsAnswersText {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--cl-900);
+  }
+
   .ytSurveyIconsAnswers button.yt-spec-button-shape-next {
     width: auto;
+    background-color: transparent !important;
+    
+    &:is(:hover, :focus-visible) {
+      --icon-clr: var(--cl-300);
+    }
   }
 
 
