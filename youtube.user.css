@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.52.8
+@version        2.52.9
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2525,7 +2525,7 @@
   /* ----- Restore Comment Replies Style ----- */
   if (restoreCommentReplies) {
     @css {
-      #comments {
+      #comments, ytd-comments {
         --_reply-btn-color: var(--accent-blue);
         
         .thread-hitbox, .threadline, .ytSubThreadThreadline {
