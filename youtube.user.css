@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.53.0
+@version        2.53.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1288,6 +1288,7 @@
 
 
   /* ----- Channel Page - Videos filter bar ----- */
+  /* -- TO BE REMOVED - start -- */
   ytd-feed-filter-chip-bar-renderer[component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"] #chips-wrapper.ytd-feed-filter-chip-bar-renderer {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--bg-500);
@@ -1314,6 +1315,46 @@
     yt-chip-cloud-chip-renderer[chip-style="STYLE_HOME_FILTER"][selected] {
       background-color: var(--bg-500);
       color: var(--cl-400);
+    }
+  }
+  /* -- TO BE REMOVED - end -- */
+
+  /* Fix for changes in Feb-26 */
+  .ytd-page-manager[page-subtype="channels"] #header.ytd-rich-grid-renderer .chip-bar.ytd-rich-grid-renderer {
+    justify-content: end;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bg-500);
+    
+    .ytChipShapeChip {
+      all: unset;
+      position: relative;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: "Roboto","Arial",sans-serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 2rem;
+      padding-inline-start: 1.2rem;
+      background: #2f2f2f;
+      border-radius: 0;
+      border: none;
+      color: #f2f2f2;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .ytChipShapeOnlyTextPadding {
+      padding-inline-end: 1.2rem;
+    }
+    
+    .yt-spec-touch-feedback-shape {
+      border-radius: var(--br);
+      
+      > * {
+        border-radius: inherit !important;
+      }
     }
   }
 
@@ -1785,6 +1826,11 @@
     #thumbnail-attribution.ytd-grid-channel-renderer {
       font-size: clamp(1.2rem, 0.867rem + 0.444vw, 1.4rem);
     }
+  }
+
+  /* --- Channel Page - "View full playlist" in Thumbnail Details --- */
+  .ytd-page-manager[page-subtype="channels"] .yt-content-metadata-view-model__metadata-row .yt-content-metadata-view-model__metadata-text .yt-core-attributed-string__link {
+    text-transform: uppercase;
   }
 
   /* --- Thumbnail Details - Mixes --- */
