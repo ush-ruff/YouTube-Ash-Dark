@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.53.1
+@version        2.53.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2692,7 +2692,7 @@
         border-radius: 6px 6px 0 0;
       }
       
-      #movie_player.ytp-delhi-modern {
+      :is(#player, #player-container) .html5-video-player.ytp-delhi-modern {
         --ytp-grid-scroll-percentage: 0 !important;
         
         --tooltip-position: calc(var(--progress-bar-height) + var(--player-controls-size) + 4px);
@@ -3312,6 +3312,10 @@
         &:is(.ytp-big-mode) .ytp-volume-slider-active .ytp-volume-panel {
           width: calc(var(--volume-slider-width) + var(--volume-slider-handle-size));
         }
+        
+        &:is(.ytp-xsmall-width-mode.ytp-delhi-horizontal-volume-controls) .ytp-volume-area {
+          margin: unset;
+        }
 
         /* -- Time -- */
         .ytp-time-display {
@@ -3446,6 +3450,11 @@
         &:is(.ytp-big-mode, .ytp-fullscreen) .ytp-subtitles-button[aria-pressed="true"]::after {
           width: 26.2666px;
           left: 13px;
+        }
+        
+        &:is(.ytp-xsmall-width-mode) .ytp-subtitles-button[aria-pressed="true"]::after {
+          width: 19.9666px;
+          left: 11px;
         }
         
         .ytp-settings-button:is(.ytp-hd-quality-badge, .ytp-hdr-quality-badge, .ytp-4k-quality-badge, .ytp-5k-quality-badge, .ytp-8k-quality-badge, .ytp-3d-badge-grey, .ytp-3d-badge)::after {
