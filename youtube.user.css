@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.53.2
+@version        2.53.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1284,6 +1284,15 @@
   .choice-info.ytd-backstage-quiz-renderer,
   ytd-backstage-poll-renderer:not([is-image-poll]) .choice-info.ytd-backstage-poll-renderer {
     border: 1px solid var(--yt-spec-icon-disabled, #717171);
+  }
+
+  ytd-backstage-items {
+    margin-bottom: 2.4rem;
+    margin-inline: auto;
+  }
+  
+  ytd-section-list-renderer[page-subtype="channels"] ytd-comments.ytd-section-list-renderer {
+    margin-inline: auto;
   }
 
 
