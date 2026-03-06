@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.53.5
+@version        2.53.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1295,8 +1295,9 @@
     margin-inline: auto;
   }
 
+
   /* ----- Channel Page - Community Posts - Comment Box ----- */
-  .ytd-browse[page-subtype="channels"] ytd-comments-header-renderer {
+  #primary ytd-comments-header-renderer {
     margin-block: 24px 0;
     
     ytd-backstage-post-dialog-renderer {
@@ -1304,6 +1305,16 @@
       border-color: var(--bg-500);
       border-radius: var(--br);
     }
+  }
+
+
+  /* ----- Channel Page - Community Posts - Image Upload Box ----- */
+  ytd-backstage-multi-image-select-renderer {
+    border-color: var(--bg-600);
+  }
+  
+  #dropzone.ytd-backstage-multi-image-select-renderer {
+    background-color: var(--bg-450);
   }
 
 
@@ -4249,6 +4260,9 @@
     /* Community */
     "M18 3a4 4 0 00-3.25 1.668 6 6 0 011.6 1.202A2 2 0 1118 9l-.084-.002c.112.662.112 1.339.001 2.001A4 4 0 1018 3ZM6 3.001a4 4 0 10.083 8 6 6 0 010-2.001 2 2 0 111.566-3.13A6 6 0 019.25 4.668 4 4 0 006 3.001Zm6 3a4 4 0 100 8 4 4 0 000-8Zm0 2a2 2 0 110 4 2 2 0 010-4Zm-5.656 4.01A6 6 0 000 18a1 1 0 102 0 3.998 3.998 0 015.53-3.694l.057.024.155-.1a6 6 0 01-1.398-2.219ZM18 12c-.115 0-.23.003-.345.01a5.999 5.999 0 01-1.398 2.22l.155.1A3.998 3.998 0 0122 18a1 1 0 002 0 6 6 0 00-6-6Zm-6 3.001a6 6 0 00-6 6 1 1 0 102 0 4 4 0 018 .001 1 1 0 002 0 6 6 0 00-6-6.001Z": "M12 6C10.34 6 9 7.34 9 9s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3ZM24 16.43V18H19.5V16.39c0-.83-.23-1.61-.63-2.29.37-.06.74-.1 1.13-.1.99 0 1.93.21 2.78.58.74.32 1.22 1.04 1.22 1.85ZM20 13c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2ZM5.13 14.1c-.4.68-.63 1.46-.63 2.29V18H0V16.43c0-.81.48-1.53 1.22-1.85C2.07 14.21 3.01 14 4 14c.39 0 .76.04 1.13.1ZM4 13c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm8-.25c-1.63 0-3.07.39-4.24.91C6.68 14.13 6 15.21 6 16.39V18H18l0-1.62c0-1.17-.68-2.25-1.76-2.73-1.17-.51-2.61-.9-4.24-.9Z",
 
+    /* Image Icon */
+    "M20 2H4a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2ZM4 18.033V4h16v9.233l-2.456-1.473a3 3 0 00-2.906-.1l-.182.1L4 18.033ZM9 6a3 3 0 100 6 3 3 0 000-6Zm0 2a1 1 0 110 2 1 1 0 010-2Zm7.515 5.475L20 15.565V20H4.61l10.875-6.525.122-.063a1 1 0 01.908.063Z": "M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3L14.5 12l4.5 6H5l3.5-4.5z",
+
   }
   
   
@@ -4361,6 +4375,11 @@
     #play-icon.ytd-playlist-panel-video-renderer yt-icon.ytd-playlist-panel-video-renderer {
       width: 24px;
       height: 24px;
+    }
+
+    /* Image Icon - Color fix for icon in image upload box */
+    #dropzone [d="M20 2H4a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V4a2 2 0 00-2-2ZM4 18.033V4h16v9.233l-2.456-1.473a3 3 0 00-2.906-.1l-.182.1L4 18.033ZM9 6a3 3 0 100 6 3 3 0 000-6Zm0 2a1 1 0 110 2 1 1 0 010-2Zm7.515 5.475L20 15.565V20H4.61l10.875-6.525.122-.063a1 1 0 01.908.063Z"] {
+      --icon-clr: #000;
     }
 
   }
