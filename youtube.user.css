@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.53.7
+@version        2.53.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1297,7 +1297,7 @@
 
 
   /* ----- Channel Page - Community Posts - Comment Box ----- */
-  #primary ytd-comments-header-renderer {
+  #primary ytd-comments-header-renderer[is-backstage] {
     margin-block: 24px 0;
     
     ytd-backstage-post-dialog-renderer {
@@ -2924,11 +2924,8 @@
         /* --- Tooltip - Text --- */
         .ytp-tooltip {
           top: unset !important;
-          transition: unset;
-        }
-
-        .ytp-tooltip:not([aria-hidden="true"]) {
           bottom: var(--tooltip-position);
+          transition: unset;
         }
         
         &:has(.ytp-overlay-top-right:hover) .ytp-tooltip:not([aria-hidden="true"]) {
@@ -2956,6 +2953,7 @@
           grid-template-areas: "seek" "image" "title" "time";
           gap: 0.5rem;
           padding: 2px;
+          justify-items: center;
           background: transparent;
           transform: unset !important;
           
@@ -2967,6 +2965,7 @@
             grid-template-columns: subgrid;
             grid-template-rows: subgrid;
             justify-items: center;
+            background-color: transparent;
             transform: unset !important;
           }
           
@@ -2987,6 +2986,7 @@
             grid-area: time;
             position: static;
             inset: unset !important;
+            margin: unset;
             padding: 4px 9px;
             background-color: rgba(28, 28, 28, 0.9);
             border-radius: 2px;
