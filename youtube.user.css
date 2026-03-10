@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.54.1
+@version        2.54.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -849,7 +849,7 @@
   /* Fix order of recommended videos on end card */
   .ytp-endscreen-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     
     .ytp-videowall-still {
       position: relative !important;
@@ -3560,7 +3560,7 @@
         }
         
         .ytp-fullscreen-grid-stills-container {
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
           gap: 0.5rem;
           padding-inline: 5%;
         }
