@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.54.2
+@version        2.54.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -847,13 +847,28 @@
   }
 
   /* Fix order of recommended videos on end card */
-  .ytp-endscreen-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  @css {
+    .videowall-endscreen {
+      container-name: --video-endscreen;
+      container-type: inline-size;
+    }
     
-    .ytp-videowall-still {
-      position: relative !important;
-      inset: unset !important;
+    .ytp-endscreen-content {
+      display: grid;
+      grid-template-columns: repeat(var(--_item-count, 4), 1fr);
+
+      .ytp-videowall-still {
+        position: relative !important;
+        inset: unset !important;
+      }
+      
+      @container --video-endscreen (width < 832px) {
+        --_item-count: 3;
+      }
+
+      @container --video-endscreen (width < 576px) {
+        --_item-count: 2;
+      }
     }
   }
 
@@ -3557,10 +3572,16 @@
         
         .ytp-fullscreen-grid-main-content {
           position: unset;
+          container-name: --modern-video-endscreen;
+          container-type: inline-size;
         }
-        
-        .ytp-fullscreen-grid-stills-container {
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      
+
+
+        .ytp-fullscree
+          -grid-stills-container 
+        {
+          grid-template-columns: repeat(var(--_item-count, 4), 1fr);
           gap: 0.5rem;
           padding-inline: 5%;
         }
@@ -3584,6 +3605,48 @@
           
           &:hover {
             --_opacity: 1;
+          }
+        }
+        
+        @container --modern-video-endscreen (832px > width >= 576px) {
+          .ytp-fullscreen-grid-stills-container {
+            --_item-count: 3; 
+          }
+
+          .ytp-modern-videowall-still:nth-child(n + 7) {
+            display: none !important; 
+          }
+        }
+
+        @container --modern-video-endscreen (576px > width >= 508px) {
+          .ytp-fullscreen-grid-stills-container {
+            --_item-count: 2; 
+            padding-inline: 10%; 
+          }
+
+          .ytp-modern-videowall-still:nth-child(n + 5) {
+            display: none !important; 
+          }
+        }
+        
+        @container --modern-video-endscreen (508px > width >= 448px) {
+          .ytp-fullscreen-grid-stills-container {
+            --_item-count: 2; 
+          }
+
+          .ytp-modern-videowall-still:nth-child(n + 3) {
+            display: none !important; 
+          }
+        }
+
+        @container --modern-video-endscreen (448px > width) {
+          .ytp-fullscreen-grid-stills-container {
+            --_item-count: 1; 
+            padding-inline: 10%; 
+          }
+
+          .ytp-modern-videowall-still:nth-child(n + 2) {
+            display: none !important; 
           }
         }
         
