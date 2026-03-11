@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.54.3
+@version        2.54.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -3578,9 +3578,7 @@
       
 
 
-        .ytp-fullscree
-          -grid-stills-container 
-        {
+        .ytp-fullscreen-grid-stills-container {
           grid-template-columns: repeat(var(--_item-count, 4), 1fr);
           gap: 0.5rem;
           padding-inline: 5%;
