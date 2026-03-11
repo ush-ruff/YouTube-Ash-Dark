@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.54.4
+@version        2.55.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -624,10 +624,10 @@
   }
   
   .ytSuggestionComponentRemovedText {
-    font-weight: 600;
+    height: 36px !important;
     font-style: italic;
     background-color: var(--bg-300);
-    color: var(--cl-600);
+    color: var(--cl-400);
   }
 
   .ytSuggestionComponentSuggestion:hover {
@@ -1596,6 +1596,7 @@
     tp-yt-paper-item.ytd-menu-service-item-renderer, 
     tp-yt-paper-item.ytd-menu-navigation-item-renderer, 
     .yt-list-item-view-model__container, 
+    ytd-toggle-menu-service-item-renderer,
 
     /* --- Inputs --- */
     yt-copy-link-renderer[rounded-container] #bar.yt-copy-link-renderer,
@@ -2706,6 +2707,16 @@
         backdrop-filter: unset;
         transition: opacity .1s cubic-bezier(0, 0, 0.2, 1);
         overflow: hidden;
+        
+        .ytp-menuitem-icon {
+          display: none;
+        }
+        
+        .ytp-menuitem-label {
+          font-size: 118%;
+          font-weight: 500;
+          padding-inline: 1.5rem 0;
+        }
       }
       
       .ytdMiniplayerComponentContent {
@@ -2714,6 +2725,25 @@
       
       .ytp-player-minimized :is(.html5-main-video, .ytp-miniplayer-scrim) {
         border-radius: 6px 6px 0 0;
+      }
+      
+      [is-shorts-page] {
+        .yt-list-item-view-model__title {
+          color: var(--cl-300);
+        }
+        
+        #toggleButton > * {
+          display: none;
+        }
+        
+        tp-yt-paper-toggle-button[checked]:not([disabled]) .toggle-button {
+          background-color: #bdbdbd;
+        }
+        
+        tp-yt-paper-toggle-button[checked]:not([disabled]) .toggle-bar {
+          background-color: var(--accent-red);
+          opacity: 1;
+        }
       }
       
       :is(#player, #player-container) .html5-video-player.ytp-delhi-modern {
@@ -3165,20 +3195,38 @@
             gap: 1rem;
           }
           
-          .ytp-menuitem-toggle-checkbox {
+          &:not(.ytp-contextmenu) .ytp-menuitem-toggle-checkbox {
             height: 14px;
             width: 36px;
-            background: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.3);
+            
+            &::after {
+              width: 20px;
+              height: 20px;
+              margin: unset;
+              margin-top: -3px;
+              background-color: #bdbdbd;
+              border-radius: 20px;
+              box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+            }
           }
           
-          .ytp-menuitem-toggle-checkbox::after {
-            width: 20px;
-            height: 20px;
-            margin: unset;
-            margin-top: -3px;
-            background-color: #bdbdbd;
-            border-radius: 20px;
-            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+          &:not(.ytp-contextmenu) .ytp-menuitem[aria-checked="true"] .ytp-menuitem-toggle-checkbox {
+            background-color: var(--accent-red);
+          }
+          
+          &.ytp-contextmenu .ytp-menuitem-toggle-checkbox {
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border-radius: 0;
+          }
+          
+          &.ytp-contextmenu .ytp-menuitem[aria-checked="true"] .ytp-menuitem-toggle-checkbox {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgdmVyc2lvbj0iMS4xIj48cGF0aCBkPSJNOSAxNi4yTDQuOCAxMmwtMS40IDEuNEw5IDE5IDIxIDdsLTEuNC0xLjRMOSAxNi4yeiIgZmlsbD0iI2ZmZiIgLz48L3N2Zz4=);
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: center;
           }
         }
         
@@ -3576,8 +3624,6 @@
           container-type: inline-size;
         }
       
-
-
         .ytp-fullscreen-grid-stills-container {
           grid-template-columns: repeat(var(--_item-count, 4), 1fr);
           gap: 0.5rem;
@@ -3723,6 +3769,7 @@
       
       /* Mute */
       "M11.60 2.08L11.48 2.14L3.91 6.68C3.02 7.21 2.28 7.97 1.77 8.87C1.26 9.77 1.00 10.79 1 11.83V12.16L1.01 12.56C1.07 13.52 1.37 14.46 1.87 15.29C2.38 16.12 3.08 16.81 3.91 17.31L11.48 21.85C11.63 21.94 11.80 21.99 11.98 21.99C12.16 22.00 12.33 21.95 12.49 21.87C12.64 21.78 12.77 21.65 12.86 21.50C12.95 21.35 13 21.17 13 21V3C12.99 2.83 12.95 2.67 12.87 2.52C12.80 2.37 12.68 2.25 12.54 2.16C12.41 2.07 12.25 2.01 12.08 2.00C11.92 1.98 11.75 2.01 11.60 2.08ZM4.94 8.4V8.40L11 4.76V19.23L4.94 15.6C4.38 15.26 3.92 14.80 3.58 14.25C3.24 13.70 3.05 13.07 3.00 12.43L3 12.17V11.83C2.99 11.14 3.17 10.46 3.51 9.86C3.85 9.25 4.34 8.75 4.94 8.4ZM21.29 8.29L19 10.58L16.70 8.29L16.63 8.22C16.43 8.07 16.19 7.99 15.95 8.00C15.70 8.01 15.47 8.12 15.29 8.29C15.12 8.47 15.01 8.70 15.00 8.95C14.99 9.19 15.07 9.43 15.22 9.63L15.29 9.70L17.58 12L15.29 14.29C15.19 14.38 15.12 14.49 15.06 14.61C15.01 14.73 14.98 14.87 14.98 15.00C14.98 15.13 15.01 15.26 15.06 15.39C15.11 15.51 15.18 15.62 15.28 15.71C15.37 15.81 15.48 15.88 15.60 15.93C15.73 15.98 15.86 16.01 15.99 16.01C16.12 16.01 16.26 15.98 16.38 15.93C16.50 15.87 16.61 15.80 16.70 15.70L19 13.41L21.29 15.70L21.36 15.77C21.56 15.93 21.80 16.01 22.05 15.99C22.29 15.98 22.53 15.88 22.70 15.70C22.88 15.53 22.98 15.29 22.99 15.05C23.00 14.80 22.93 14.56 22.77 14.36L22.70 14.29L20.41 12L22.70 9.70C22.80 9.61 22.87 9.50 22.93 9.38C22.98 9.26 23.01 9.12 23.01 8.99C23.01 8.86 22.98 8.73 22.93 8.60C22.88 8.48 22.81 8.37 22.71 8.28C22.62 8.18 22.51 8.11 22.39 8.06C22.26 8.01 22.13 7.98 22.00 7.98C21.87 7.98 21.73 8.01 21.61 8.06C21.49 8.12 21.38 8.19 21.29 8.29Z": "m21.48 17.98c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51c.66-1.24 1.03-2.65 1.03-4.15 0-4.28-2.99-7.86-7-8.76v2.05c2.89.86 5 3.54 5 6.71zm-14.73-9-1.27 1.26 4.72 4.73H7.98v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81l2.04 2.05 1.27-1.27-9-9-7.72-7.72zm7.72.99-2.09 2.08 2.09 2.09V9.98z",
+      "M11.485 2.143 3.913 6.687A6 6 0 001 11.832v.338a6 6 0 002.913 5.144l7.572 4.543A1 1 0 0013 21V3a1.001 1.001 0 00-1.515-.857Zm9.808 6.15L19 10.586l-2.293-2.293a1 1 0 10-1.414 1.414L17.586 12l-2.293 2.293a1 1 0 101.414 1.414L19 13.414l2.293 2.293a1 1 0 101.414-1.414L20.414 12l2.293-2.293a1 1 0 10-1.414-1.414Z": "M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z",
       
       /* Closed Caption */
       "M21.20 3.01L21 3H3L2.79 3.01C2.30 3.06 1.84 3.29 1.51 3.65C1.18 4.02 .99 4.50 1 5V19L1.01 19.20C1.05 19.66 1.26 20.08 1.58 20.41C1.91 20.73 2.33 20.94 2.79 20.99L3 21H21L21.20 20.98C21.66 20.94 22.08 20.73 22.41 20.41C22.73 20.08 22.94 19.66 22.99 19.20L23 19V5C23.00 4.50 22.81 4.02 22.48 3.65C22.15 3.29 21.69 3.06 21.20 3.01ZM3 19V5H21V19H3ZM6.97 8.34C6.42 8.64 5.96 9.09 5.64 9.63L5.50 9.87C5.16 10.53 4.99 11.26 5 12L5.00 12.27C5.04 12.92 5.21 13.55 5.50 14.12L5.64 14.36C5.96 14.90 6.42 15.35 6.97 15.65L7.21 15.77C7.79 16.01 8.43 16.06 9.03 15.91L9.29 15.83C9.88 15.61 10.39 15.23 10.77 14.73C10.93 14.53 11.00 14.27 10.97 14.02C10.94 13.77 10.82 13.53 10.63 13.37C10.44 13.20 10.19 13.11 9.93 13.12C9.68 13.13 9.44 13.24 9.26 13.43L9.19 13.50C9.05 13.70 8.85 13.85 8.62 13.94L8.54 13.97C8.35 14.02 8.16 14.00 7.99 13.92L7.91 13.88C7.67 13.75 7.48 13.56 7.35 13.32L7.28 13.20C7.11 12.88 7.02 12.52 7.00 12.16L7 12C6.99 11.58 7.09 11.16 7.28 10.79L7.35 10.67C7.48 10.43 7.67 10.24 7.91 10.11C8.10 10.00 8.32 9.97 8.54 10.02L8.62 10.05C8.81 10.12 8.98 10.24 9.11 10.39L9.19 10.49L9.26 10.57C9.43 10.74 9.66 10.85 9.91 10.87C10.15 10.89 10.40 10.81 10.59 10.66C10.79 10.51 10.92 10.29 10.96 10.05C11.01 9.80 10.96 9.55 10.83 9.34L10.77 9.26L10.60 9.05C10.24 8.65 9.79 8.35 9.29 8.16L9.03 8.08C8.34 7.91 7.60 8.00 6.97 8.34ZM14.97 8.34C14.42 8.64 13.96 9.09 13.64 9.63L13.50 9.87C13.16 10.53 12.99 11.26 13 12L13.00 12.27C13.04 12.92 13.21 13.55 13.50 14.12L13.64 14.36C13.96 14.90 14.42 15.35 14.97 15.65L15.21 15.77C15.79 16.01 16.43 16.06 17.03 15.91L17.29 15.83C17.88 15.61 18.39 15.23 18.77 14.73C18.93 14.53 19.00 14.27 18.97 14.02C18.94 13.77 18.82 13.53 18.63 13.37C18.44 13.20 18.19 13.11 17.93 13.12C17.68 13.13 17.44 13.24 17.26 13.43L17.19 13.50C17.05 13.70 16.85 13.85 16.62 13.94L16.54 13.97C16.35 14.02 16.16 14.00 15.99 13.92L15.91 13.88C15.67 13.75 15.48 13.56 15.35 13.32L15.28 13.20C15.11 12.88 15.02 12.52 15.00 12.16L15 12C14.99 11.58 15.09 11.16 15.28 10.79L15.35 10.67C15.48 10.43 15.67 10.24 15.91 10.11C16.10 10.00 16.32 9.97 16.54 10.02L16.62 10.05C16.81 10.12 16.98 10.24 17.11 10.39L17.19 10.49L17.26 10.57C17.43 10.74 17.66 10.85 17.91 10.87C18.15 10.89 18.40 10.81 18.59 10.66C18.79 10.51 18.92 10.29 18.96 10.05C19.01 9.80 18.96 9.55 18.83 9.34L18.77 9.26L18.60 9.05C18.24 8.65 17.79 8.35 17.29 8.16L17.03 8.08C16.34 7.91 15.60 8.00 14.97 8.34Z": "M11 11c-1.11 0-2 .9-2 2V23c0 1.1.89 2 2 2H25c1.1 0 2-.9 2-2V13c0-1.1-.9-2-2-2H11Zm6 6H15.5v-.5h-2v3h2V19H17v1c0 .55-.45 1-1 1H13c-.55 0-1-.45-1-1V16c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1Zm7 0H22.5v-.5h-2v3h2V19H24v1c0 .55-.45 1-1 1H20c-.55 0-1-.45-1-1V16c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1Z",
