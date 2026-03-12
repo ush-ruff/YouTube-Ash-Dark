@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.55.0
+@version        2.55.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -4357,7 +4357,7 @@
   
   iconsArrNoColor = (navbarIconsClick headerIconsClick watchPageIconsNoColor shortsPageIconsNoColor arrowIconsNoColor searchPageIcons playlistPageIconsNoColor subscriptionsPageIconsNoColors livechatNoColor)
   iconsArrColor = (navbarIcons headerIcons historyPageIcons watchPageIcons likeDislikeIcons shortsPageIcons flyoutMenuIcons arrowIcons playlistPageIcons subscriptionsPageIcons livechatColor channelPageIcons)
-  iconArrAccent = (likeDislikeIconsClick)
+  iconArrAccent = (likeDislikeIconsClick placeholder)
 
   replaceStr(str) {
     return replace(',', '\\,', str)
