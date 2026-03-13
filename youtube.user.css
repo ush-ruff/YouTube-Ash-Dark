@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.55.3
+@version        2.55.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1781,6 +1781,11 @@
   .yt-sans-28.yt-dynamic-sizing-formatted-string {
     font-family: "Roboto", sans-serif;
     font-size: 2.4rem;
+  }
+
+  /* --- Channel Name --- */
+  .ytd-video-owner-renderer .yt-core-attributed-string--link-inherit-color[style*="color: "] {
+    color: var(--yt-spec-text-primary) !important;
   }
 
   /* --- Comments Count --- */
