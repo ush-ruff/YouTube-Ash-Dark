@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.56.0
+@version        2.56.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -343,7 +343,7 @@
   #subscribe-button #subscribe-button-shape, 
   ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] :not(:has(#notification-preference-toggle-button[hidden])) yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
     text-transform: uppercase;
-    background-color: var(--bg-500);
+    background-color: var(--bg-500) !important;
     border-radius: var(--yt-button-border-radius, 2px);
     color: var(--cl-600);
   }
@@ -358,6 +358,7 @@
         background-color: var(--accent-red);
       }
     }
+
     span {
       text-transform: uppercase;
     }
@@ -1258,6 +1259,11 @@
     display: none;
   }
 
+  /* Fix header gap after in sticky mode */
+  tp-yt-app-toolbar.ytd-tabbed-page-header {
+    transform: unset !important;
+  }
+
 
   /* ----- Channel Page - About ----- */
   ytd-section-list-renderer[engagement-panel-dialog][should-scroll-in-panel] #contents.ytd-section-list-renderer {
@@ -1267,17 +1273,13 @@
 
 
   /* ----- Channel Page - Tabs ----- */
-  #tabsContainer {
-    --_tab-gap: 6rem;
-  }
-
   #tabsContent, 
   yt-tab-group-shape.tabGroupShapeHost {
     width: 100%;
   }
 
   .yt-tab-shape {
-    margin-right: var(--_tab-gap);
+    margin-right: 6rem;
   }
 
   .yt-tab-shape__tab {
@@ -1880,25 +1882,25 @@
     font-weight: 500;
   }
 
-  /* --- Channel Page - Home - Videos --- */
-  .ytd-page-manager[page-subtype="channels"] #scroll-container > #items > .yt-horizontal-list-renderer {
-    #video-title, 
-    .yt-lockup-metadata-view-model-wiz__title, 
-    #title.ytd-grid-channel-renderer {
+  /* --- Channel Page - Videos --- */
+  .ytd-browse[page-subtype="channels"] {
+    #video-title-link #video-title,
+    #details #video-title,
+    #channel-info #title,
+    .yt-lockup-metadata-view-model__title {
       font-size: clamp(1.4rem, 1.067rem + 0.444vw, 1.6rem);
     }
     
-    #metadata-line, 
-    #channel-name,
-    .yt-content-metadata-view-model-wiz__metadata-text, 
-    .yt-spec-button-shape-next--size-s, 
-    #thumbnail-attribution.ytd-grid-channel-renderer {
+    #metadata #metadata-line, 
+    #metadata #byline-container,
+    #channel-info #thumbnail-attribution,
+    .yt-content-metadata-view-model__metadata-text {
       font-size: clamp(1.2rem, 0.867rem + 0.444vw, 1.4rem);
     }
   }
 
   /* --- Channel Page - "View full playlist" in Thumbnail Details --- */
-  .ytd-page-manager[page-subtype="channels"] .yt-content-metadata-view-model__metadata-row .yt-content-metadata-view-model__metadata-text .yt-core-attributed-string__link {
+  .ytd-page-manager[page-subtype="channels"] .yt-lockup-metadata-view-model__metadata .yt-content-metadata-view-model__metadata-row:nth-child(2) a {
     text-transform: uppercase;
   }
 
