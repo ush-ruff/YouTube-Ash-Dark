@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.56.2
+@version        2.56.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -731,6 +731,12 @@
         background: linear-gradient(to right, oklch(from var(--_bg) l c h / 0), var(--_bg) 100%);
       }
     }
+  }
+
+
+  /* ----- Main Content - Survey Item ----- */
+  .ytd-inline-survey-renderer {
+    background-color: var(--bg-350) !important;
   }
 
 
@@ -2315,12 +2321,12 @@
   if (hideFilterBar) {
     ytd-feed-filter-chip-bar-renderer:not([component-style="FEED_FILTER_CHIP_BAR_STYLE_TYPE_CHANNEL_PAGE_GRID"]), 
     yt-related-chip-cloud-renderer {
-      display: none;
+      display: none !important;
     }
     
     /* Hide skeleton */
     #home-chips {
-      display: none;
+      display: none !important;
     }
   }
 }
