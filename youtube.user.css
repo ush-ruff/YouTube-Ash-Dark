@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.56.3
+@version        2.57.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -25,8 +25,9 @@
 @var            checkbox    hideExploreSection     "Hide \"Explore More\" Section on Home Page"   0
 @var            checkbox    hidePlayerControls     "Hide Player Overlays in Fullscreen"           1
 @var            checkbox    hideComments           "Hide Comments"                                0
-@var            checkbox    hideShorts             "Hide YouTube Shorts"                          1
+@var            checkbox    hideShorts             "Hide YouTube Shorts on Feeds"                 1
 @var            checkbox    hideShortsSearch       "Hide YouTube Shorts in Search Results"        1
+@var            checkbox    hideRecommendations    "Hide Recommendations on Watch Page"           0
 @var            checkbox    restoreDesc            "Restore Description Style"                    1
 @var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"                1
 @var            checkbox    restorePlayer          "Restore Video Player Style"                   1
@@ -2528,6 +2529,15 @@
     grid-shelf-view-model:has(> div > .ytGridShelfViewModelGridShelfRow > .ytGridShelfViewModelGridShelfItem > .shortsLockupViewModelHost) {
       display: none;
     }
+}
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide Recommendations on Watch Page ----- */
+  if (hideRecommendations) {
+    ytd-app[is-watch-page] #secondary {
+      display: none !important;
+    }
   }
 }
 
@@ -2666,7 +2676,102 @@
       #comments, ytd-comments {
         --_reply-btn-color: var(--accent-blue);
         
+        /* --- Restore for Old Static Style --- */
+        ytd-comment-thread-renderer #expander.ytd-comment-replies-renderer {
+          display: block !important;
+          padding-inline-start: 5rem;
+          
+          button {
+            padding-inline-end: unset;
+          }
+          
+          #creator-thumbnail ~ * button {
+            padding: unset;
+          }
+          
+          .yt-spec-button-shape-next__icon {
+            margin-inline: 3px -3px;
+          }
+        }
+        
+        ytd-comment-thread-renderer #expanded-threads #expander.ytd-comment-replies-renderer {
+          display: none !important;
+        }
+
+        #expander button.yt-spec-button-shape-next .yt-spec-button-shape-next__button-text-content {
+          font-size: 14px;
+          text-transform: initial;
+          color: var(--_reply-btn-color);
+        }
+
+        button.yt-spec-button-shape-next:not([aria-label="1 reply" i], [aria-label^="view"i ]) .yt-spec-button-shape-next__button-text-content {
+          text-transform: capitalize;
+
+          #more-replies &::before {
+            content: "View ";
+          }
+        }
+
+        button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content {
+          #more-replies &::before {
+            content: "View reply";
+          }
+
+          #less-replies &::before {
+            content: "Hide reply";
+          }
+
+          > span {
+            display: none;
+          }
+        }
+        
+        #reply-button-end .yt-spec-button-shape-next__button-text-content span {
+          text-transform: uppercase;
+          color: var(--cl-600);
+        }
+
+        /* Arrow Icon size fix */
+        #expander .yt-spec-button-shape-next__icon svg {
+          margin: unset;
+          color: var(--_reply-btn-color);
+          scale: 1.25;
+        }
+        
+        /* Position creator thumbnail at end */
+        #creator-thumbnail {
+          order: 99;
+          margin: unset;
+          border: 1px solid rgb(from white r g b / 0.12);
+          border-radius: 50%;
+          
+          + .dot {
+            order: 98;
+            margin-inline: 3px 6px;
+            /* color: var(--cl-900); */
+          }
+        }
+        
+        /* Fix author profile picture size */
+        #author-thumbnail .ytd-comment-view-model {
+          width: 36px;
+          height: 36px;
+        }
+        
+        /* Show more comments */
+        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
+          text-transform: none;
+          color: var(--_reply-btn-color);
+        }
+      
+
+        /* --- Restore for New Thread Style --- */      
         .thread-hitbox, .threadline, .ytSubThreadThreadline {
+          display: none;
+        }
+        
+        #collapsed-threads .ytSubThreadHasButton.ytSubThreadTopLevelThread, 
+        #expanded-threads .ytSubThreadTopLevelThread ~ .ytSubThreadHasButton.ytSubThreadTopLevelThread {
           display: none;
         }
         
@@ -2679,6 +2784,7 @@
           margin-block-start: 1rem;
         }
         
+        /*         
         #more-replies-sub-thread, #less-replies-sub-thread, .replies-continuation {
           --icon-color: var(--_reply-btn-color);
           
@@ -2700,19 +2806,6 @@
           }
         }
         
-        #creator-thumbnail {
-          order: 99;
-          margin: unset;
-          border: 1px solid rgb(from white r g b / 0.12);
-          border-radius: 50%;
-          
-          + .dot {
-            order: 98;
-            margin-inline: 0.5rem;
-            color: var(--cl-900);
-          }
-        }
-        
         #more-replies-sub-thread button::after {
           content: 'View ' attr(aria-label);
         }
@@ -2724,27 +2817,15 @@
         .replies-continuation button:after {
           content: attr(aria-label);
         }
-        
-        #reply-button-end .yt-spec-button-shape-next__button-text-content span {
-          text-transform: uppercase;
-          color: var(--cl-600);
-        }
-        
-        /* Fix author profile picture size */
-        #author-thumbnail .ytd-comment-view-model {
-          width: 36px;
-          height: 36px;
-        }
+         */
         
         /* Arrow Icon size fix */
+        /*         
         :is(#more-replies-sub-thread, #less-replies-sub-thread) .yt-spec-button-shape-next__icon svg {
           scale: 1.25;
         }
+         */
         
-        /* Show more comments */
-        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
-          text-transform: none;
-        }
       }
     }
   }
@@ -2752,7 +2833,7 @@
 
 @-moz-document domain("youtube.com") {
   /* ----- Restore Video Player Style ----- */
-  if (restorePlayer == 1) {
+  if (restorePlayer) {
     @css {
       /* ----- Restore Video Player Style ----- */
       .ytp-popup.ytp-delhi-modern-contextmenu {
@@ -4446,7 +4527,7 @@
     }
   }
 
-  if (restoreSolidIcons == 1) {
+  if (restoreSolidIcons) {
     for obj in iconsArrNoColor {
       for key, value in obj {
         changePath(key, value);
