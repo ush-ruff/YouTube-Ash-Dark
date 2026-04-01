@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.0
+@version        2.57.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2771,7 +2771,7 @@
         }
         
         #collapsed-threads .ytSubThreadHasButton.ytSubThreadTopLevelThread, 
-        #expanded-threads .ytSubThreadTopLevelThread ~ .ytSubThreadHasButton.ytSubThreadTopLevelThread {
+        #expanded-threads .ytSubThreadTopLevelThread ~ .ytSubThreadHasButton.ytSubThreadTopLevelThread:has(button:not([aria-label="show more replies" i])) {
           display: none;
         }
         
