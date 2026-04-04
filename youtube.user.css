@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.2
+@version        2.57.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2733,7 +2733,7 @@
         }
 
         /* Arrow Icon size fix */
-        #expander .yt-spec-button-shape-next__icon svg {
+        :is(#expander, #replies ytd-continuation-item-renderer) .yt-spec-button-shape-next__icon svg {
           margin: unset;
           color: var(--_reply-btn-color);
           scale: 1.25;
@@ -2749,7 +2749,6 @@
           + .dot {
             order: 98;
             margin-inline: 3px 6px;
-            /* color: var(--cl-900); */
           }
         }
         
@@ -2760,9 +2759,20 @@
         }
         
         /* Show more comments */
-        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next span {
-          text-transform: none;
-          color: var(--_reply-btn-color);
+        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next {
+          display: flex;
+          flex-direction: row-reverse;
+          gap: 3px;
+          padding: unset;
+          
+          > div {
+            margin: unset;
+          }
+          
+          span {
+            text-transform: none;
+            color: var(--_reply-btn-color);
+          }
         }
       
 
