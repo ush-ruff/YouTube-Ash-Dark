@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.4
+@version        2.57.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1256,11 +1256,11 @@
   }
   
   /* Channel Name */
-  :is(.yt-page-header-view-model__page-header-title, .ytPageHeaderViewModelTitle), 
+  #page-header :is(.yt-page-header-view-model__page-header-title, .ytPageHeaderViewModelTitle), 
   /* Channel Link */
-  :is(.yt-content-metadata-view-model__metadata-row--metadata-row-inline, .ytContentMetadataViewModelMetadataRow) > span:first-child > span, 
+  #page-header :is(.yt-content-metadata-view-model__metadata-row--metadata-row-inline, .ytContentMetadataViewModelMetadataRow) > span:first-child > span, 
   /* "... more links" */
-  :is(.yt-page-header-view-model__page-header-attribution, .ytPageHeaderViewModelAttribution) > span:last-child a  {
+  #page-header :is(.yt-page-header-view-model__page-header-attribution, .ytPageHeaderViewModelAttribution) > span:last-child a  {
     color: var(--cl-200) !important;
   }
 
