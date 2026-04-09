@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.6
+@version        2.57.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -418,7 +418,7 @@
     display: flex;
   }
 
-  #subscribe-button .smartimation__content {
+  #subscribe-button :is(.smartimation__content, .ytSmartImationsContent) {
     display: flex;
   }
 
