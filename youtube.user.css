@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.7
+@version        2.57.8
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -122,14 +122,22 @@
   }
 
   #home-page-skeleton .rich-thumbnail::before {
-    border-radius: 0;
     background: unset;
+    border-radius: 0;
+  }
+
+  .ytdGhostGridViewModelGhostColor {
+    background-color: var(--bg-440);
+  }
+  
+  .ytdGhostGridViewModelThumbnail {
+    border-radius: var(--br);
   }
 
 
   /* ----- Skeleton - Cards ----- */
   .skeleton-bg-color.ytd-ghost-grid-renderer {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--bg-440);
   }
 
 
@@ -1977,7 +1985,8 @@
   /* ----- Custom Item Grid Layout ----- */
   if (customGrid) {
     #primary > ytd-rich-grid-renderer > #contents, 
-    #home-container-media {
+    #home-container-media, 
+    #reload-content.ytd-rich-grid-renderer > .ytdGhostGridViewModelHost {
       --size: calc((100% - (var(--ytd-rich-grid-item-margin) * (var(--grid-columns-count) - 1))) / var(--grid-columns-count));
       
       box-sizing: border-box;
@@ -2102,6 +2111,12 @@
       max-width: unset !important;
       margin: unset;
 		}
+    
+    .ytdGhostGridViewModelGhostCardLayout {
+      width: auto;
+      max-width: unset;
+      margin: unset;
+    }
     
     /* --- Explore Section - Cards Skeleton --- */
     ytd-ghost-grid-renderer .ghost-grid.ytd-ghost-grid-renderer {
