@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.8
+@version        2.57.9
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1299,22 +1299,26 @@
     width: 100%;
   }
 
-  .yt-tab-shape {
+  .yt-tab-shape, 
+  .ytTabShapeHostClickable {
     margin-right: 6rem;
   }
 
-  .yt-tab-shape__tab {
+  .yt-tab-shape__tab, 
+  .ytTabShapeTab {
     font-size: 1.5rem;
     text-transform: uppercase;
   }
 
   .yt-tab-shape__tab--tab-selected, 
-  .yt-tab-shape:focus .yt-tab-shape__tab {
+  .yt-tab-shape:focus .yt-tab-shape__tab, 
+  .ytTabShapeTabSelected {
     color: var(--cl-400);
   }
 
   /* Align search icon/input to the right */
-  .yt-tab-shape__tab--last-tab {
+  .yt-tab-shape__tab--last-tab, 
+  .ytTabShapeLastTab {
     margin-inline: auto 0;
   }
 
@@ -1324,7 +1328,8 @@
   }
 
   /* Selected tab underline */
-  .yt-tab-shape[aria-selected="true"] {
+  .yt-tab-shape[aria-selected="true"], 
+  .ytTabShapeHost[aria-selected="true"] {
     anchor-name: --active-tab;
   }
   
