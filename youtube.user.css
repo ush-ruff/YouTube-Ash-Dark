@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.9
+@version        2.57.10
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -974,11 +974,11 @@
 
 
   /* ----- Description - Text & Links ----- */
-  #description .yt-core-attributed-string--link-inherit-color:not(.yt-core-attributed-string__link--call-to-action-color) {
+  #description :is(.yt-core-attributed-string--link-inherit-color, .ytAttributedStringLinkInheritColor):not(.yt-core-attributed-string__link--call-to-action-color) {
     color: inherit !important;
   }
 
-  #description .yt-core-attributed-string__link--call-to-action-color {
+  #description :is(.yt-core-attributed-string__link--call-to-action-color, .ytAttributedStringLinkCallToActionColor) {
     color: var(--accent-blue);
   }
   
