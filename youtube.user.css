@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.11
+@version        2.57.12
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -78,13 +78,21 @@
     scrollbar-width: thin !important;
 
     --yt-spec-text-primary: var(--cl-400) !important;
+    --yt-sys-color-baseline--text-primary: var(--cl-400) !important;
     --yt-spec-text-secondary: var(--cl-600) !important;
+    --yt-sys-color-baseline--text-secondary: var(--cl-600) !important;
+
     --yt-button-color: var(--cl-400);
+
     --yt-spec-base-background: var(--bg-200) !important;
+    --yt-sys-color-baseline--base-background: var(--bg-200) !important;
+
     --yt-spec-icon-inactive: var(--bg-900) !important;
+
     --yt-spec-call-to-action: var(--accent-blue) !important;
     --yt-spec-call-to-action-inverse: var(--accent-blue-dark) !important;
     --yt-spec-static-overlay-background-brand: var(--accent-red) !important;
+
     --yt-spec-10-percent-layer: rgba(255, 255, 255, 0.1) !important;
 
   }
