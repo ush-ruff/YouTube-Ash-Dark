@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.14
+@version        2.57.15
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -84,6 +84,8 @@
 
     --yt-button-color: var(--cl-400);
 
+    --yt-endpoint-visited-color: var(--yt-spec-text-primary) !important; 
+
     --yt-spec-base-background: var(--bg-200) !important;
     --yt-sys-color-baseline--base-background: var(--bg-200) !important;
 
@@ -101,7 +103,8 @@
     background: var(--bg-750);
   }
 
-  html, html[dark] {
+  html, html[dark],
+  .ytd-tabbed-page-header {
     background: var(--bg-200) !important;
   }
 
@@ -111,6 +114,10 @@
 
   .deemphasize.yt-formatted-string {
     color: var(--cl-900);
+  }
+  
+  ytd-text-inline-expander {
+    color: var(--yt-spec-text-primary) !important;
   }
   
   
@@ -1168,7 +1175,7 @@
 
   /* ----- Comment - Text ----- */
   #comment-container :is(#author-text, #content-text) {
-    color: var(--cl-300);
+    color: var(--yt-spec-text-primary);
   }
 
 
