@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.13
+@version        2.57.14
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1163,6 +1163,12 @@
   #replies #expander .dot {
     line-height: 0.35;
     color: var(--accent-blue);
+  }
+
+
+  /* ----- Comment - Text ----- */
+  #comment-container :is(#author-text, #content-text) {
+    color: var(--cl-300);
   }
 
 
