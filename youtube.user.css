@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.16
+@version        2.57.17
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -89,6 +89,7 @@
     --yt-spec-base-background: var(--bg-200) !important;
     --yt-sys-color-baseline--base-background: var(--bg-200) !important;
 
+    --icon-color: var(--bg-900);
     --yt-spec-icon-inactive: var(--bg-900) !important;
 
     --yt-spec-call-to-action: var(--accent-blue) !important;
@@ -100,6 +101,9 @@
     --ytd-video-primary-info-renderer-title-color: var(--cl-300) !important;
 
     --tffc2fd3a644f6275: var(--yt-spec-text-primary) !important;
+
+    --yt-live-chat-background-color: var(--bg-440) !important;
+    --yt-live-chat-action-panel-background-color: var(--bg-320) !important;
   }
 
   ::selection {
@@ -263,6 +267,10 @@
     color: var(--yt-spec-text-primary);
   }
 
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText:hover {
+    background-color: unset;
+  }
+
   /* Button Label */
   .yt-spec-button-shape-with-label__label {
     font-weight: 500;
@@ -358,6 +366,7 @@
   #subscribe-button .yt-spec-button-shape-next.yt-spec-button-shape-next--filled, 
   .ytp-sb-subscribe, 
   a.ytp-sb-subscribe, 
+  #subscribe-button #subscribe-button-shape:has(> .ytSpecButtonShapeNextHost[aria-label^="Subscribe to" i]), 
   ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal, 
   yt-subscribe-button-view-model .yt-subscribe-button-view-model-wiz__container .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled, 
   .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled[aria-label="subscribe" i], 
@@ -366,18 +375,30 @@
     background-color: var(--accent-red) !important;
     border-radius: var(--yt-button-border-radius, 2px);
     color: var(--cl-100);
+    
+    > .ytSpecButtonShapeNextHost {
+      background-color: unset;
+      border-radius: inherit;
+      color: inherit;
+    }
   }
 
   /* Unsubscribe Button */
   #subscribe-button .yt-spec-button-shape-next, 
   .ytp-sb-unsubscribe, 
   a.ytp-sb-unsubscribe, 
-  #subscribe-button #subscribe-button-shape, 
+  #subscribe-button #subscribe-button-shape:has(> .ytSpecButtonShapeNextHost[aria-label^="Unsubscribe from" i]), 
   ytd-subscribe-button-renderer[button-style=COMPACT_GRAY] :not(:has(#notification-preference-toggle-button[hidden])) yt-button-shape.ytd-subscribe-button-renderer .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal {
     text-transform: uppercase;
     background-color: var(--bg-500) !important;
     border-radius: var(--yt-button-border-radius, 2px);
     color: var(--cl-600);
+    
+    > .ytSpecButtonShapeNextHost {
+      background-color: unset;
+      border-radius: inherit;
+      color: inherit;
+    }
   }
 
   /* Subscribe Buttons - Channels page (youtube.com/@handle/channels) */
@@ -414,7 +435,8 @@
   /* --- Revert notification button (Bell Icon) --- */
   #notification-preference-button > ytd-subscription-notification-toggle-button-renderer-next > yt-button-shape > button {
     /* Removes background color around bell icon */
-    &.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal {
+    &.yt-spec-button-shape-next.yt-spec-button-shape-next--tonal, 
+    &.ytSpecButtonShapeNextHost {
       background-color: transparent !important;
       padding-right: 4px;
     }
@@ -1036,7 +1058,8 @@
     }
   }
   
-  .yt-spec-button-shape-next__button-text-content {
+  .yt-spec-button-shape-next__button-text-content, 
+  .ytSpecButtonShapeNextButtonTextContent {
     text-transform: uppercase;
   }
 
@@ -1067,8 +1090,10 @@
     }
   }
 
-  #info-contents .yt-spec-button-shape-next {
+  #info-contents .yt-spec-button-shape-next, 
+  #info-contents .ytSpecButtonShapeNextHost {
     background-color: transparent;
+    border-radius: var(--br);
   }
 
 
@@ -1194,6 +1219,10 @@
     
     #name, #icon {
       color: inherit;
+    }
+
+    #text.ytd-channel-name {
+      color: var(--cl-100);
     }
   }
 
@@ -2702,7 +2731,7 @@
             padding: unset;
           }
           
-          .yt-spec-button-shape-next__icon {
+          .yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon {
             margin-inline: 0 3px;
           }
         }
@@ -2711,14 +2740,14 @@
           display: none !important;
         }
 
-        #expander button.yt-spec-button-shape-next .yt-spec-button-shape-next__button-text-content {
-          order: 1;
+        #expander :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
+          order: -1;
           font-size: 14px;
           text-transform: initial;
           color: var(--_reply-btn-color);
         }
 
-        button.yt-spec-button-shape-next:not([aria-label="1 reply" i], [aria-label^="view"i ]) .yt-spec-button-shape-next__button-text-content {
+        :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):not([aria-label="1 reply" i], [aria-label^="view"i ]) :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
           text-transform: capitalize;
 
           #more-replies &::before {
@@ -2726,7 +2755,7 @@
           }
         }
 
-        button.yt-spec-button-shape-next[aria-label="1 reply" i] .yt-spec-button-shape-next__button-text-content {
+        :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost)[aria-label="1 reply" i] :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
           #more-replies &::before {
             content: "View reply";
           }
@@ -2740,13 +2769,13 @@
           }
         }
         
-        #reply-button-end .yt-spec-button-shape-next__button-text-content span {
+        #reply-button-end :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) span {
           text-transform: uppercase;
           color: var(--cl-600);
         }
 
         /* Arrow Icon size fix */
-        :is(#expander, #replies ytd-continuation-item-renderer) .yt-spec-button-shape-next__icon svg {
+        :is(#expander, #replies ytd-continuation-item-renderer) :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon) svg {
           margin: unset;
           color: var(--_reply-btn-color);
           scale: 1.25;
@@ -2772,7 +2801,7 @@
         }
         
         /* Show more comments */
-        #replies ytd-continuation-item-renderer .yt-spec-button-shape-next {
+        #replies ytd-continuation-item-renderer :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
           display: flex;
           flex-direction: row-reverse;
           gap: 3px;
@@ -2785,6 +2814,10 @@
           span {
             text-transform: none;
             color: var(--_reply-btn-color);
+          }
+          
+          .ytSpecButtonShapeNextButtonTextContent {
+            order: 1;
           }
         }
       
@@ -2821,11 +2854,11 @@
             color: var(--_reply-btn-color);
           }
           
-          .yt-spec-button-shape-next__button-text-content {
+          :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
             display: none;
           }
           
-          .yt-spec-button-shape-next__icon {
+          :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon) {
             margin: unset;
           }
         }
@@ -2845,7 +2878,7 @@
         
         /* Arrow Icon size fix */
         /*         
-        :is(#more-replies-sub-thread, #less-replies-sub-thread) .yt-spec-button-shape-next__icon svg {
+        :is(#more-replies-sub-thread, #less-replies-sub-thread) :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon) svg {
           scale: 1.25;
         }
          */
