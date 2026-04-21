@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.18
+@version        2.57.19
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2758,7 +2758,7 @@
         }
 
         #expander :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
-          order: -1;
+          order: 1;
           font-size: 14px;
           text-transform: initial;
           color: var(--_reply-btn-color);
@@ -2831,10 +2831,6 @@
           span {
             text-transform: none;
             color: var(--_reply-btn-color);
-          }
-          
-          .ytSpecButtonShapeNextButtonTextContent {
-            order: 1;
           }
         }
       
