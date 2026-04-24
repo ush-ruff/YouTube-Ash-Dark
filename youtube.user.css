@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.57.19
+@version        2.58.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -368,7 +368,7 @@
   
   /* ----- Subscribe Button - Restore Old Style ----- */  
   /* Subscribe Button */
-  #subscribe-button .yt-spec-button-shape-next.yt-spec-button-shape-next--filled, 
+  #subscribe-button :is(.yt-spec-button-shape-next.yt-spec-button-shape-next--filled, .ytSpecButtonShapeNextFilled),
   .ytp-sb-subscribe, 
   a.ytp-sb-subscribe, 
   #subscribe-button #subscribe-button-shape:has(> .ytSpecButtonShapeNextHost[aria-label^="Subscribe to" i]), 
@@ -1229,7 +1229,7 @@
     border-radius: 100vw;
     color: var(--cl-100);
     
-    #name, #icon {
+    #name, #icon, path {
       color: inherit;
     }
 
@@ -1515,7 +1515,9 @@
       color: var(--cl-400);
     }
 
-    yt-button-renderer a, .yt-spec-button-shape-next--text {
+    yt-button-renderer a, 
+    .yt-spec-button-shape-next--text, 
+    .ytSpecButtonShapeNextCallToActionInverse {
       color: var(--accent-blue);
     }
   }
@@ -1530,7 +1532,9 @@
       border-radius: var(--_br) 0 0 var(--_br);
     }
     
-    .snackbarViewModelTitle, .yt-spec-button-shape-next--text {
+    .snackbarViewModelTitle, 
+    .yt-spec-button-shape-next--text, 
+    .ytSpecButtonShapeNextText {
       color: inherit;
     }
   }
@@ -1543,10 +1547,27 @@
     scrollbar-width: thin;
   }
 
+
+  /* ----- Playlist - Selected Item ----- */
+  ytd-playlist-panel-video-renderer[selected][use-color-palette], 
+  ytd-playlist-panel-video-renderer[selected][use-color-palette]:hover:not(.dragging) {
+    background-color: var(--bg-440);
+    
+    #video-title.ytd-playlist-panel-video-renderer {
+      color: var(--cl-300);
+    }
+    
+    #byline.ytd-playlist-panel-video-renderer {
+      color: var(--cl-600);
+    }
+  }
+
+
   /* ----- Playlist - Icons Hover Background ----- */
   .ytd-playlist-panel-renderer #top-level-buttons-computed .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text:hover {
     background: unset;
   }
+
 
   /* ----- Playlist - All Items Page ----- */
   .immersive-header-content.ytd-playlist-header-renderer {
@@ -1936,7 +1957,8 @@
   }
 
   /* --- Channel Name --- */
-  .ytd-video-owner-renderer .yt-core-attributed-string--link-inherit-color[style*="color: "] {
+  .ytd-video-owner-renderer .yt-core-attributed-string--link-inherit-color[style*="color: "], 
+  .ytd-video-owner-renderer .ytAttributedStringLinkInheritColor[style*="color: "] {
     color: var(--yt-spec-text-primary) !important;
   }
 
@@ -2801,6 +2823,7 @@
         /* Position creator thumbnail at end */
         #creator-thumbnail {
           order: 99;
+          display: flex;
           margin: unset;
           border: 1px solid rgb(from white r g b / 0.12);
           border-radius: 50%;
