@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.58.0
+@version        2.58.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -242,6 +242,10 @@
 
   :is(#menu, #replies, #action-button, #action-buttons) :not(#submit-button) > yt-button-shape .yt-spec-button-shape-next:not(.yt-spec-button-shape-next--outline) {
     background-color: transparent !important;
+  }
+
+  .button-container.ytd-rich-shelf-renderer {
+    background-color: transparent;
   }
 
   .yt-spec-button-shape-next--call-to-action.yt-spec-button-shape-next--text .yt-spec-button-shape-next__button-text-content {
@@ -587,6 +591,10 @@
     box-shadow: unset !important;
   }
 
+  .ytSpecTouchFeedbackShapeTouchResponse {
+    display: none;
+  }
+
 
   /* ----- Thumbnail - Remove touch feedback ----- */
   ytd-rich-item-renderer.ytd-rich-grid-renderer, 
@@ -619,7 +627,8 @@
 
 
   /* ----- Thumbnail Overlay - No. of videos in playlist ----- */
-  ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2] {
+  ytd-thumbnail-overlay-bottom-panel-renderer[use-modern-collections-v2], 
+  .ytBadgeShapeThumbnailDefault {
     background-color: rgba(0, 0, 0, 0.8) !important;
     color: var(--cl-200);
     border-radius: 2px;
@@ -653,7 +662,9 @@
 
   /* ----- Thumbnail Metadata - Live Badge ----- */
   .yt-spec-avatar-shape--cairo-refresh .yt-spec-avatar-shape__live-badge,
-  .yt-spec-avatar-shape--cairo-refresh.yt-spec-avatar-shape--live-ring::after {
+  .yt-spec-avatar-shape--cairo-refresh.yt-spec-avatar-shape--live-ring::after, 
+  .ytSpecAvatarShapeLiveBadge, 
+  .ytSpecAvatarShapeLiveRing::after {
     background: unset;
     background-color: var(--yt-spec-static-overlay-background-brand);
   }
@@ -2040,7 +2051,8 @@
 
   /* --- Thumbnail Details - Playlists --- */
   ytd-grid-playlist-renderer #details #view-more, 
-  ytd-rich-grid-media #details #view-more {
+  ytd-rich-grid-media #details #view-more, 
+  .ytLockupViewModelMetadata .ytContentMetadataViewModelMetadataText a[href^="/playlist"] {
     text-transform: uppercase;
   }
 
@@ -2267,8 +2279,8 @@
   /* ----- Custom Thumbnail Metadata Style ----- */
   if (customThumbnailMeta) {
     @css {
-      ytd-two-column-browse-results-renderer[page-subtype="home"] yt-lockup-metadata-view-model, 
-      ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] yt-lockup-metadata-view-model {
+      ytd-two-column-browse-results-renderer[page-subtype="home"] :is(yt-lockup-metadata-view-model, #details), 
+      ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] :is(yt-lockup-metadata-view-model, #details) {
         display: grid;
         grid-template-areas: "title title menu" "logo meta meta";
         grid-template-columns: auto 1fr 24px;
@@ -2278,7 +2290,8 @@
         /* Avatar */
         .yt-lockup-metadata-view-model__avatar,
         .yt-lockup-metadata-view-model-wiz__avatar, 
-        .ytLockupMetadataViewModelAvatar {
+        .ytLockupMetadataViewModelAvatar, 
+        #avatar-container {
           grid-area: logo;
           width: 36px;
           margin: 0;
@@ -2287,7 +2300,8 @@
         /* Text */
         .yt-lockup-metadata-view-model__text-container, 
         .yt-lockup-metadata-view-model-wiz__text-container, 
-        .ytLockupMetadataViewModelTextContainer {
+        .ytLockupMetadataViewModelTextContainer, 
+        #meta {
           grid-row: 1 / -1;
           grid-column: 1 / -1;
           display: grid;
@@ -2303,7 +2317,8 @@
           /* Metadata */
           .yt-lockup-metadata-view-model__metadata, 
           .yt-lockup-metadata-view-model-wiz__metadata, 
-          .ytLockupMetadataViewModelMetadata {
+          .ytLockupMetadataViewModelMetadata, 
+          ytd-video-meta-block {
             grid-area: meta;
             padding-inline-start: 1rem;
           }
