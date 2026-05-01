@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.58.2
+@version        2.58.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2802,7 +2802,7 @@
           color: var(--_reply-btn-color);
         }
 
-        :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):not([aria-label="1 reply" i], [aria-label^="view"i ]) :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
+        #expander :is(button.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):not([aria-label="1 reply" i], [aria-label^="view"i ]) :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
           text-transform: capitalize;
 
           #more-replies &::before {
