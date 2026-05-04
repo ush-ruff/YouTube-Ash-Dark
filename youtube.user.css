@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.58.4
+@version        2.58.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -618,7 +618,8 @@
 
   /* ----- Thumbnail Overlay - Watch Later & Add to Playlist ----- */
   yt-thumbnail-hover-overlay-toggle-actions-view-model .yt-spec-button-shape-next--overlay-dark.yt-spec-button-shape-next--tonal.yt-spec-button-shape-next--enable-backdrop-filter-experiment, 
-  .ytThumbnailHoverOverlayToggleActionsViewModelButton :is(.yt-spec-button-view-model, .ytSpecButtonViewModelHost) button {
+  .ytThumbnailHoverOverlayToggleActionsViewModelButton :is(.yt-spec-button-view-model, .ytSpecButtonViewModelHost) button, 
+  .ytThumbnailHoverOverlayToggleActionsViewModelButtonWithAlignment :is(.yt-spec-button-view-model, .ytSpecButtonViewModelHost) .ytSpecButtonShapeNextHost {
     width: 28px;
     height: 28px;
     background-color: rgba(0, 0, 0, 0.8);
