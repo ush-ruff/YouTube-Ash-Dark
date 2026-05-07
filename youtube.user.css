@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.58.6
+@version        2.58.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -3521,9 +3521,13 @@
           margin: unset;
         }
         
-        &.ytp-fullscreen-grid-active .caption-window.ytp-caption-window-bottom {
-          display: flow-root;
-          opacity: 1;
+        &:is(.ytp-fullscreen-grid-active, .ytp-grid-scrolling) .ytp-caption-window-container {
+          display: block;
+          
+          .caption-window.ytp-caption-window-bottom {
+            display: block;
+            opacity: 1;
+          }
         }
         
         /* --- Player Controls --- */
