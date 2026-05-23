@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.58.9
+@version        2.59.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -103,6 +103,9 @@
 
     --yt-live-chat-background-color: var(--bg-440) !important;
     --yt-live-chat-action-panel-background-color: var(--bg-320) !important;
+
+    --t3e41d7b17b187f69: var(--bg-200) !important;
+    --t518e925f61bdcb91: var(--bg-300) !important;
   }
 
   ::selection {
@@ -1172,6 +1175,37 @@
     
     .ytGenAiFeedbackFormViewModelChipsContainer .yt-spec-button-shape-next__button-text-content {
       text-transform: unset;
+    }
+  }
+
+
+  /* ----- AI Panel ----- */
+  ytd-engagement-panel-title-header-renderer[darker-panels] #header.ytd-engagement-panel-title-header-renderer {
+    background-color: var(--bg-300);
+  }
+  
+  ytd-engagement-panel-title-header-renderer:not([ads-semantic-text]) #title-text.ytd-engagement-panel-title-header-renderer {
+    font-weight: 500;
+  }
+  
+  .chatInputViewModelChatInputWrapper {
+    background-color: var(--bg-300);
+  }
+
+  .chatInputViewModelChatInput {
+    background-color: hsl(0, 0%, 7%);
+    border: 1px solid hsl(0, 0%, 18.82%);
+    border-radius: var(--br);
+    box-shadow: none;
+  }
+  
+  .chatInputViewModelChatInput + .ytSpecButtonViewModelHost {
+    padding: 4px;
+    background-color: hsla(0, 0%, 100%, 0.08);
+    border: 1px solid hsl(0, 0%, 18.82%);
+    
+    > .ytSpecButtonShapeNextHost {
+      color: var(--bg-900);
     }
   }
 
