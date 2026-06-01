@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.59.1
+@version        2.59.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -614,6 +614,7 @@
   .yt-badge-shape--thumbnail-default, 
   .ytBadgeShapeThumbnailDefault, 
   .ytBadgeShapeThumbnailDefaultRedesign {
+    padding: 1px 4px;
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--cl-200);
     border-radius: 2px;
