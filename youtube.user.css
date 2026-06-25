@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.59.3
+@version        2.60.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -270,8 +270,9 @@
   }
 
   /* Text Only Buttons */
-  .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text {
-    color: var(--yt-spec-text-primary);
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText:hover, 
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText:hover:not(.ytSpecButtonShapeNextEnableLightTouchResponse) {
+    background-color: unset;
   }
 
   .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText:hover {
@@ -1303,6 +1304,20 @@
 
   #more .more-button, #less .less-button {
     text-transform: uppercase;
+  }
+
+
+  /* ----- Related Videos - Fix sidebar and thumbnail sizing ----- */
+  #secondary.ytd-watch-flexy {
+    --ytd-watch-flexy-sidebar-width: 402px;
+    
+    .ytLockupViewModelHorizontal .ytLockupViewModelContentImage {
+      max-width: min(180px, 50%);
+    }
+  }
+  
+  ytd-item-section-renderer[lockup-container-type="2"][is-grid-view-enabled] #contents.ytd-item-section-renderer {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 
 
