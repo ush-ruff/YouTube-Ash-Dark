@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.60.0
+@version        2.61.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -13,6 +13,7 @@
 @var            number      customGridColumns      " ↳ No. of Columns"                            [5, 4, 10, 1]
 @var            checkbox    disablePreview         "Disable Thumbnail Previews (Autoplay)"        1
 @var            checkbox    customThumbnailMeta    "Custom Thumbnail Metadata Style"              1
+@var            checkbox    relatedThumbnailMeta   " ↳ Enable on Watch Pages"                     0
 @var            checkbox    enablePlayerSize       "Enable Custom Player Size"                    0
 @var            text        playerSize             " ↳ Player Size"                               880px
 @var            checkbox    customPageSize         "Enable Custom Channel Page Size"              1
@@ -1308,16 +1309,38 @@
 
 
   /* ----- Related Videos - Fix sidebar and thumbnail sizing ----- */
-  #secondary.ytd-watch-flexy {
-    --ytd-watch-flexy-sidebar-width: 402px;
-    
-    .ytLockupViewModelHorizontal .ytLockupViewModelContentImage {
-      max-width: min(180px, 50%);
+  @css {
+    #secondary.ytd-watch-flexy {
+      --ytd-watch-flexy-sidebar-width: 402px;
+
+      .ytLockupViewModelHorizontal .ytLockupViewModelContentImage {
+        max-width: min(180px, 50%);
+      }
+    }
+
+    ytd-item-section-renderer[lockup-container-type="2"][is-grid-view-enabled] #contents.ytd-item-section-renderer {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
   }
-  
-  ytd-item-section-renderer[lockup-container-type="2"][is-grid-view-enabled] #contents.ytd-item-section-renderer {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+  /* ----- Related Videos - Fix menu icon position on items ----- */
+  @css {
+    .ytLockupViewModelMetadata {
+      .ytLockupMetadataViewModelTextContainer {
+        padding-inline-end: 20px;
+      }
+
+      .ytLockupMetadataViewModelMenuButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        
+        button {
+          width: unset;
+          height: unset;
+        }
+      }
+    }
   }
 
 
@@ -2391,6 +2414,41 @@
         }
       }
       
+    }
+
+    if (relatedThumbnailMeta) {
+      @css {
+        .ytLockupViewModelMetadata .ytLockupMetadataViewModelHorizontal {
+          display: grid;
+          grid-template-areas: "title title menu" "logo meta meta";
+          grid-template-columns: auto 1fr 24px;
+          grid-template-rows: auto 1fr;
+          gap: 0.5rem 0;
+
+          .ytLockupMetadataViewModelAvatar {
+            grid-area: logo;
+            display: block;
+            margin: unset;
+          }
+
+          .ytLockupMetadataViewModelMenuButton {
+            grid-area: menu;
+          }
+
+          .ytLockupMetadataViewModelTextContainer {
+            display: contents;
+
+            > h3 {
+              grid-area: title;
+            }
+
+            .ytLockupMetadataViewModelMetadata {
+              grid-area: meta;
+              padding-inline-start: 1rem;
+            }
+          }
+        }
+      }
     }
   }
 }
