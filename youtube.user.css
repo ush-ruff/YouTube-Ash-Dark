@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.61.1
+@version        2.61.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -268,6 +268,11 @@
     &:hover, &:focus-visible {
       background-color: var(--accent-blue-hover);
     }
+  }
+
+  /* Remove the rim lighting effect on buttons */
+  yt-light-shape {
+    display: none !important;
   }
 
   /* Text Only Buttons */
@@ -2412,6 +2417,11 @@
         + .ytLockupAttachmentsViewModelHost {
           margin-block-start: 1rem;
         }
+      }
+
+      /* Fix metadata item positioning */
+      .ytContentMetadataViewModelMetadataRow {
+        flex-wrap: wrap;
       }
       
     }
