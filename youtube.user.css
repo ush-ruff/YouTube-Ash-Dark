@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.61.2
+@version        2.61.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -638,6 +638,10 @@
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--cl-200);
     border-radius: 2px;
+    backdrop-filter: unset;
+  }
+
+  .ytSpecButtonShapeNextOverlayDark.ytSpecButtonShapeNextTonal.ytSpecButtonShapeNextEnableBackdropFilterExperiment {
     backdrop-filter: unset;
   }
 
