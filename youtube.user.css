@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.61.4
+@version        2.61.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -262,7 +262,8 @@
   }
 
   .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled, 
-  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled {
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled, 
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled:not(.ytSpecButtonShapeNextEnableLightTouchResponse) {
     background-color: var(--accent-blue);
     
     &:hover, &:focus-visible {
