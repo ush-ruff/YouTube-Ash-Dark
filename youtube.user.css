@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.61.5
+@version        2.62.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -227,6 +227,12 @@
   /* Search */
   ytd-video-renderer #dismissible {
     fixMenuIcon("#menu");
+  }
+
+
+  /* ----- Menu Icon - Remove Accent Colors in the Background ----- */
+  .ytLockupViewModelMetadata .ytLockupMetadataViewModelMenuButton::after {
+    content: unset;
   }
   
 
@@ -694,6 +700,35 @@
     
     yt-icon.ytd-badge-supported-renderer {
       color: inherit;
+    }
+  }
+
+
+  /* ----- Thumbnail Metadata - Views Count & Video Age ----- */
+  .ytContentMetadataViewModelHost .ytContentMetadataViewModelMetadataRow:nth-child(2):has(> .ytContentMetadataViewModelLeadingIcon) {
+    > .ytContentMetadataViewModelLeadingIcon:nth-child(1) {
+      display: none;
+    }
+    
+    > .ytContentMetadataViewModelMetadataText:nth-child(2)::after {
+      content: " views";
+    }
+    
+    > .ytContentMetadataViewModelDelimiter::before {
+      content: "•";
+      font-family: Roboto,"Arial",sans-serif;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      font-weight: 400;
+    }
+    
+    > .ytContentMetadataViewModelMetadataText:nth-child(4) {
+      color: transparent;
+      
+      &::before {
+        content: attr(aria-label);
+        color: var(--cl-600);
+      }
     }
   }
 
