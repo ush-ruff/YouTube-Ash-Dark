@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.62.0
+@version        2.62.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -706,6 +706,8 @@
 
   /* ----- Thumbnail Metadata - Views Count & Video Age ----- */
   .ytContentMetadataViewModelHost .ytContentMetadataViewModelMetadataRow:nth-child(2):has(> .ytContentMetadataViewModelLeadingIcon) {
+    flex-wrap: nowrap;
+    
     > .ytContentMetadataViewModelLeadingIcon:nth-child(1) {
       display: none;
     }
