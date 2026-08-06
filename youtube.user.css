@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.62.2
+@version        2.62.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -469,10 +469,15 @@
       padding-inline: 4px;
       
       > .ytSpecButtonShapeNextIcon {
-        width: 100%;
+        width: 24px;
         height: auto;
         aspect-ratio: 1;
         margin: unset;
+      }
+      
+      yt-icon {
+        width: 100% !important;
+        height: auto !important;
       }
       
       .ytIconWrapperHost {
@@ -526,7 +531,7 @@
     display: none;
   } 
 
-  /* --- New fix for Unsubscribe notification button (May-24) --- */
+  /* --- Fix Unsubscribe notification button on channel pages --- */
   yt-subscribe-button-view-model {
     width: auto !important;
   }
@@ -552,6 +557,13 @@
     > .yt-spec-button-shape-next__secondary-icon, 
     > .ytSpecButtonShapeNextSecondaryIcon {
       display: none;
+    }
+    
+    /* Fix bell icon size */
+    > .ytSpecButtonShapeNextIcon {
+      width: auto !important;
+      height: auto !important;
+      margin: unset;
     }
   }
   
@@ -4922,12 +4934,17 @@
     }
 
     .YtAnimatedIconHost .animated-subscribe-icon, 
-    .ytAnimatedIconHost .animated-subscribe-icon {
+    .ytAnimatedIconHost .animated-subscribe-icon,
+    .ytAnimatedIconHost[data-size="18"] .animated-subscribe-icon {
       --_size: 24px;
       content: var(--bell-img);
       width: var(--_size);
       height: var(--_size);
       transform: unset;
+    }
+    
+    .ytAnimatedIconHost[data-size="18"] .animated-subscribe-icon {
+      margin-inline-start: calc(var(--_size) / -2);
     }
 
     /* Video Description - Quiz Icon */
