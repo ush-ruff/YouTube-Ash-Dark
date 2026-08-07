@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.0
+@version        2.63.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -4940,6 +4940,11 @@
     /* Comment Section - Like/Dislike Icon */
     :is(ytd-comment-action-buttons-renderer, ytd-comment-engagement-bar) ytd-toggle-button-renderer .yt-icon-shape {
       color: var(--accent-blue)
+    }
+
+    /* Comment Section - Like/Dislike Icon - Size fix */
+    #toolbar.ytd-comment-engagement-bar svg[width="18"] > path {
+      scale: 0.75;
     }
 
     /* Playlist Panel - Close Icon */
