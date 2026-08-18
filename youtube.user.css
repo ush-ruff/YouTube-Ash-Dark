@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.1
+@version        2.63.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1375,20 +1375,24 @@
 
   /* ----- Related Videos - Fix menu icon position on items ----- */
   @css {
-    .ytLockupViewModelMetadata {
-      .ytLockupMetadataViewModelTextContainer {
-        padding-inline-end: 20px;
-      }
+    .ytLockupViewModelMetadata .ytLockupMetadataViewModelTextContainer {
+      padding-inline-end: 20px;
+    }
 
-      .ytLockupMetadataViewModelMenuButton {
-        position: absolute;
-        top: 0;
-        right: 0;
-        
-        button {
-          width: unset;
-          height: unset;
-        }
+    .ytLockupViewModelMetadata .ytLockupMetadataViewModelMenuButton {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: unset;
+
+      button {
+        width: unset;
+        height: unset;
+        padding: unset;
+      }
+      
+      &::before {
+        content: unset;
       }
     }
   }
