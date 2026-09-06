@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.3
+@version        2.63.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -172,7 +172,8 @@
 
   /* ----- Page Navigation - Progress Bar ----- */
   #progress.yt-page-navigation-progress, 
-  yt-page-navigation-progress[enable-refresh-signature-moments-web] #progress.yt-page-navigation-progress {
+  yt-page-navigation-progress[enable-refresh-signature-moments-web] #progress.yt-page-navigation-progress, 
+  .ytwThumbnailOverlayResumePlaybackRendererThumbnailOverlayResumePlaybackProgress {
     background: var(--accent-red-bright);
   }
 
