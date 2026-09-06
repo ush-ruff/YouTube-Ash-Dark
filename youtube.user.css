@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.4
+@version        2.63.5
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1862,6 +1862,11 @@
     .ytSpecButtonShapeNextHost {
       border-radius: var(--yt-button-border-radius, 2px);
     }
+
+    ytd-toggle-option-renderer {
+      border-radius: var(--yt-button-border-radius, 2px);
+    }
+
 
     /* --- Search - Expandable Chapters Dropdown --- */
     ytd-expandable-metadata-renderer, 
