@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.5
+@version        2.63.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2260,7 +2260,8 @@
     }
     
     #primary > ytd-rich-grid-renderer > #contents {
-      ytd-rich-item-renderer[rendered-from-rich-grid] {
+      ytd-rich-item-renderer[rendered-from-rich-grid], 
+      .ytdRichItemRendererHost {
         width: auto;
         margin: unset;
       }
