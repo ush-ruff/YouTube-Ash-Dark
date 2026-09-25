@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.6
+@version        2.63.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -335,27 +335,6 @@
       }
     }
   }
-
-  .ytSurveyIconsTitle {
-    font-weight: 600;
-    color: var(--yt-spec-text-primary);
-  }
-
-  .ytSurveyIconsAnswersText {
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--cl-900);
-  }
-
-  .ytSurveyIconsAnswers button:is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
-    width: auto;
-    background-color: transparent !important;
-    
-    &:is(:hover, :focus-visible) {
-      --icon-clr: var(--cl-300);
-    }
-  }
-
 
   /* ----- Sign In Button ----- */
   .yt-spec-button-shape-next[aria-label="sign in" i], 
@@ -880,6 +859,63 @@
   /* ----- Main Content - Survey Item ----- */
   .ytd-inline-survey-renderer {
     background-color: var(--bg-350) !important;
+  }
+
+  .ytSurveyIconsTitle, 
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText {
+    font-weight: 600;
+    color: var(--yt-spec-text-primary);
+  }
+
+  .ytSurveyIconsAnswersText {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--cl-900);
+  }
+
+  .ytSurveyIconsAnswers button:is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
+    width: auto;
+    background-color: transparent !important;
+    
+    &:is(:hover, :focus-visible) {
+      --icon-clr: var(--cl-300);
+    }
+  }
+
+  @css {
+    .ytSurveyIconsAnswers {
+      all: unset;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-block: 0.5rem 1rem;
+
+      > div {
+        display: contents !important;
+      }
+
+      button:is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
+        all: unset;
+        width: 100%;
+        display: block;
+        cursor: pointer;
+
+        &:is(:hover, :focus-visible) {
+          --icon-clr: var(--cl-300);
+        }
+
+        > div, 
+        > div > span, 
+        > div > span > span {
+          display: contents !important;
+        }
+
+        * {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
   }
 
 
