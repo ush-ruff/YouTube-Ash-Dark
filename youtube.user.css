@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.63.7
+@version        2.64.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -657,6 +657,12 @@
   }
 
 
+  /* ----- Thumbnail Overlay - Hide "New" Badge ----- */
+  .ytBadgeShapeThumbnailSpecial[aria-label="new" i] {
+    display: none;
+  }
+
+
   /* ----- Thumbnail Title ----- */
   #video-title.ytd-rich-grid-media, 
   .yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle {
@@ -692,30 +698,41 @@
 
 
   /* ----- Thumbnail Metadata - Views Count & Video Age ----- */
-  .ytContentMetadataViewModelHost .ytContentMetadataViewModelMetadataRow:nth-child(2):has(> .ytContentMetadataViewModelLeadingIcon) {
-    flex-wrap: nowrap;
+  .ytLockupViewModelMetadata .ytLockupMetadataViewModelTextContainer {
+    gap: 0.5rem;
+  }
+  
+  .ytLockupMetadataViewModelMetadata .ytContentMetadataViewModelMetadataRow:has(> .ytContentMetadataViewModelLeadingIcon) {
+    margin: unset;
     
-    > .ytContentMetadataViewModelLeadingIcon:nth-child(1) {
+    > .ytContentMetadataViewModelLeadingIcon {
       display: none;
     }
     
-    > .ytContentMetadataViewModelMetadataText:nth-child(2)::after {
-      content: " views";
+    > .ytContentMetadataViewModelMetadataText:nth-last-child(2 of .ytContentMetadataViewModelMetadataText) {
+      &::after {
+        content: " views";
+      }
     }
     
-    > .ytContentMetadataViewModelDelimiter::before {
-      content: "•";
-      font-family: Roboto,"Arial",sans-serif;
-      font-size: 1.4rem;
-      line-height: 2rem;
-      font-weight: 400;
+    > .ytContentMetadataViewModelDelimiter {
+      &::before {
+        content: "•";
+        font-family: Roboto,"Arial",sans-serif;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        font-weight: 400;
+      }
     }
     
-    > .ytContentMetadataViewModelMetadataText:nth-child(4) {
+    > .ytContentMetadataViewModelMetadataText:last-child {
+      position: relative;
       color: transparent;
+      overflow: visible;
       
       &::before {
         content: attr(aria-label);
+        position: absolute;
         color: var(--cl-600);
       }
     }
