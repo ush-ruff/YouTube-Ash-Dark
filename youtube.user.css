@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.64.0
+@version        2.64.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -2509,6 +2509,10 @@
           /* Title */
           h3 {
             grid-area: title;
+          }
+
+          .ytLockupMetadataViewModelTitle {
+            padding: unset;
           }
 
           /* Metadata */
