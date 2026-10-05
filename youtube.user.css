@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.64.1
+@version        2.64.2
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -385,7 +385,8 @@
   /* --- Subscribe Button --- */
   .ytp-sb-subscribe, 
   a.ytp-sb-subscribe,
-  .ytSpecButtonShapeNextHost.ytSpecButtonShapeNextFilled[aria-label^="subscribe" i] {
+  .ytSpecButtonShapeNextHost.ytSpecButtonShapeNextFilled[aria-label^="subscribe" i], 
+  #subscribe-button #subscribe-button-shape > button.ytSpecButtonShapeNextHost {
     text-transform: uppercase;
     background-color: var(--accent-red);
     border-radius: var(--yt-button-border-radius, 2px);
