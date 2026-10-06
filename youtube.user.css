@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.64.3
+@version        2.65.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1190,8 +1190,29 @@
 
   #info-contents .yt-spec-button-shape-next, 
   #info-contents .ytSpecButtonShapeNextHost {
+    width: auto;
     background-color: transparent;
     border-radius: var(--br);
+    
+    &::after {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-left: 6px;
+      color: var(--cl-500);
+    }
+    
+    &[aria-label="share" i]:not(:has(> .ytSpecButtonShapeNextButtonTextContent))::after {
+      content: "Share";
+    }
+    
+    &[aria-label="Save to playlist" i]:not(:has(> .ytSpecButtonShapeNextButtonTextContent))::after {
+      content: "Save";
+    }
+  }
+  
+  #info-contents .ytd-download-button-renderer .ytSpecButtonShapeNextHost:not(:has(> .ytSpecButtonShapeNextButtonTextContent))::after {
+    content: "Download";
   }
 
 
@@ -1595,6 +1616,41 @@
   }
 
 
+  /* ----- Channel Page - Community Posts - Action Buttons Text ----- */
+  #post .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextText,
+  #vote-count-middle.ytd-comment-action-buttons-renderer {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cl-600);
+  }
+  
+  #dislike-button {
+    margin-inline-start: 1rem;
+  }
+
+  #dislike-button button, 
+  #share-button button {
+    width: auto;
+    padding: unset;
+    
+    &::after {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-left: 6px;
+      color: var(--cl-600);
+    }
+  }
+  
+  #dislike-button button::after {
+    content: "Dislike";
+  }
+  
+  #share-button button::after {
+    content: "Share";
+  }
+
+
   /* ----- Channel Page - Community Posts - Comment Box ----- */
   #primary ytd-comments-header-renderer[is-backstage] {
     margin-block: 24px 0;
@@ -1620,6 +1676,10 @@
   /* ----- Channel Page - Community Posts - Poll ----- */
   .progress-bar.ytd-backstage-poll-renderer {
     border-radius: 0;
+  }
+
+  .choice-info.ytd-backstage-poll-renderer {
+    overflow: hidden;
   }
 
 
@@ -4584,6 +4644,7 @@
   shortsPageIcons = {
     /* Comments */
     "M1 6a4 4 0 014-4h14a4 4 0 014 4v10a4 4 0 01-4 4h-4.8l-5.105 2.836A1.41 1.41 0 017 21.604V20H5a4 4 0 01-4-4V6Zm8 12v2.601l4.229-2.35.453-.251H19a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h4ZM7 8a1 1 0 000 2h10a1 1 0 100-2H7Zm-1 5a1 1 0 001 1h6a1 1 0 000-2H7a1 1 0 00-1 1Z": "M3.591 2.2342c-.6878.1976-1.2654.7828-1.444 1.4668-.0494.1976-.057 1.0146-.057 6.7716v6.5436l.095.3002c.1976.6232.6612 1.1058 1.2958 1.349l.2242.0836 7.486.0114 7.486.0076 2.0824 2.0824 2.0786 2.0786-.0076-9.576-.0114-9.576-.095-.247c-.2546-.646-.703-1.0716-1.3414-1.273l-.2964-.095-8.6336.0038c-8.056 0-8.6488.0076-8.8616.0684zM18.696 7.349V8.394H12.464 6.232V7.349 6.304h6.232 6.232V7.349zm0 3.116V11.51H12.464 6.232V10.465 9.42h6.232 6.232v1.045zm0 3.116v1.045H12.464 6.232V13.581 12.536h6.232 6.232v1.045z",
+    "M14.25 1.5H3.75a3 3 0 00-3 3V12a3 3 0 003 3h1.5v1.203c0 .806.867 1.316 1.571.924L10.651 15h3.599a3 3 0 003-3V4.5a3 3 0 00-3-3ZM3.75 3h10.5l.153.008A1.5 1.5 0 0115.75 4.5V12a1.5 1.5 0 01-1.5 1.5h-3.988l-.34.188L6.75 15.45V13.5h-3a1.5 1.5 0 01-1.5-1.5V4.5A1.5 1.5 0 013.75 3Zm9 3h-7.5a.75.75 0 000 1.5h7.5a.75.75 0 100-1.5Zm-3 3h-4.5a.75.75 0 000 1.5h4.5a.75.75 0 100-1.5Z": "M3.591 2.2342c-.6878.1976-1.2654.7828-1.444 1.4668-.0494.1976-.057 1.0146-.057 6.7716v6.5436l.095.3002c.1976.6232.6612 1.1058 1.2958 1.349l.2242.0836 7.486.0114 7.486.0076 2.0824 2.0824 2.0786 2.0786-.0076-9.576-.0114-9.576-.095-.247c-.2546-.646-.703-1.0716-1.3414-1.273l-.2964-.095-8.6336.0038c-8.056 0-8.6488.0076-8.8616.0684zM18.696 7.349V8.394H12.464 6.232V7.349 6.304h6.232 6.232V7.349zm0 3.116V11.51H12.464 6.232V10.465 9.42h6.232 6.232v1.045zm0 3.116v1.045H12.464 6.232V13.581 12.536h6.232 6.232v1.045z",
 
     /* Remix */
     "M10.564 1.095a11 11 0 00-9.189 8.058 1 1 0 101.932.517A8.999 8.999 0 0119.481 7H18a1 1 0 100 2h5V4a1 1 0 00-2 0v1.679a11 11 0 00-10.436-4.584ZM12 7a1 1 0 00-1 1v3H8a1 1 0 000 2h3v3a1 1 0 002 0v-3h3a1 1 0 000-2h-3V8a1 1 0 00-1-1Zm8.693 7.33A9 9 0 014.517 17H6a1 1 0 000-2H1v5a1 1 0 102 0v-1.68a11 11 0 0019.625-3.472 1 1 0 10-1.932-.518Z": "M22 12c0 2.89-1.24 5.48-3.2 7.3L21 21.5H15v-6l2.38 2.38C18.98 16.42 20 14.33 20 12c0-4.07-3.06-7.44-7-7.93V2.05c5.05.5 9 4.76 9 9.95ZM4 12c0 4.07 3.06 7.44 7 7.93v2.02c-5.05-.5-9-4.76-9-9.95C2 9.11 3.24 6.52 5.2 4.7L3 2.5H9v6L6.62 6.12C5.02 7.58 4 9.67 4 12Zm7-1H8v2h3v3h2V13h3V11H13V8H11Z",
@@ -5035,6 +5096,8 @@
     fixIconSize("#info-contents")
     /* Community Button Icon */
     fixIconSize("#page-header .ytPageHeaderViewModelFlexibleActions")
+    /* Channel Posts - Comments Icon */
+    fixIconSize("#reply-button-end")
 
     /* Comments - Verified User Icon */
     #author-comment-badge path[d="M9.896 2.896 4.25 8.543 2.103 6.396l-.078-.064a.5.5 0 00-.629.771L4.25 9.957l6.354-6.354a.5.5 0 10-.708-.707Z"] {
