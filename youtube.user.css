@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.65.0
+@version        2.65.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1624,30 +1624,32 @@
     color: var(--cl-600);
   }
   
-  #dislike-button {
-    margin-inline-start: 1rem;
-  }
-
-  #dislike-button button, 
-  #share-button button {
-    width: auto;
-    padding: unset;
-    
-    &::after {
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: uppercase;
-      margin-left: 6px;
-      color: var(--cl-600);
+  #post.ytd-backstage-post-thread-renderer {
+    #dislike-button {
+      margin-inline-start: 1rem;
     }
-  }
-  
-  #dislike-button button::after {
-    content: "Dislike";
-  }
-  
-  #share-button button::after {
-    content: "Share";
+
+    #dislike-button button, 
+    #share-button button {
+      width: auto;
+      padding: unset;
+
+      &::after {
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-left: 6px;
+        color: var(--cl-600);
+      }
+    }
+
+    #dislike-button button::after {
+      content: "Dislike";
+    }
+
+    #share-button button::after {
+      content: "Share";
+    }
   }
 
 
