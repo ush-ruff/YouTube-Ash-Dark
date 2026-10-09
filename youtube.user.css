@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.65.1
+@version        2.66.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1570,8 +1570,8 @@
   }
 
   /* Align search icon/input to the right */
-  .yt-tab-shape__tab--last-tab, 
-  .ytTabShapeLastTab {
+  .yt-tab-shape__tab--last-tab:not([tab-title="shorts"i]), 
+  .ytTabShapeLastTab:not([tab-title="shorts"i]) {
     margin-inline: auto 0;
   }
 
@@ -1843,9 +1843,16 @@
   #summary-text.yt-live-chat-banner-chat-summary-renderer {
     color: var(--yt-spec-text-primary);
   }
+
+
+  /* ----- Hashtag Pages - Header Positioning ----- */
+  ytd-tabbed-page-header[page-subtype="hashtag-landing-page"] #header.ytd-tabbed-page-header, 
+  ytd-two-column-browse-results-renderer[page-subtype="hashtag-landing-page"] {
+    padding-block-start: 2rem;
+  }
   
 
-  /* ---- Error 404 ---- */
+  /* ----- Error 404 ----- */
   #error-page {
     background-color: var(--bg-200);
     color: var(--cl-400);
