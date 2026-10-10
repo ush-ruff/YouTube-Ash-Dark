@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.66.0
+@version        2.67.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -243,6 +243,11 @@
     fixMenuIcon("#menu");
   }
 
+  /* Playlists */
+  ytd-playlist-video-renderer {
+    fixMenuIcon("#menu")
+  }
+
 
   /* ----- Menu Icon - Remove Accent Colors in the Background ----- */
   .ytLockupViewModelMetadata .ytLockupMetadataViewModelMenuButton::after {
@@ -330,6 +335,35 @@
     &:hover {
       background-color: var(--bg-600);
     }
+  }
+
+  @css {
+    .ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextFilled {
+      text-transform: uppercase;
+      background-color: var(--accent-red);
+      border-radius: var(--yt-button-border-radius, 2px);
+      color: var(--cl-100);
+      
+      &:is(:hover, :focus-visible) {
+        background-color: var(--accent-red-dark) !important;
+      }
+    }
+
+    .ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextTonal {
+      background-color: var(--bg-530);
+
+      &:is(:hover, :focus-visible) {
+        background-color: var(--bg-600) !important;
+      }
+      
+      .ytSpecButtonShapeNextIcon {
+        filter: unset;
+      }
+    }
+  }
+  
+  .ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextTonal.ytSpecButtonShapeNextEnableBackdropFilterExperiment {
+    backdrop-filter: unset;
   }
   
   /* Search - View More Buttons */
@@ -610,6 +644,13 @@
   /* ----- Thumbnail Overlay - Hide "New" Badge ----- */
   .ytBadgeShapeThumbnailSpecial[aria-label="new" i] {
     display: none;
+  }
+
+
+  /* ----- Thumbnail Overyay - Live Badge ----- */
+  .ytBadgeShapeThumbnailLive.ytBadgeShapeModern {
+    background: var(--yt-spec-static-overlay-background-brand);
+    border-radius: 2px;
   }
 
 
