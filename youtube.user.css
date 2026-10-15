@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.67.0
+@version        2.67.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -5152,6 +5152,11 @@
     /* Comments - Verified User Icon */
     #author-comment-badge path[d="M9.896 2.896 4.25 8.543 2.103 6.396l-.078-.064a.5.5 0 00-.629.771L4.25 9.957l6.354-6.354a.5.5 0 10-.708-.707Z"] {
       scale: 0.5;
+    }
+
+    /* Home Page - Channel Post Like/Dislike Icons */
+    ytd-post-renderer :is(#like-button, #dislike-button) button {
+      scale: 0.8;
     }
     
   }
