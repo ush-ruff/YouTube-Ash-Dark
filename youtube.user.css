@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.67.2
+@version        2.68.0
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -29,6 +29,7 @@
 @var            checkbox    hideShorts             "Hide YouTube Shorts on Feeds"                 1
 @var            checkbox    hideShortsSearch       "Hide YouTube Shorts in Search Results"        1
 @var            checkbox    hideRecommendations    "Hide Recommendations on Watch Page"           0
+@var            checkbox    hideGames              "Hide Games on Home Page"                      1
 @var            checkbox    restoreDesc            "Restore Description Style"                    1
 @var            checkbox    restoreCommentReplies  "Restore Comment Replies Style"                1
 @var            checkbox    restorePlayer          "Restore Video Player Style"                   1
@@ -1165,6 +1166,12 @@
   }
 
 
+  /* ----- Description - Visited tags under videos ----- */
+  a.yt-simple-endpoint.yt-formatted-string:visited {
+    color: var(--accent-blue-dark);
+  }
+
+
   /* ----- Description - Text & Links ----- */
   #description :is(.yt-core-attributed-string--link-inherit-color, .ytAttributedStringLinkInheritColor):not(.yt-core-attributed-string__link--call-to-action-color) {
     color: inherit !important;
@@ -1391,6 +1398,18 @@
   }
 
 
+  /* ----- Comment - Composer Input Buttons ----- */
+  .ytd-commentbox .ytSpecButtonShapeNextSizeM {
+    height: auto;
+    font-size: 14px;
+    line-height: 18px;
+    
+    &.ytSpecButtonShapeNextSizeM.ytSpecButtonShapeNextMainstagePadding {
+      padding: 0.8rem 1.5rem;
+    }
+  }
+
+
   /* ----- Comment - Replies Expander ----- */
   #replies #expander .dot {
     line-height: 0.35;
@@ -1420,6 +1439,14 @@
     #text.ytd-channel-name {
       color: var(--cl-100);
     }
+  }
+
+
+  /* ----- Comment - Reply Button ----- */
+  .ytd-comment-engagement-bar #reply-button-end button {
+    height: auto;
+    font-size: 13px;
+    line-height: auto;
   }
 
 
@@ -1582,6 +1609,11 @@
   /* Fix header gap after in sticky mode */
   tp-yt-app-toolbar.ytd-tabbed-page-header {
     transform: unset !important;
+  }
+
+  /* Fix section headers padding */
+  ytd-shelf-renderer:not([featured-promo]) #title-container.ytd-shelf-renderer {
+    padding-block: 1.5rem 0.75rem;
   }
 
 
@@ -2940,13 +2972,22 @@
     grid-shelf-view-model:has(> div > .ytGridShelfViewModelGridShelfRow > .ytGridShelfViewModelGridShelfItem > .shortsLockupViewModelHost) {
       display: none;
     }
-}
+  }
 }
 
 @-moz-document domain("youtube.com") {
   /* ----- Hide Recommendations on Watch Page ----- */
   if (hideRecommendations) {
     ytd-app[is-watch-page] #secondary {
+      display: none !important;
+    }
+  }
+}
+
+@-moz-document domain("youtube.com") {
+  /* ----- Hide Games on Home Page ----- */
+if (hideGames) {
+    ytd-two-column-browse-results-renderer[page-subtype="home"] ytd-rich-section-renderer:has(#contents > ytd-rich-item-renderer[is-mini-game-card-shelf]) {
       display: none !important;
     }
   }
