@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.68.0
+@version        2.68.1
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -706,7 +706,7 @@
       display: none;
     }
     
-    > .ytContentMetadataViewModelMetadataText:nth-last-child(2 of .ytContentMetadataViewModelMetadataText) {
+    > .ytContentMetadataViewModelMetadataText:nth-last-child(2 of .ytContentMetadataViewModelMetadataText):not(:first-child) {
       &::after {
         content: " views";
       }
@@ -724,6 +724,7 @@
     
     > .ytContentMetadataViewModelMetadataText:last-child {
       position: relative;
+      min-width: 12ch;
       color: transparent;
       overflow: visible;
       
