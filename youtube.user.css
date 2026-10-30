@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.68.3
+@version        2.68.4
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1262,6 +1262,10 @@
     
     &[aria-label="Save to playlist" i]:not(:has(> .ytSpecButtonShapeNextButtonTextContent))::after {
       content: "Save";
+    }
+
+    &[aria-label="ask" i]:not(:has(> .ytSpecButtonShapeNextButtonTextContent))::after {
+      content: "Ask";
     }
   }
   
