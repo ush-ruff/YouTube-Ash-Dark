@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.68.2
+@version        2.68.3
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -1885,6 +1885,22 @@
     
     #expand:hover::before {
       color: var(--cl-200);
+    }
+  }
+
+
+  /* ----- Playlist Panel - Header ----- */
+  ytd-playlist-panel-renderer#playlist {
+    --yt-active-playlist-panel-background-color: var(--bg-300);
+    
+    #next-video-title.ytd-playlist-panel-renderer {
+      color: var(--cl-300);
+    }
+    
+    .byline-title.ytd-playlist-panel-renderer, 
+    .publisher.ytd-playlist-panel-renderer, 
+    .index-message-wrapper.ytd-playlist-panel-renderer {
+      color: var(--cl-600);
     }
   }
 
