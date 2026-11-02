@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.68.5
+@version        2.68.6
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -387,14 +387,14 @@
   /* ----- Sign In Button ----- */
   .yt-spec-button-shape-next[aria-label="sign in" i], 
   .ytSpecButtonShapeNextHost[aria-label="sign in" i] {
-    background-color: #263850;
-    border-color: #263850;
+    background-color: #263850 !important;
+    border-color: #263850 !important;
     border-radius: var(--yt-button-border-radius, 2px);
     color: var(--accent-blue);
     
     &:hover {
-      background-color: var(--accent-blue);
-      color: var(--bg-100);
+      background-color: var(--accent-blue) !important;
+      color: var(--bg-100) !important;
     }
 
     .ytSpecButtonShapeNextIcon {
