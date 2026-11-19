@@ -3,7 +3,7 @@
 @namespace      github.com/ush-ruff
 @homepageURL    https://github.com/ush-ruff/Youtube-Ash-Dark
 @updateURL      https://github.com/ush-ruff/Youtube-Ash-Dark/raw/main/youtube.user.css
-@version        2.68.6
+@version        2.68.7
 @description    Various darkmode fixes and layout styles for YouTube.
 @author         ushruff
 @preprocessor   stylus
@@ -734,6 +734,10 @@
         color: var(--cl-600);
       }
     }
+  }
+
+  ytd-video-renderer[is-search] #metadata-line #separator + .ytd-video-meta-block::after {
+    content: " views";
   }
 
 
